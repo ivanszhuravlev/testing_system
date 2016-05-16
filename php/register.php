@@ -45,5 +45,6 @@ $query = mysqli_query($link, "INSERT INTO users SET " .
                       "password = '" . password_hash($password, PASSWORD_DEFAULT) . "'"
                      );
 
+session_start();
 $_SESSION['uid'] = uniqid('ang_');
 print($_SESSION['uid']);
