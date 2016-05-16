@@ -1,0 +1,6 @@
+<h1>ВХОД</h1>
+<form ng-controller="EnterController as enter_controller" class="enter-form" id="enter-form" method="post" ng-submit="enter_controller.enter()">
+    <input type="text" name="email" placeholder="E-mail" ng-model="ent_email" autofocus />
+    <input type="password" name="password" placeholder="Пароль" ng-model="ent_pass" />
+    <input type="submit" name="submit" value="Войти" />
+</form>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+<head>
+    <meta charset="utf-8" />
+    <title>Опросная система</title>
+    <meta name="keywords" content="" />
+	<meta name="description" content="" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/forms.css" />
+</head>
+
+<body ng-controller="IndexController">
+    <header>
+        <img src="img/logo.png" class="logo">
+        <img src="img/right-logo.png" class="right-logo">
+    </header>
+    <content>
+        <aside>
+            <div ng-include="nav"></div>
+            <div ng-include="auth"></div>
+        </aside>
+        <div class="container" ng-include="view">
+        </div>
+    </content>
+    <footer>
+        <div class="info">
+            <span>При поддержке гранта РГНФ №321</span>
+            <span class="underlined"><a href="#">Информированное согласие на участие</a></span>
+        </div>
+    </footer>
+    <script src="scripts/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module('testApp', []);
+    </script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/services/RegValues.js"></script>
+    <script src="scripts/controllers/IndexController.js"></script>
+    <script src="scripts/controllers/RegController.js"></script>
+    <script src="scripts/controllers/EnterController.js"></script>
+    <script src="scripts/services/RegService.js"></script>
+    <script src="scripts/services/EnterService.js"></script>
+    <script src="scripts/services/SessionService.js"></script>
+</body>
+</html>

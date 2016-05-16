@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic&subset=latin,cyrillic);
+
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+
+form.enter-form,
+form.register-form {
+    display: block;
+    width: 280px;
+}
+
+    input {
+        display: block;
+        margin-bottom: 12px;
+        border-radius: 3px;
+        box-sizing: border-box;
+        font-family: 'Open Sans';
+    }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"]{
+            padding: 9px 12px;
+            border: 1px solid #c9c9c9;
+            width: 100%;
+            color: #444444;
+        }
+
+        input[type="submit"] {
+            width: auto;
+            background: #3fa16e;
+            border: 0;
+            color: #ffffff;
+            padding: 9px 16px;
+            cursor: pointer;
+        }
+
+        input[type="text"]::after {
+            font-family: "Material Icons";
+            font-size: 24px;
+            content: "";
+            color: #000000;
+        }
+
+            input[type="submit"]:hover {
+                background: #378f61;
+            }
+
+    .correct::after {
+        font-family: "Material Icons";
+        font-size: 24px;
+        content: "check";
+        color: #000000;
+    }
+
+    .incorrect::after {
+        font-family: "Material Icons";
+        font-size: 24px;
+        content: "close";
+        color: #000000;
+    }
