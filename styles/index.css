@@ -46,7 +46,7 @@ header {
 content {
     display: flex;
     flex-flow: row wrap;
-    height: calc( 100vh - 166px );
+    min-height: calc( 100vh - 166px );
     justify-content: flex-start;
 }
 

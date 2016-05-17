@@ -1,10 +1,14 @@
 "use strict";
 
 angular.module('testApp')
-    .factory('UserService', ['$http', 'UserModel', '$rootScope', function($http, UserModel, $rootScope) {
+    .factory('UserService', ['$http', 'UserModel', '$rootScope', function($http, UserModel) {
         return {
             get : function() {
                 return UserModel.user;
+            },
+
+            getList : function() {
+                return $http.get('./php/user/get_list.php');
             },
 
             set : function(id) {

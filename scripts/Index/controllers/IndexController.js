@@ -16,6 +16,17 @@ angular.module("testApp")
             open_reg_form();
         };
 
+        /**
+         * Обработчик клика по кнопке "Пользователи".
+         */
+        $scope.show_users_click_handler = function () {
+            show_users();
+        };
+
+        var show_users = function() {
+            $rootScope.view = './views/user_list.html';
+        };
+
         var open_enter_form = function() {
             $rootScope.view = './views/enter.html';
         };
