@@ -35,9 +35,17 @@ if (!$guest) {
 }
 
 if (password_verify($password, $guest["password"])) {
+
     session_start();
-    $_SESSION['uid'] = uniqid('ang_');
-    print($_SESSION['uid']);
+
+    $_SESSION["uid"] = uniqid('ang_');
+
+    $response = array(
+        "id" => $guest["id"],
+        "value" => $_SESSION['uid']
+    );
+
+    print(json_encode($response));
 } else {
     die(WRONG_PASS);
 }

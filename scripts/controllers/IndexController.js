@@ -28,5 +28,4 @@ angular.module("testApp")
         $scope.logout = function() {
             EnterService.logout();
         };
-
     });

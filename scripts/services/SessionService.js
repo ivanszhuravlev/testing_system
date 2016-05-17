@@ -9,9 +9,9 @@ angular.module('testApp')
             get : function (key) {
                 return sessionStorage.getItem(key);
             },
-            destroy: function (key) {
+            destroy: function () {
                 $http.post('./php/data/destroy_session.php');
-                return sessionStorage.removeItem(key);
+                return sessionStorage.removeItem('uid');
             },
             check: function () {
                 var $checkSessionServer = $http.post('./php/data/check_session.php');

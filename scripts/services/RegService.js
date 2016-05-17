@@ -1,6 +1,6 @@
 angular.module('testApp')
-    .factory('RegService', ['$http', 'RegValues', '$rootScope', 'SessionService',
-                            function ($http, RegValues, $rootScope, SessionService) {
+    .factory('RegService', ['$http', 'RegValues', '$rootScope', 'SessionService', 'UserService',
+                            function ($http, RegValues, $rootScope, SessionService, UserService) {
 
         var RegService = {};
         var model = RegValues;
@@ -50,10 +50,12 @@ angular.module('testApp')
 
             if (condition) {
                 $http.post("./php/register.php", user).success(function(data) {
-                    SessionService.set('uid', data);
+                    SessionService.set("uid", data.value);
                     $rootScope.nav = './views/nav.html';
                     $rootScope.view = './views/blocks.html';
                     $rootScope.auth = './views/logout_panel.html';
+                    UserService.set(data.id);
+                    $rootScope.user = UserService.get();
                 });
             }
         };

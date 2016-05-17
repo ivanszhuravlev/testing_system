@@ -45,6 +45,17 @@ $query = mysqli_query($link, "INSERT INTO users SET " .
                       "password = '" . password_hash($password, PASSWORD_DEFAULT) . "'"
                      );
 
+$query = mysqli_query($link, "SELECT id FROM users WHERE email = '" . $email . "'");
+
+$user = mysqli_fetch_assoc($query);
+
 session_start();
-$_SESSION['uid'] = uniqid('ang_');
-print($_SESSION['uid']);
+
+$_SESSION["uid"] = uniqid('ang_');
+
+$response = array(
+    "id" => $user["id"],
+    "value" => $_SESSION['uid']
+);
+
+print(json_encode($response));
