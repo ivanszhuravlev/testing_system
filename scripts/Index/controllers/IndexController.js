@@ -23,6 +23,17 @@ angular.module("testApp")
             show_users();
         };
 
+        /**
+         * Обработчик клика по кнопке "Парсер переменных".
+         */
+        $scope.show_parser_click_handler = function () {
+            show_parser();
+        };
+
+        var show_parser = function () {
+            $rootScope.view = './views/parser.html';
+        };
+
         var show_users = function() {
             $rootScope.view = './views/user_list.html';
         };

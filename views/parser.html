@@ -1,0 +1,8 @@
+<div ng-controller="ParserController as parser_controller">
+    <input type="text" ng-model="variable">
+    <button ng-click="parser_controller.parseVariable(variable)">Спарсим!</button>
+    <p>Имя переменной: {{name}}</p>
+    <p>Номер блока: {{block}}</p>
+    <p>Номер вопроса: {{id}}</p>
+    <p>Этап: {{stage}}</p>
+</div>
