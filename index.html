@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="testApp">
 <head>
+    <base href="/" />
     <meta charset="utf-8" />
     <title>Опросная система</title>
     <meta name="keywords" content="" />
@@ -14,14 +15,7 @@
         <img src="img/logo.png" class="logo">
         <img src="img/right-logo.png" class="right-logo">
     </header>
-    <content>
-        <aside>
-            <div ng-include="nav"></div>
-            <div ng-include="auth"></div>
-        </aside>
-        <div class="container" ng-include="view">
-        </div>
-    </content>
+    <content ng-view></content>
     <footer>
         <div class="info">
             <span>При поддержке гранта РГНФ №321</span>
@@ -29,9 +23,7 @@
         </div>
     </footer>
     <script src="scripts/angular.min.js"></script>
-    <script type="text/javascript">
-        angular.module('testApp', []);
-    </script>
+    <script src="scripts/angular-route.js"></script>
     <!-- Onload actions -->
     <script src="scripts/app.js"></script>
     <!-- Index -->

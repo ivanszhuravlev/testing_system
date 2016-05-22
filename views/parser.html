@@ -1,4 +1,9 @@
-<div ng-controller="ParserController as parser_controller">
+<aside>
+    <nav ng-include="nav"></nav>
+    <p>Здравствуйте, {{user.nick}}</p>
+    <button class="enter-button" ng-click="logout()">Выйти</button>
+</aside>
+<div class="container">
     <input type="text" ng-model="variable">
     <button ng-click="parser_controller.parseVariable(variable)">Спарсим!</button>
     <p>Имя переменной: {{name}}</p>

@@ -1,7 +1,14 @@
-<table ng-controller="UserListController">
-    <tr ng-repeat="user in users">
-        <td>{{user.id}}</td>
-        <td>{{user.nickname}}</td>
-        <td>{{user.email}}</td>
-    </tr>
-</table>
+<aside>
+    <nav ng-include="nav"></nav>
+    <p>Здравствуйте, {{user.nick}}</p>
+    <button class="enter-button" ng-click="logout()">Выйти</button>
+</aside>
+<div class="container">
+    <table>
+        <tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.nickname}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+    </table>
+</div>

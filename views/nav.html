@@ -1,6 +1,14 @@
-<nav>
-    <h1>МЕНЮ</h1>
-    <span><a href="#"><img src="img/nav-icon.png" />Ответы на вопросы</a></span>
-    <span ng-if="user.is_admin" ng-click="show_parser_click_handler()"><a href="#"><img src="img/nav-icon.png" />Парсер переменных</a></span>
-    <span ng-if="user.is_admin" ng-click="show_users_click_handler()"><img src="img/nav-icon.png" />Пользователи</span>
-</nav>
+<h1>МЕНЮ</h1>
+<span><a href="#"><img src="img/nav-icon.png" />Ответы на вопросы</a></span>
+
+<a href="/user_{{user.id}}/parser">
+    <span ng-if="user.is_admin">
+        <img src="img/nav-icon.png" />Парсер переменных
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/users_list">
+    <span ng-if="user.is_admin">
+        <img src="img/nav-icon.png" />Пользователи
+    </span>
+</a>

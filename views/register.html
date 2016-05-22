@@ -1,8 +1,14 @@
-<h1>РЕГИСТРАЦИЯ</h1>
-<form ng-controller="RegController as reg_controller" class="register-form" id="register-form" method="post" ng-submit="reg_controller.register()">
-    <input type="text" id="nickname" placeholder="Имя" ng-model="nickname" ng-change="reg_controller.checkNick()" />
-    <input type="text" id="reg_email" placeholder="E-mail" ng-model="reg_email" ng-change="reg_controller.checkEmail()" />
-    <input type="password" id="reg_pass" placeholder="Пароль" ng-model="reg_pass" ng-change="reg_controller.checkPass()" />
-    <input type="password" id="rep_pass" placeholder="Повторите пароль" ng-model="rep_pass" ng-change="reg_controller.checkPass()" />
-    <input type="submit" name="submit" value="Зарегистрироваться" />
-</form>
+<aside>
+    <a href="/register"><button class="register-button">Регистрация</button></a>
+    <a href="/enter"><button class="enter-button">Вход</button></a>
+</aside>
+<div class="container">
+    <h1>РЕГИСТРАЦИЯ</h1>
+    <form class="register-form" id="register-form" method="post" ng-submit="reg_controller.register()">
+        <input type="text" id="nickname" placeholder="Имя" ng-model="nickname" ng-change="reg_controller.checkNick()" />
+        <input type="text" id="reg_email" placeholder="E-mail" ng-model="reg_email" ng-change="reg_controller.checkEmail()" />
+        <input type="password" id="reg_pass" placeholder="Пароль" ng-model="reg_pass" ng-change="reg_controller.checkPass()" />
+        <input type="password" id="rep_pass" placeholder="Повторите пароль" ng-model="rep_pass" ng-change="reg_controller.checkPass()" />
+        <input type="submit" name="submit" value="Зарегистрироваться" />
+    </form>
+</div>

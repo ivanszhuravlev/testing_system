@@ -1,17 +1,13 @@
-angular.module('testApp')
+angular.module('testApp', ['ngRoute'])
     .run(function(SessionService, $rootScope, UserService) {
         var connected = SessionService.check();
 
         connected.then(function(message) {
 
             if (!message.data) {
-                $rootScope.view = './views/welcome.html';
                 $rootScope.nav = '';
-                $rootScope.auth = './views/login_panel.html';
             } else {
-                $rootScope.view = './views/blocks.html';
                 $rootScope.nav = './views/nav.html';
-                $rootScope.auth = './views/logout_panel.html';
 
                 var id = localStorage.getItem('user_id');
 
@@ -20,4 +16,44 @@ angular.module('testApp')
                 $rootScope.user = UserService.get();
             }
         });
-    });
+    })
+    .config(['$routeProvider', '$locationProvider',
+        function($routeProvider, $locationProvider) {
+            $locationProvider.html5Mode({
+                enabled: true,
+                requireBase: false
+            });
+
+            $routeProvider
+                .when('/', {
+                    templateUrl: './views/index.html'
+                })
+                .when('/enter', {
+                    templateUrl: './views/enter.html',
+                    controller: 'EnterController',
+                    controllerAs: 'enter_controller'
+                })
+                .when('/register', {
+                    templateUrl: './views/register.html',
+                    controller: 'RegController',
+                    controllerAs: 'reg_controller'
+                })
+                .when('/user_:userId/blocks', {
+                    templateUrl: './views/blocks.html'
+                })
+                .when('/user_:userId/parser', {
+                    templateUrl: './views/parser.html',
+                    controller: 'ParserController',
+                    controllerAs: 'parser_controller'
+                })
+                .when('/user_:userId/users_list', {
+                    templateUrl: './views/user_list.html',
+                    controller: 'UserListController'
+                })
+                .when('/user_:userId', {
+                    redirectTo: '/user_:userId/blocks'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+        }]);

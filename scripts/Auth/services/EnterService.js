@@ -1,11 +1,16 @@
 "use strict";
 
 angular.module('testApp')
-    .factory('EnterService', ['$http', 'SessionService', '$rootScope', 'UserService',
-                              function($http, SessionService, $rootScope, UserService) {
+    .factory('EnterService', ['$http', 'SessionService', '$rootScope', 'UserService', '$location',
+                              function($http, SessionService, $rootScope, UserService, $location) {
         var response = "4";
         return {
             login : function (enter_user) {
+                /**
+                 * Recieve user Id and session token from server;
+                 * Store them into 'response':
+                 * 'id' - user id, 'value' - token.
+                 */
                 $http.post("./php/enter.php", enter_user)
                 .success(function (data) {
                     response = data;
@@ -27,9 +32,7 @@ angular.module('testApp')
                         default:
                             SessionService.set("uid", response.value);
 
-                            $rootScope.nav  = './views/nav.html';
-                            $rootScope.view = './views/blocks.html';
-                            $rootScope.auth = './views/logout_panel.html';
+                            $location.path('/user_' + response.id + '/blocks').replace();
 
                             UserService.set(response.id);
 
@@ -43,9 +46,7 @@ angular.module('testApp')
                 SessionService.destroy('uid');
                 UserService.logout();
 
-                $rootScope.nav = '';
-                $rootScope.view = './views/welcome.html';
-                $rootScope.auth = './views/login_panel.html';
+                $location.path('/').replace();
             },
 
             isLogged : function () {

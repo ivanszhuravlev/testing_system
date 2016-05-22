@@ -82,6 +82,7 @@ aside {
         box-sizing: border-box;
         font-family: 'Open Sans';
         margin-top: 8px;
+        width: 100%;
     }
 
     aside button.register-button {

@@ -1,6 +1,6 @@
 angular.module('testApp')
-    .factory('RegService', ['$http', 'RegValues', '$rootScope', 'SessionService', 'UserService',
-                            function ($http, RegValues, $rootScope, SessionService, UserService) {
+    .factory('RegService', ['$http', 'RegValues', '$rootScope', 'SessionService', 'UserService', '$location',
+                            function ($http, RegValues, $rootScope, SessionService, UserService, $location) {
 
         var RegService = {};
         var model = RegValues;
@@ -49,11 +49,16 @@ angular.module('testApp')
                             model.reg_user.pass_equal == 0;
 
             if (condition) {
+                /**
+                 * Recieve user Id and session token from server;
+                 * Store them temporary into 'data':
+                 * 'id' - user id, 'value' - token.
+                 */
                 $http.post("./php/register.php", user).success(function(data) {
                     SessionService.set("uid", data.value);
-                    $rootScope.nav = './views/nav.html';
-                    $rootScope.view = './views/blocks.html';
-                    $rootScope.auth = './views/logout_panel.html';
+
+                    $location.path('/user_' + data.id + '/blocks').replace();
+
                     UserService.set(data.id);
                     $rootScope.user = UserService.get();
                 });
