@@ -1,14 +1,27 @@
-<h1>МЕНЮ</h1>
-<span><a href="#"><img src="img/nav-icon.png" />Ответы на вопросы</a></span>
+<a href="#">
+    <span class="item">
+        <img src="img/nav-icon.png" />
+        <span>Ответы на вопросы</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/blocks">
+    <span class="item">
+        <img src="img/nav-icon.png" />
+        <span>Опросник</span>
+    </span>
+</a>
 
 <a href="/user_{{user.id}}/parser">
-    <span ng-if="user.is_admin">
-        <img src="img/nav-icon.png" />Парсер переменных
+    <span class="item" ng-if="user.is_admin">
+        <img src="img/nav-icon.png" />
+        <span>Парсер переменных</span>
     </span>
 </a>
 
 <a href="/user_{{user.id}}/users_list">
-    <span ng-if="user.is_admin">
-        <img src="img/nav-icon.png" />Пользователи
+    <span class="item" ng-if="user.is_admin">
+        <img src="img/nav-icon.png" />
+        <span>Пользователи</span>
     </span>
 </a>

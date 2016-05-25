@@ -1,21 +1,19 @@
 angular.module('testApp', ['ngRoute'])
-    .run(function(SessionService, $rootScope, UserService) {
-        var connected = SessionService.check();
+    .run(function(SessionService, $rootScope, UserService, $location) {
+            var connected = SessionService.check();
 
-        connected.then(function(message) {
+            connected.then(function(message) {
 
-            if (!message.data) {
-                $rootScope.nav = '';
-            } else {
-                $rootScope.nav = './views/nav.html';
+                if (!message.data) {
+                    $location.path('/').replace();
+                } else {
+                    var id = localStorage.getItem('user_id');
 
-                var id = localStorage.getItem('user_id');
+                    UserService.set(id);
 
-                UserService.set(id);
-
-                $rootScope.user = UserService.get();
-            }
-        });
+                    $rootScope.user = UserService.get();
+                }
+            });
     })
     .config(['$routeProvider', '$locationProvider',
         function($routeProvider, $locationProvider) {

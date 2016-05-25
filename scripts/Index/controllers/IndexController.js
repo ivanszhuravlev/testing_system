@@ -1,11 +1,13 @@
 angular.module("testApp")
 
-    .controller("IndexController", ['$route', '$routeParams', '$location', '$scope', 'EnterService',
-        function ($route, $routeParams, $location, $scope, EnterService) {
+    .controller("IndexController", ['$route', '$routeParams', '$location', '$scope', 'EnterService', '$rootScope',
+        function ($route, $routeParams, $location, $scope, EnterService, $rootScope) {
 
             this.$route = $route;
             this.$location = $location;
             this.$routeParams = $routeParams;
+
+            $rootScope.nav = './views/nav.html';
             /**
              * Обработчик клика по кнопке входа.
              */
