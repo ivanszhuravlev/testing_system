@@ -58,4 +58,4 @@ $response = array(
     "value" => $_SESSION['uid']
 );
 
-print(json_encode($response));
+print(json_encode($user));
