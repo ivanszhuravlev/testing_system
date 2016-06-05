@@ -1,17 +1,23 @@
 angular.module("testApp")
 
-    .controller("ParserController", function ($scope) {
-        $scope.name = "";
-        $scope.block = "";
-        $scope.id = "";
-        $scope.stage = "";
+    .controller("ParserController", function ($scope, ParserService) {
+        var question = {};
+        $scope.question = {};
 
-        this.parseVariable = function(variable) {
-            var template = /([A-Za-z]+)_(\w{2})(\w{2})(\w{1,2})/;
-            var result = template.exec(variable.trim());
-            $scope.name  = result[1];
-            $scope.block = result[2];
-            $scope.id    = result[3];
-            $scope.stage = result[4];
+        this.parseAll = function(variable, rows_unparsed) {
+            var result_var  = ParserService.parse_var(variable),
+                result_rows = ParserService.parse_rows(rows_unparsed);
+
+            question.name    = result_var[1];
+            question.s       = result_var[2];
+            question.q       = result_var[3];
+            question.v       = result_var[4] == "b" ? "0" : result_var[4][1];
+            question.text    = result_rows.text;
+            question.answers = result_rows.answers;
+            question.symbols = result_rows.symbols;
+            
+            $scope.question = question;
+            
+            ParserService.save(question);
         };
     });

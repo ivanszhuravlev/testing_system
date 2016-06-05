@@ -1,0 +1,8 @@
+div.parser form.question {
+    width: 300px;
+    display: inline-block;
+}
+
+button.submit {
+    display: block;
+}

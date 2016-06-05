@@ -16,10 +16,17 @@
     </footer>
 </aside>
 <div class="container parser">
-    <input type="text" ng-model="variable" class="parse-input">
-    <button ng-click="parser_controller.parseVariable(variable)">Спарсим!</button>
-    <p>Имя переменной: {{name}}</p>
-    <p>Номер блока: {{block}}</p>
-    <p>Номер вопроса: {{id}}</p>
-    <p>Этап: {{stage}}</p>
+    <form class="question">
+        <label for="variable">Переменная</label>
+        <input name="variable" type="text" ng-model="variable" class="parse-input" />
+
+        <label for="rows">Вопрос</label>
+        <textarea name="rows" rows="1" ng-model="rows_unparsed"></textarea>
+        <button class="submit" ng-click="parser_controller.parseAll(variable, rows_unparsed)">Спарсим!</button>
+    </form>
+    <p>Имя переменной: {{question.name}}</p>
+    <p>Номер блока: {{question.s}}</p>
+    <p>Номер вопроса: {{question.q}}</p>
+    <p>Этап: {{question.v}}</p>
+    <p>Текст: {{question.text}}</p>
 </div>

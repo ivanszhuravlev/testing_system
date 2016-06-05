@@ -10,12 +10,37 @@ form.register-form {
     width: 280px;
 }
 
+    textarea {
+        display: block;
+        box-sizing: border-box;
+        padding: 9px 12px;
+        border: 1px solid #c9c9c9;
+        border-radius: 3px;
+
+        width: 100%;
+        min-height: 120px;
+        margin-bottom: 14px;
+        resize: vertical;
+
+        color: #444444;
+        font-family: 'Open Sans';
+        font-size: 13px;
+        line-height: 1.4em;
+    }
+
+    label {
+        font-family: 'Open Sans';
+        display: block;
+        margin-bottom: 7px;
+    }
+
     input {
         display: block;
         margin-bottom: 12px;
         border-radius: 3px;
         box-sizing: border-box;
         font-family: 'Open Sans';
+        font-size: 13px;
     }
 
         input[type="text"],

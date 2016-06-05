@@ -19,7 +19,7 @@ angular.module('testApp')
                     UserModel.user.email = data.email;
                     UserModel.user.nick  = data.nickname;
 
-                    if (data.nickname == "ivan") {
+                    if (data.nickname == "ivan" || data.nickname == "admin") {
                         UserModel.user.is_admin = 1;
                     }
                 });

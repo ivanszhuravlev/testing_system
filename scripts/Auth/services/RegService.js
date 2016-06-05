@@ -58,7 +58,7 @@ angular.module('testApp')
                     SessionService.set("uid", data.value);
 
                     $location.path('/user_' + data.id + '/blocks').replace();
-                    
+
                     UserService.set(data.id);
                     $rootScope.user = UserService.get();
                 });
