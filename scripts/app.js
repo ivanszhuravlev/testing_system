@@ -37,7 +37,9 @@ angular.module('testApp', ['ngRoute'])
                     controllerAs: 'reg_controller'
                 })
                 .when('/user_:userId/blocks', {
-                    templateUrl: './views/blocks.html'
+                    templateUrl: './views/blocks.html',
+                    controller: 'BlocksController',
+                    controllerAs: 'blocks_controller'
                 })
                 .when('/user_:userId/parser', {
                     templateUrl: './views/parser.html',
