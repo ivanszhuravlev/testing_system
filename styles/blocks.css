@@ -6,15 +6,21 @@ div.container.blocks {
     padding-left: 320px;
 }
 
+    .blocks a {
+        display: inline-flex;
+        flex-grow: 1;
+        margin-right: 12px;
+        text-decoration: none;
+    }
+
     .blocks .block {
         display: flex;
+        width: 100%;
         border: 1px solid #e1e7ef;
-        flex-grow: 1;
         flex-flow: column wrap;
         align-items: center;
         box-sizing: border-box;
-        padding: 24px 36px;
-        margin-right: 12px;
+        padding: 28px 48px;
         color: #444444;
         cursor: pointer;
         border-radius: 2px;
@@ -26,7 +32,7 @@ div.container.blocks {
         }
 
         .block .id {
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             font-weight: 200;
             font-size: 14px;
         }
@@ -34,3 +40,26 @@ div.container.blocks {
         .block .name {
             font-weight: 400;
         }
+
+aside.hidden {
+    animation: hide-aside 1.6s;
+    animation-delay: 50ms;
+    animation-fill-mode: forwards;
+}
+
+div.container.translated {
+    animation: translate-content 1.6s;
+    animation-delay: 50ms;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes hide-aside {
+    0% { left: 0px; }
+    100% { left: -260px; }
+}
+
+@keyframes translate-content {
+    0% { padding-left: 308px; }
+    100% { padding-left: 48px; }
+}

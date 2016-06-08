@@ -1,4 +1,4 @@
-<aside>
+<aside class="hidden">
     <header>
         <img src="img/logo.png" class="logo">
     </header>
@@ -15,11 +15,6 @@
         <span class="underlined"><a href="#">Информированное согласие на участие</a></span>
     </footer>
 </aside>
-<div class="container blocks">
-    <a ng-repeat="block in blocks" href="/user_{{user.id}}/block_{{block.id}}">
-        <div class="block">
-            <span class="id">Блок {{block.id}}.</span>
-            <span class="name">{{block.name}}.</span>
-        </div>
-    </a>
+<div class="container translated">
+    <h1>Block</h1>
 </div>

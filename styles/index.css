@@ -4,6 +4,10 @@ body {
     margin:0;
 }
 
+*:focus {
+outline: none;
+}
+
 p {
     font-family: 'Open Sans';
     font-size: 14px;

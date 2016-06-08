@@ -3,6 +3,8 @@ var model = {
         id       : 0,
         nick     : "",
         email    : "",
+        stage    : 0,
+        block    : 0,
         is_admin : 0
     }
 };
