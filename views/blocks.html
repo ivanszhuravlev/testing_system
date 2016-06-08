@@ -18,6 +18,9 @@
 <div class="container blocks">
     <a ng-repeat="block in blocks" href="/user_{{user.id}}/block_{{block.id}}">
         <div class="block">
+            <i ng-if="user.block > {{block.id" class="material-icons icon">check</i>
+            <i ng-if="user.block < block.id" class="material-icons icon">lock_outline</i>
+            <i ng-if="user.block == block.id" class="material-icons icon">schedule</i>
             <span class="id">Блок {{block.id}}.</span>
             <span class="name">{{block.name}}.</span>
         </div>

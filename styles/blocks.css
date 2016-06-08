@@ -3,17 +3,20 @@ div.container.blocks {
     flex-flow: row wrap;
     align-items: flex-start;
     justify-content: flex-start;
+    align-content: flex-start;
     padding-left: 320px;
 }
 
     .blocks a {
         display: inline-flex;
         flex-grow: 1;
-        margin-right: 12px;
+        margin-right: 20px;
+        margin-bottom: 20px;
         text-decoration: none;
     }
 
     .blocks .block {
+        position: relative;
         display: flex;
         width: 100%;
         border: 1px solid #e1e7ef;
@@ -26,6 +29,13 @@ div.container.blocks {
         border-radius: 2px;
         transition: all ease 50ms;
     }
+
+        .block .icon {
+            position: absolute;
+            top: 9px;
+            right: 12px;
+            color: #cad4e0;
+        }
 
         .block:hover {
             border: 1px solid #bdc3ca;
