@@ -15,6 +15,9 @@
         <span class="underlined"><a href="#">Информированное согласие на участие</a></span>
     </footer>
 </aside>
-<div class="container">
-    <div>Block</div>
+<div class="container blocks">
+    <div class="block" ng-repeat="block in blocks">
+        <span class="id">Блок {{block.id}}.</span>
+        <span class="name">{{block.name}}.</span>
+    </div>
 </div>

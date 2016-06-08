@@ -1,0 +1,36 @@
+div.container.blocks {
+    display: inline-flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-left: 320px;
+}
+
+    .blocks .block {
+        display: flex;
+        border: 1px solid #e1e7ef;
+        flex-grow: 1;
+        flex-flow: column wrap;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 24px 36px;
+        margin-right: 12px;
+        color: #444444;
+        cursor: pointer;
+        border-radius: 2px;
+        transition: all ease 50ms;
+    }
+
+        .block:hover {
+            border: 1px solid #bdc3ca;
+        }
+
+        .block .id {
+            margin-bottom: 12px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .block .name {
+            font-weight: 400;
+        }
