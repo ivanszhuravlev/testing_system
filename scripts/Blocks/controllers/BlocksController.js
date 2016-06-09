@@ -7,7 +7,6 @@ angular.module("testApp")
         ids_prom.success(function(ids) {
             BlocksService.getBlocks(ids).success(function(data) {
                 $scope.blocks = data;
-                console.log($scope.blocks);
             });
         });
     });

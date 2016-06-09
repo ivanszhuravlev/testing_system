@@ -9,6 +9,10 @@ angular.module('testApp')
 
             getBlocks : function(ids) {
                 return $http.post('./php/blocks/get_blocks.php', { ids : ids });
+            },
+
+            getQuestions : function(block_id) {
+                return $http.post('./php/blocks/get_questions.php', { block_id : block_id });
             }
 
         };

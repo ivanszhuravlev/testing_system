@@ -15,6 +15,16 @@
         <span class="underlined"><a href="#">Информированное согласие на участие</a></span>
     </footer>
 </aside>
-<div class="container translated">
-    <h1>Block</h1>
+<div class="container translated block">
+    <div class="questions">
+        <a class="home" href="/user_{{user.id}}/blocks"><i class="material-icons">chevron_left</i> Блоки</a>
+        <div class="question_wrapper" ng-repeat="question in questions">
+            <span>{{question.q}}. {{question.text}}</span>
+            <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
+                <input type="radio" name="{{question.name}}" value="{{answer.value}}">
+                <label for="{{question.name}}">{{answer.text}}</label>
+            </div>
+            <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}">
+        </div>
+    </div>
 </div>

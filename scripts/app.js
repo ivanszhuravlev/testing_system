@@ -42,7 +42,9 @@ angular.module('testApp', ['ngRoute'])
                     controllerAs: 'blocks_controller'
                 })
                 .when('/user_:userId/block_:blockId', {
-                    templateUrl: './views/block.html'
+                    templateUrl: './views/block.html',
+                    controller: 'BlockController',
+                    controllerAs: 'block_controller'
                 })
                 .when('/user_:userId/parser', {
                     templateUrl: './views/parser.html',
