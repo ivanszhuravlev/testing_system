@@ -13,6 +13,10 @@ angular.module('testApp')
 
             getQuestions : function(block_id) {
                 return $http.post('./php/blocks/get_questions.php', { block_id : block_id });
+            },
+
+            getBlock : function(id) {
+                return $http.post('./php/blocks/get_block.php', { id : id });
             }
 
         };
