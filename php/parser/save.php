@@ -27,18 +27,14 @@ if ($question["name"] == "") {
 if (!$question["answers"] && !$question["symbols"]) {
     die(json_encode("Answers field should not be empty"));
 }
-//
-//if ($email == "") {
-//    die(json_encode("Email field is empty"));
-//}
-//
-//if ($password == "" && $repeat_password == "") {
-//    die(json_encode("Password field is empty"));
-//}
-//
-//if ($password != $repeat_password) {
-//    die(json_encode("Different passwords: " . $password . " | " . $repeat_password));
-//}
+
+$query = mysqli_query($link, "SELECT id FROM questions WHERE name = '" . $question["name"] . "'");
+
+$exists = mysqli_fetch_assoc($query);
+
+if (!is_null($exists)) {
+    die("Question alredy exists");
+}
 
 $query = mysqli_query($link, "INSERT INTO questions SET " .
                       "name = '" . $question["name"] . "'," .

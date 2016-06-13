@@ -15,9 +15,12 @@ angular.module("testApp")
             question.text    = result_rows.text;
             question.answers = result_rows.answers;
             question.symbols = result_rows.symbols;
-            
+
             $scope.question = question;
-            
+
             ParserService.save(question);
+
+            $scope.variable = "";
+            $scope.rows_unparsed = "";
         };
     });
