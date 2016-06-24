@@ -20,8 +20,8 @@ if (!$connect) {
     die("Not found!");
 }
 
-$query = mysqli_query($link, "SELECT name FROM pages WHERE id = '" . $id . "' AND type = 'block'");
+$query = mysqli_query($link, "SELECT id, name, content_id FROM pages WHERE id = '" . $id . "' AND type = 'block'");
 
 $block = mysqli_fetch_assoc($query);
 
-print($block['name']);
+print(json_encode($block));

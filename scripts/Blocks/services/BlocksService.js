@@ -3,16 +3,15 @@
 angular.module('testApp')
     .factory('BlocksService', ['$http', function($http) {
         return {
-            getIds : function() {
-                return $http.get('./php/blocks/get_ids.php');
+            getBlocks : function() {
+                return $http.get('./php/blocks/get_blocks.php');
             },
 
-            getBlocks : function(ids) {
-                return $http.post('./php/blocks/get_blocks.php', { ids : ids });
-            },
-
-            getQuestions : function(block_id) {
-                return $http.post('./php/blocks/get_questions.php', { block_id : block_id });
+            getQuestions : function(content_id, block_id) {
+                return $http.post('./php/blocks/get_questions.php', { 
+                    content_id : content_id, 
+                    block_id : block_id 
+                });
             },
 
             getBlock : function(id) {

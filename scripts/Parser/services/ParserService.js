@@ -35,7 +35,7 @@ angular.module('testApp')
 //                    console.log("sux:" + mask.num_field.test(question.text));
                     while (mask.num_field.test(question.text)) {
                         question.symbols += 1;
-                        question.text = question.text.replace(mask.num_field, '');
+                        question.text = question.text.replace(mask.num_field, '_');
                     }
                     console.log(question.text);
                     console.log(question.symbols);

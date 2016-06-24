@@ -4,7 +4,8 @@
  */
 $data = json_decode(file_get_contents('php://input'), true);
 
-$block_id = $data['block_id'];
+$content_id = $data['content_id'];
+$block_id   = $data['block_id'];
 
 /*
  * Подключаемся к базе данных
@@ -20,7 +21,22 @@ if (!$connect) {
     die("Not found!");
 }
 
-$query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $block_id . "'");
+if ($block_id == '5') {
+    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                            (name = 'sexmale' OR
+                                                             name = 'sexfemale' OR
+                                                             name = 'sexvag' OR
+                                                             name = 'sexvagsafe' OR
+                                                             name = 'sexanal' OR
+                                                             name = 'sexanalsafe' OR
+                                                             name = 'sextalk' OR
+                                                             name = 'sexlastsafe' OR
+                                                             name = 'steadysexpart' OR
+                                                             name = 'hivstatpart' OR
+                                                             name = 'conceive')");
+} else {
+    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "'");
+}
 
 $questions = array();
 

@@ -1,11 +1,4 @@
 <?
-/**
- * Получаем JSON-строку с ником юзера
- */
-$data = json_decode(file_get_contents('php://input'), true);
-
-$ids = $data['ids'];
-
 /*
  * Подключаемся к базе данных
  */
@@ -22,12 +15,11 @@ if (!$connect) {
 
 $blocks = array();
 
-foreach ($ids as $id) {
-    $query = mysqli_query($link, "SELECT * FROM pages WHERE id = '" . $id . "' AND type = 'block'");
+$query = mysqli_query($link, "SELECT * FROM pages WHERE type = 'block'");
 
-    $block = mysqli_fetch_assoc($query);
-
-    array_push($blocks, $block);
+while ( $row = mysqli_fetch_array($query) ) {
+    array_push($blocks, $row);
 }
 
 print(json_encode($blocks));
+

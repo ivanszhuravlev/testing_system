@@ -1,22 +1,24 @@
 angular.module("testApp")
 
     .controller("BlockController", function ($scope, BlocksService, $routeParams) {
-        var questions_prom = BlocksService.getQuestions($routeParams.blockId);
-        var block_prom     = BlocksService.getBlock($routeParams.blockId);
+        var block_prom = BlocksService.getBlock($routeParams.blockId);
 
         $scope.questions = [];
 
         $scope.block = {
             id : $routeParams.blockId,
-            name : ''
+            name : '',
+            content_id : 0
         };
 
-        questions_prom.success(function(questions) {
-            $scope.questions = questions;
-        });
+        block_prom.success(function(block) {
+            $scope.block.name = block.name;
+            $scope.block.content_id = block.content_id;
 
-        block_prom.success(function(name) {
-            $scope.block.name = name;
-            console.log($scope.block);
+            var questions_prom = BlocksService.getQuestions(block.content_id, block.id);
+
+            questions_prom.success(function(questions) {
+                $scope.questions = questions;
+            });
         });
     });

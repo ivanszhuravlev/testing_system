@@ -21,7 +21,7 @@
             <i class="material-icons">chevron_left</i>
             <span>Блоки</span>
         </a>
-        <h1>Блок {{block.id}}. {{block.name}}.</h1>
+        <h1>Блок {{block.content_id}}. {{block.name}}.</h1>
         <div class="question_wrapper" ng-repeat="question in questions">
             <span>{{question.q}}. {{question.text}}</span>
             <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
