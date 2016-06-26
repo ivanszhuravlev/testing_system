@@ -84,7 +84,7 @@ aside {
         color: #333333;
         font-size: 11px;
         padding: 16px 28px;
-        position: absolute;
+/*        position: absolute;*/
         bottom: 0;
         border-top: 1px solid #e1e7ef;
     }
@@ -129,7 +129,6 @@ aside {
         font-size: 14px;
         padding: 0 28px 20px 28px;
         border-bottom: 1px solid #e1e7ef;
-        margin-bottom: 20px;
 
         display: flex;
         flex-flow: column wrap;
@@ -147,9 +146,11 @@ aside {
 
     aside nav {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column nowrap;
         align-items: flex-start;
         padding: 0 28px;
+        height: 100%;
+        overflow-y: scroll;
     }
 
         nav span.item {

@@ -41,7 +41,7 @@ angular.module('testApp', ['ngRoute'])
                     controller: 'BlocksController',
                     controllerAs: 'blocks_controller'
                 })
-                .when('/user_:userId/block_:blockId', {
+                .when('/user_:userId/block_:blockId/:pageId', {
                     templateUrl: './views/block.html',
                     controller: 'BlockController',
                     controllerAs: 'block_controller'

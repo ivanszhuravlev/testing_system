@@ -20,6 +20,7 @@ angular.module('testApp')
                     UserModel.user.nick  = data.nickname;
                     UserModel.user.stage = data.stage;
                     UserModel.user.block = data.block;
+                    UserModel.user.page  = data.page;
 
                     if (data.nickname == "ivan" || data.nickname == "admin") {
                         UserModel.user.is_admin = 1;
@@ -33,6 +34,7 @@ angular.module('testApp')
                 UserModel.user.nick     = "";
                 UserModel.user.stage    = 0;
                 UserModel.user.block    = 0;
+                UserModel.user.page     = 0;
                 UserModel.user.is_admin = 0;
 
                 localStorage.removeItem('user_id');

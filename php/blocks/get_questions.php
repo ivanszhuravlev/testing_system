@@ -6,6 +6,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $content_id = $data['content_id'];
 $block_id   = $data['block_id'];
+$page_id    = $data['page_id'];
 
 /*
  * Подключаемся к базе данных
@@ -35,7 +36,7 @@ if ($block_id == '5') {
                                                              name = 'hivstatpart' OR
                                                              name = 'conceive')");
 } else {
-    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "'");
+    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
 }
 
 $questions = array();

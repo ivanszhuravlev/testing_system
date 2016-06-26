@@ -15,7 +15,7 @@ angular.module("testApp")
             $scope.block.name = block.name;
             $scope.block.content_id = block.content_id;
 
-            var questions_prom = BlocksService.getQuestions(block.content_id, block.id);
+            var questions_prom = BlocksService.getQuestions(block.content_id, block.id, $routeParams.pageId);
 
             questions_prom.success(function(questions) {
                 $scope.questions = questions;
