@@ -70,6 +70,11 @@ div.container.block {
     align-items: center;
 }
 
+    div.container.block form input[type="submit"]:disabled {
+        background: #46494d;
+        cursor: default;
+    }
+
     div.container.block div.questions {
         width: auto;
         max-width: 550px;
@@ -146,6 +151,8 @@ div.container.block {
             font-size: 16px;
             font-weight: 200;
         }
+
+
 
 
 @keyframes hide-aside {

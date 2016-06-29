@@ -21,13 +21,21 @@
             <span>Блоки</span>
         </a>
         <h1>Блок {{block.content_id}}. {{block.name}}.</h1>
-        <div class="question_wrapper" ng-repeat="question in questions">
-            <span>{{question.q}}. {{question.text}}</span>
-            <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
-                <input type="radio" name="{{question.name}}" value="{{answer.value}}">
-                <label for="{{question.name}}">{{answer.text}}</label>
+        <form novalidate name="block_form" ng-submit="block_submit(block_controller.answers)">
+            <div class="question_wrapper" ng-repeat="question in questions">
+                <span>{{question.text}}</span>
+                <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
+                    <input type="radio" name="{{question.name}}" value="{{answer.value}}" 
+                           ng-model="block_controller.answers[question.id]">
+                    <label for="{{question.name}}">{{answer.text}}</label>
+                </div>
+                <input ng-if="question.answers.length == 1"
+                       type="text"
+                       maxlength="{{question.answers[0].symbols}}"
+                       ng-model="block_controller.answers[question.id]"
+                       required>
             </div>
-            <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}">
-        </div>
+            <input type="submit" value="Далее" ng-disabled="block_form.$invalid" />
+        </form>
     </div>
 </div>

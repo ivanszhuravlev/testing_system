@@ -17,6 +17,10 @@ angular.module('testApp')
 
             getBlock : function(id) {
                 return $http.post('./php/blocks/get_block.php', { id : id });
+            },
+
+            saveResult : function(result, user_id) {
+                return $http.post('./php/questions/save.php', { answers : result, user_id : user_id});
             }
 
         };

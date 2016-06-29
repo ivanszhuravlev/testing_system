@@ -42,7 +42,15 @@ if ($block_id == '5') {
 $questions = array();
 
 while( $row = mysqli_fetch_assoc($query) ) {
-    $id = $row['q'];
+    if ( array_key_exists($row['q'], $questions) ) {
+        $id = $row['q'];
+        while (  array_key_exists($id . "", $questions) ) {
+            $id += 0.1;
+        }
+        $id = $id . "";
+    } else {
+        $id = $row['q'] . "";
+    }
     $questions[$id] = $row;
 }
 

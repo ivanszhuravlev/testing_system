@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('testApp')
-    .factory('UserService', ['$http', 'UserModel', '$rootScope', function($http, UserModel) {
+    .factory('UserService', ['$http', 'UserModel', function($http, UserModel) {
         return {
             get : function() {
                 return UserModel.user;
@@ -12,7 +12,7 @@ angular.module('testApp')
             },
 
             set : function(id) {
-                $http.post('./php/user/get.php', { id : id }).success(function(data) {
+                return $http.post('./php/user/get.php', { id : id }).success(function(data) {
                     localStorage.setItem('user_id', id);
 
                     UserModel.user.id    = id;
@@ -26,6 +26,10 @@ angular.module('testApp')
                         UserModel.user.is_admin = 1;
                     }
                 });
+            },
+
+            updatePage : function(user, block_id) {
+                return $http.post('./php/user/update_page.php', { user : user, block_id : block_id});
             },
 
             logout : function() {
