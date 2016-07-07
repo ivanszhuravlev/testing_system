@@ -5,7 +5,9 @@ var model = {
         email    : "",
         stage    : 0,
         block    : 0,
-        is_admin : 0
+        is_admin : 0,
+        page     : 0,
+        suits    : 0
     }
 };
 

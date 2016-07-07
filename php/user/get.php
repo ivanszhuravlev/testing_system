@@ -18,7 +18,12 @@ if (!$connect) {
     die("Not found!");
 }
 
-$query = mysqli_query($link, "SELECT email, nickname, stage, block, page FROM users WHERE id = '" . $id . "'");
+$query = mysqli_query($link, "SELECT email,
+                                     nickname,
+                                     stage,
+                                     block,
+                                     page,
+                                     suits FROM users WHERE id = '" . $id . "'");
 
 $user = mysqli_fetch_assoc($query);
 

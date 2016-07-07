@@ -1,5 +1,8 @@
 <div class="blocks">
-    <a ng-repeat="block in blocks" href="/user_{{user.id}}/block_{{block.id}}/{{user.page}}" ng-if="user.block >= block.id">
+    <a ng-repeat="block in blocks" 
+       href="/user_{{user.id}}/block_{{block.id}}/{{user.page}}" 
+       ng-if="user.block >= block.id"
+       ng-click="hide_aside()">
         <div class="block">
             <span class="id">Часть {{block.id}}.</span>
             <span class="name">{{block.name}}.</span>

@@ -22,19 +22,29 @@
         </a>
         <h1>Блок {{block.content_id}}. {{block.name}}.</h1>
         <form novalidate name="block_form" ng-submit="block_submit(block_controller.answers)">
-            <div class="question_wrapper" ng-repeat="question in questions">
-                <span>{{question.text}}</span>
-                <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
-                    <input type="radio" name="{{question.name}}" value="{{answer.value}}" 
-                           ng-model="block_controller.answers[question.id]">
-                    <label for="{{question.name}}">{{answer.text}}</label>
+
+            <div ng-repeat="question in questions">
+
+                <div ng-if="$index >= found_table[0] && $index <= found_table[1]" class="table" 
+                   ng-class="{ 'start' : $parent.$index == found_table[0], 'end' : $parent.$index == found_table[1] }">
+                    <div>{{question.text}}</div>
+                    <div ng-repeat="answer in question.answers">
+                        <span ng-if="$parent.$index == found_table[0]">{{answer.text}}</span>
+                        <input type="radio" name="{{question.name}}_{{question.q}}" value="{{answer.value}}" ng-model="block_controller.answers[question.id]">
+                    </div>
                 </div>
-                <input ng-if="question.answers.length == 1"
-                       type="text"
-                       maxlength="{{question.answers[0].symbols}}"
-                       ng-model="block_controller.answers[question.id]"
-                       required>
+
+                <div class="question_wrapper" ng-if="$index < found_table[0] || $index > found_table[1] || found_table.length == 0">
+                    <span>{{question.text}}</span>
+                    <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers">
+                        <input type="radio" name="{{question.name}}_{{question.q}}" value="{{answer.value}}" ng-model="block_controller.answers[question.id]">
+                        <label for="{{question.name}}">{{answer.text}}</label>
+                    </div>
+                    <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}" ng-model="block_controller.answers[question.id]" required>
+                </div>
+                
             </div>
+
             <input type="submit" value="Далее" ng-disabled="block_form.$invalid" />
         </form>
     </div>

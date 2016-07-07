@@ -34,7 +34,8 @@ if ($block_id == '5') {
                                                              name = 'sexlastsafe' OR
                                                              name = 'steadysexpart' OR
                                                              name = 'hivstatpart' OR
-                                                             name = 'conceive')");
+                                                             name = 'conceive')
+                                                             AND page = '" . $page_id . "'");
 } else {
     $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
 }
@@ -42,15 +43,20 @@ if ($block_id == '5') {
 $questions = array();
 
 while( $row = mysqli_fetch_assoc($query) ) {
-    if ( array_key_exists($row['q'], $questions) ) {
+    if ( array_key_exists("0" . $row['q'], $questions) ) {
         $id = $row['q'];
-        while (  array_key_exists($id . "", $questions) ) {
-            $id += 0.1;
+        while (  array_key_exists("0" . $id . "", $questions) ) {
+            $id += 0.01;
         }
         $id = $id . "";
     } else {
         $id = $row['q'] . "";
     }
+
+    if ($row['q'] % 10 == $row['q']) {
+        $id = "0" . $id;
+    }
+
     $questions[$id] = $row;
 }
 

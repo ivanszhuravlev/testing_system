@@ -21,6 +21,7 @@ angular.module('testApp')
                     UserModel.user.stage = data.stage;
                     UserModel.user.block = data.block;
                     UserModel.user.page  = data.page;
+                    UserModel.user.suits = data.suits;
 
                     if (data.nickname == "ivan" || data.nickname == "admin") {
                         UserModel.user.is_admin = 1;

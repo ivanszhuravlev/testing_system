@@ -28,7 +28,8 @@ if (!$question["answers"] && !$question["symbols"]) {
     die(json_encode("Answers field should not be empty"));
 }
 
-$query = mysqli_query($link, "SELECT id FROM questions WHERE name = '" . $question["name"] . "'");
+$query = mysqli_query($link, "SELECT id FROM questions WHERE name = '" . $question["name"] . "' AND
+                                                             q = '" . $question["q"] . "'");
 
 $exists = mysqli_fetch_assoc($query);
 
