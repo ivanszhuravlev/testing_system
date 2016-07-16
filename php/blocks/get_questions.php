@@ -22,8 +22,9 @@ if (!$connect) {
     die("Not found!");
 }
 
-if ($block_id == '5') {
-    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+switch ($block_id) {
+    case "5":
+        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
                                                             (name = 'sexmale' OR
                                                              name = 'sexfemale' OR
                                                              name = 'sexvag' OR
@@ -36,9 +37,43 @@ if ($block_id == '5') {
                                                              name = 'hivstatpart' OR
                                                              name = 'conceive')
                                                              AND page = '" . $page_id . "'");
-} else {
-    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
+        break;
+    case "6":
+        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                            (name = 'pss1' OR
+                                                             name = 'pss2' OR
+                                                             name = 'pss3' OR
+                                                             name = 'pss4' OR
+                                                             name = 'pss5' OR
+                                                             name = 'pss6' OR
+                                                             name = 'pss7' OR
+                                                             name = 'pss8' OR
+                                                             name = 'pss9' OR
+                                                             name = 'pss10')
+                                                             AND page = '" . $page_id . "'");
+        break;
+    default:
+        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
+        break;
 }
+
+//if ($block_id == '5') {
+//    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+//                                                            (name = 'sexmale' OR
+//                                                             name = 'sexfemale' OR
+//                                                             name = 'sexvag' OR
+//                                                             name = 'sexvagsafe' OR
+//                                                             name = 'sexanal' OR
+//                                                             name = 'sexanalsafe' OR
+//                                                             name = 'sextalk' OR
+//                                                             name = 'sexlastsafe' OR
+//                                                             name = 'steadysexpart' OR
+//                                                             name = 'hivstatpart' OR
+//                                                             name = 'conceive')
+//                                                             AND page = '" . $page_id . "'");
+//} else {
+//    $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
+//}
 
 $questions = array();
 

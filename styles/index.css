@@ -50,6 +50,22 @@ div.container {
     box-sizing: border-box;
 }
 
+    a.action {
+        display: flex;
+        flex-flow: row nowrap;
+        align-self: center;
+        text-decoration: none;
+    }
+
+    a.action button {
+        background: #3fa16e;
+        color: #ffffff;
+    }
+
+         a.action button:hover {
+            background: #378f61;
+        }
+
     div.container h1 {
         margin: 0 0 10px 0;
     }
@@ -138,6 +154,7 @@ aside {
         .logout-panel button {
             margin: 12px 0 0 0;
             background: #f0f0f0;
+            display: flex;
         }
 
             .logout-panel button:hover {

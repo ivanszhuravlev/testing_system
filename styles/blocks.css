@@ -161,6 +161,7 @@ div.container.block {
         }
 */
 
+
         div.question_wrapper span {
             font-size: 18px;
             color: #585c60;
@@ -173,6 +174,23 @@ div.container.block {
 
             margin-left: 11px;
             margin-top: -3px;
+        }
+
+        div.question_wrapper div.explanation {
+            display: inline-flex;
+            font-weight: 200;
+            color: #585c60;
+            font-size: 15px;
+        }
+
+            div.explanation input[type="text"] {
+                width: 100px !important;
+                text-align: left !important;
+                font-size: 14px !important;
+            }
+
+        div.question_wrapper div.other {
+            display: inline-flex;
         }
 
         div.question_wrapper .checkbox {

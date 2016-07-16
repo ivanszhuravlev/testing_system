@@ -7,7 +7,8 @@ var model = {
         block    : 0,
         is_admin : 0,
         page     : 0,
-        suits    : 0
+        suits    : 0,
+        passed   : 0
     }
 };
 

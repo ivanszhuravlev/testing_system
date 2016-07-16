@@ -5,7 +5,7 @@ angular.module('testApp', ['ngRoute'])
             connected.then(function(message) {
 
                 if (!message.data) {
-                    $location.path('/').replace();
+                    $location.path('/').replace();;
                 } else {
                     var id = localStorage.getItem('user_id');
 

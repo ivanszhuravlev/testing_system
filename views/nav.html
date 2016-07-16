@@ -1,4 +1,4 @@
-<div class="blocks">
+<div class="blocks" ng-if="user.suits != 0">
     <a ng-repeat="block in blocks" 
        href="/user_{{user.id}}/block_{{block.id}}/{{user.page}}" 
        ng-if="user.block >= block.id"

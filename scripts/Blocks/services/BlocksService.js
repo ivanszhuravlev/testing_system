@@ -21,9 +21,10 @@ angular.module('testApp')
                 });
             },
 
-            saveResult: function (result, user_id) {
+            saveResult: function (result, result_multiple, user_id) {
                 return $http.post('./php/questions/save.php', {
                     answers: result,
+                    mult_answers: result_multiple,
                     user_id: user_id
                 });
             },
@@ -34,15 +35,14 @@ angular.module('testApp')
                     is_table = -1,
                     next_is_table = -1;
 
-                for (var key in questions) {
-
+                questions.forEach(function(question, index) {
                     /**
                      * Находим опцию table в вопросе.
                      * Проверка нужна, чтобы избежать ошибки.
                      *
                      */
-                    if (questions[key].options !== null) {
-                        is_table = questions[key].options.indexOf("table");
+                    if (question.options !== null) {
+                        is_table = question.options.indexOf("table");
                     }
 
                     /**
@@ -50,23 +50,16 @@ angular.module('testApp')
                      *
                      */
                     if (is_table != -1 && table_start === -1) {
-                        table_start = key;
+                        table_start = index;
                     }
-
-                    /**
-                     * Генерируем ключ следующего элемента.
-                     * Функция toFixed(2) округляет ключ до 2 знака после запятой;
-                     *
-                     */
-                    var next_key = "0" + (+key + 0.01).toFixed(2);
 
                     /**
                      * Находим опцию table в следующем вопросе.
                      * Проверка нужна, чтобы избежать ошибки.
                      *
                      */
-                    if (questions[next_key] && questions[next_key].options !== null) {
-                        next_is_table = questions[next_key].options.indexOf("table");
+                    if (questions[index + 1] && questions[index + 1].options !== null) {
+                        next_is_table = questions[index + 1].options.indexOf("table");
                     } else {
                         next_is_table = -1;
                     }
@@ -75,22 +68,17 @@ angular.module('testApp')
                      * Находим конечную позицию таблицы.
                      *
                      */
-                    if (is_table != -1 && (!questions[next_key] || next_is_table == -1)) {
-                        console.log("Table: " + next_is_table);
-                        console.log("Key is " + key);
-                        table_end = key;
-                        
+                    if (is_table != -1 && (!questions[index + 1] || next_is_table == -1)) {
+                        table_end = index;
+
                         is_table = -1;
                     }
 
-                }
+                });
 
                 if (table_start == -1 || table_end == -1) {
                     return [];
                 }
-
-                table_start = (table_start * 100) % 10;
-                table_end = (table_end * 100) % 10;
 
                 return [table_start, table_end];
             }

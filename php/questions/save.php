@@ -5,6 +5,7 @@
 $data = json_decode(file_get_contents('php://input'), true);
 
 $answers = $data["answers"];
+$mult_answers = $data["mult_answers"];
 $user_id  = $data["user_id"];
 
 /*
@@ -22,9 +23,31 @@ if (!$connect) {
 }
 
 foreach ($answers as $answer) {
+//    if (strpos($answer['options'], 'doesnt_suit') == '0') {
+//        die(json_encode($answer['options']));
+//        $query = mysqli_query($link, "UPDATE users SET suits = '0' WHERE id = '" . $user_id . "'");
+//    }
     $query = mysqli_query($link, "INSERT INTO user_answers SET " .
                           "user_id = '" . $user_id . "'," .
                           "question_id = '" . $answer['id'] . "'," .
                           "value = '" . $answer['value'] . "'"
                          );
+}
+
+
+foreach ($mult_answers as $answer) {
+    if (gettype($answer['value']) == 'string') {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                          "user_id = '" . $user_id . "'," .
+                          "answer_id = '" . $answer['id'] . "'," .
+                          "value = '0'," .
+                          "text_value = '" . $answer['value'] . "'"
+                         );
+    } else {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                          "user_id = '" . $user_id . "'," .
+                          "answer_id = '" . $answer['id'] . "'," .
+                          "value = '" . $answer['value'] . "'"
+                         );
+    }
 }

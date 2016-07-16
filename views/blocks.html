@@ -5,7 +5,7 @@
 
     <div class="logout-panel">
         <span>Здравствуйте, {{user.nick}}</span>
-        <button ng-click="logout()">Выйти</button>
+        <a ng-click="logout()">Выйти</a>
     </div>
 
     <nav ng-include="nav"></nav>
@@ -15,15 +15,40 @@
     </footer>
 </aside>
 <div class="container">
-<!--
-    <a ng-repeat="block in blocks" href="/user_{{user.id}}/block_{{block.id}}">
-        <div class="block">
-            <i ng-if="user.block > block.id" class="material-icons icon">check</i>
-            <i ng-if="user.block < block.id" class="material-icons icon">lock_outline</i>
-            <i ng-if="user.block == block.id" class="material-icons icon">schedule</i>
-            <span class="id">Блок {{block.id}}.</span>
-            <span class="name">{{block.name}}.</span>
-        </div>
-    </a>
--->
+    <div ng-if="user.block == 1 && user.passed == 0">
+        <p>Поздравляем! Вы зарегистрированы и стали участников нашей программы. Сейчас мы хотим попросить Вас заполнить анкету. Это займет примерно 30 минут Вашего времени. После заполнения анкеты на адрес Вашей электронной почты, которую Вы указали при регистрации, будет отправлен номер карты Webmoney на сумму 500 рублей, которую Вы сможете использовать для покупок в интернете или для оплаты своего мобильного телефона.</p>
+
+        <p>Желаете перейти к анкетированию?</p>
+        <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
+            <button class="action">Да</button>
+        </a>
+    </div>
+
+    <div ng-if="user.block > 1 && user.page == 1 && user.passed == 0">
+        <p>Вы прошли следующие части программы:</p>
+        <ul>
+            <li ng-repeat="block in blocks" ng-if="block.id < user.block">{{block.id}}. {{block.name}}</li>
+        </ul>
+
+        <p>Желаете перейти к следующей части программы?</p>
+        <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
+            <button class="action">Да, я хочу перейти к части {{user.block}}</button>
+        </a>
+
+        <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
+    </div>
+
+    <div ng-if="user.block > 1 && user.page != 1 && user.passed == 0">
+        <p>В прошлый свой визит на наш сайт, Вы не успели до конца заполнить он-лайн анкету.</p>
+
+        <p>Желаете продолжить анкетирование?</p>
+        <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
+            <button class="action">Да</button>
+        </a>
+    </div>
+
+    <div ng-if="user.passed == 1">
+        <p>Вы прошли все части нашей программы.
+Если Вы хотите еще раз ознакомиться с уже пройдеными частями программы, дополнительными материалами или хотите посмотреть результаты Вашего анкетного тестирования, используйте меню расположенное на левой стороне данной страницы.</p>
+    </div>
 </div>

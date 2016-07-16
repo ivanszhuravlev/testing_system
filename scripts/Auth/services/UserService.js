@@ -15,13 +15,14 @@ angular.module('testApp')
                 return $http.post('./php/user/get.php', { id : id }).success(function(data) {
                     localStorage.setItem('user_id', id);
 
-                    UserModel.user.id    = id;
-                    UserModel.user.email = data.email;
-                    UserModel.user.nick  = data.nickname;
-                    UserModel.user.stage = data.stage;
-                    UserModel.user.block = data.block;
-                    UserModel.user.page  = data.page;
-                    UserModel.user.suits = data.suits;
+                    UserModel.user.id     = id;
+                    UserModel.user.email  = data.email;
+                    UserModel.user.nick   = data.nickname;
+                    UserModel.user.stage  = data.stage;
+                    UserModel.user.block  = data.block;
+                    UserModel.user.page   = data.page;
+                    UserModel.user.suits  = data.suits;
+                    UserModel.user.passed = data.passed;
 
                     if (data.nickname == "ivan" || data.nickname == "admin") {
                         UserModel.user.is_admin = 1;
@@ -41,6 +42,8 @@ angular.module('testApp')
                 UserModel.user.block    = 0;
                 UserModel.user.page     = 0;
                 UserModel.user.is_admin = 0;
+                UserModel.user.suits    = 0;
+                UserModel.user.passed   = 0;
 
                 localStorage.removeItem('user_id');
             }
