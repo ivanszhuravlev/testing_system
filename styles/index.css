@@ -11,6 +11,7 @@ outline: none;
 p {
     font-family: 'Open Sans';
     font-size: 14px;
+    line-height: 170%;
 }
 
 h1 {
@@ -55,11 +56,13 @@ div.container {
         flex-flow: row nowrap;
         align-self: center;
         text-decoration: none;
+        margin: 18px 0 20px 0;
     }
 
     a.action button {
         background: #3fa16e;
         color: #ffffff;
+/*        margin-top: 18px;*/
     }
 
          a.action button:hover {
@@ -95,6 +98,13 @@ aside {
         height: auto;
     }
 
+    div.banners {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+
     footer {
         font-family: 'Open Sans';
         color: #333333;
@@ -126,6 +136,7 @@ aside {
 
     aside button.enter-button {
         background: #e7e8e8;
+        margin-bottom: 28px;
     }
 
         aside button.enter-button:hover {
@@ -140,6 +151,7 @@ aside {
     aside .logout-panel {
         width: 100%;
         margin: 0;
+        height: auto;
         font-family: 'Open Sans';
         color: #333333;
         font-size: 14px;
@@ -147,14 +159,17 @@ aside {
         border-bottom: 1px solid #e1e7ef;
 
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: column nowrap;
         box-sizing: border-box;
     }
 
-        .logout-panel button {
-            margin: 12px 0 0 0;
-            background: #f0f0f0;
+        .logout-panel a {
+            margin: 10px 0 0 0;
             display: flex;
+            text-decoration: underline;
+            font-weight: 500;
+            cursor: pointer;
+            color: #0000ee;
         }
 
             .logout-panel button:hover {

@@ -59,6 +59,10 @@ aside.hidden {
     left: -260px;
 }
 
+div.container.intro {
+    padding-top: 40px;
+}
+
 div.container.translated {
 /*    animation: translate-content 1.6s;*/
     animation-delay: 250ms;
@@ -220,6 +224,30 @@ div.container.block {
             font-weight: 200;
         }
 
+
+div.progress_bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 20px;
+    border: 1px solid #83888e;
+}
+
+div.progress_bar:before {
+    content: "Прогресс";
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 200;
+    position: absolute;
+    transform: translateX(-100%);
+    margin-left: -10px;
+}
+
+div.progress_bar .progress {
+    background: #3fa16e;
+    height: 100%;
+}
 
 
 

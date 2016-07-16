@@ -21,6 +21,37 @@ angular.module('testApp')
                 });
             },
 
+            getPagesNum: function (blocks) {
+                var pages = 0;
+                blocks.forEach(function(block) {
+                    pages += Number(block.pages_num);
+                });
+
+                return pages;
+            },
+
+            getCurrentPage: function (blocks, block, page) {
+                var current_page = 0,
+                    b_index = 1;
+
+                while (b_index <= block) {
+                    if (b_index == block) {
+                        current_page += Number(page);
+                    }
+                    else {
+                        current_page += Number(blocks[b_index - 1].pages_num);
+                    }
+//                    console.log(current_page);
+                    b_index++;
+                }
+
+                return current_page;
+            },
+
+            countProgress: function (pages, current_page) {
+                return current_page * 100 / pages;
+            },
+
             saveResult: function (result, result_multiple, user_id) {
                 return $http.post('./php/questions/save.php', {
                     answers: result,
