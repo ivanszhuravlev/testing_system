@@ -13,14 +13,21 @@
 <a href="/user_{{user.id}}/parser">
     <span class="item" ng-if="user.is_admin">
         <img src="img/nav-icon.png" />
-        <span>Парсер переменных</span>
+        <span>Добавить переменную</span>
     </span>
 </a>
 
 <a href="/user_{{user.id}}/users_list">
     <span class="item" ng-if="user.is_admin">
         <img src="img/nav-icon.png" />
-        <span>Пользователи</span>
+        <span>Список пользователей</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/users_answers">
+    <span class="item" ng-if="user.is_admin">
+        <img src="img/nav-icon.png" />
+        <span>Ответы пользователей</span>
     </span>
 </a>
 

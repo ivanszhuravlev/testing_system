@@ -55,6 +55,11 @@ angular.module('testApp', ['ngRoute'])
                     templateUrl: './views/user_list.html',
                     controller: 'UserListController'
                 })
+                .when('/user_:userId/users_answers', {
+                    templateUrl: './views/users_answers.html',
+                    controller: 'UsersAnswersController',
+                    controllerAs: 'users_answers_controller'
+                })
                 .when('/user_:userId', {
                     redirectTo: '/user_:userId/blocks'
                 })
