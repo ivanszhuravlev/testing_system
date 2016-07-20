@@ -15,7 +15,8 @@
     </footer>
 </aside>
 <div class="container translated block">
-    <div class="questions" ng-if="user.block == block.content_id">
+<!--    <div class="questions" ng-if="user.block == block.id">-->
+    <div class="questions" ng-if="user.block == block.id">
         <a class="home" href="/user_{{user.id}}/blocks">
             <i class="material-icons">chevron_left</i>
             <span>Блоки</span>
@@ -61,11 +62,13 @@
         </form>
     </div>
 
-    <div class="questions" ng-if="user.block > block.content_id">
+<!--
+    <div class="questions" ng-if="user.block > block.id">
         <a class="home" href="/user_{{user.id}}/blocks">
             <i class="material-icons">chevron_left</i>
             <span>Блоки</span>
         </a>
         <h1>Ваши ответы на вопросы блока "{{block.name}}".</h1>
     </div>
+-->
 </div>

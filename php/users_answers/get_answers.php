@@ -23,7 +23,7 @@ if (!$connect) {
 $result = array();
 
 foreach ($uids as $id) {
-    $result[$id] = array();
+//    $result[$id] = array();
 
     $query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value 
                                   FROM user_answers 
