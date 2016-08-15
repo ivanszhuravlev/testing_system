@@ -59,6 +59,7 @@ form.register-form {
             color: #ffffff;
             padding: 9px 16px;
             cursor: pointer;
+            display: inline-block;
         }
 
         input[type="text"]::after {

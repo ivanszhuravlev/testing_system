@@ -1,4 +1,4 @@
-angular.module('testApp', ['ngRoute'])
+angular.module('testApp', ['ngRoute', 'ngSanitize'])
     .run(function(SessionService, $rootScope, UserService, $location) {
             var connected = SessionService.check();
 

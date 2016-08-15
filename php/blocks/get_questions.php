@@ -78,18 +78,22 @@ switch ($block_id) {
 $questions = array();
 
 while( $row = mysqli_fetch_assoc($query) ) {
-    if ( array_key_exists("0" . $row['q'], $questions) ) {
-        $id = $row['q'];
-        while (  array_key_exists("0" . $id . "", $questions) ) {
-            $id += 0.01;
-        }
-        $id = $id . "";
-    } else {
-        $id = $row['q'] . "";
-    }
 
     if ($row['q'] % 10 == $row['q']) {
-        $id = "0" . $id;
+        $id = "0" . $row['q'];
+    } else {
+        $id = "" . $row['q'];
+    }
+
+    if (array_key_exists(/*"" . $row['q']*/ $id, $questions) ) {
+//        $id = $row['q'];
+        while (  array_key_exists($id . "", $questions) ) {
+//            $id = (float) $id + 0.01;
+            $id = $row['q'] % 10 == $row['q'] ? "0" . ($id + 0.01) : ($id + 0.01) . "";
+        }
+//        die(var_dump($id));
+    } else {
+        $id = $row['q'] % 10 == $row['q'] ? "0" . $row['q'] : $row['q'] . "";
     }
 
     $questions[$id] = $row;

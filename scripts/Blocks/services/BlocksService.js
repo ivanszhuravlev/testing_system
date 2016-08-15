@@ -41,7 +41,6 @@ angular.module('testApp')
                     else {
                         current_page += Number(blocks[b_index - 1].pages_num);
                     }
-//                    console.log(current_page);
                     b_index++;
                 }
 
@@ -52,12 +51,17 @@ angular.module('testApp')
                 return current_page * 100 / pages;
             },
 
-            saveResult: function (result, result_multiple, user_id) {
+            saveResult: function (result, result_multiple, user_id, block_id) {
                 return $http.post('./php/questions/save.php', {
                     answers: result,
                     mult_answers: result_multiple,
-                    user_id: user_id
+                    user_id: user_id,
+                    block_id: block_id
                 });
+            },
+
+            goBack: function (user) {
+                return $http.post('./php/user/go_back.php', { user: user });
             },
 
             find_table: function (questions) {

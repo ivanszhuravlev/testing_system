@@ -14,50 +14,67 @@
         <span>При поддержке гранта РГНФ №321</span>
     </footer>
 </aside>
+<div class="progress_bar">
+    <div class="progress" ng-style="progress"></div>
+</div>
 <div class="container translated block">
 <!--    <div class="questions" ng-if="user.block == block.id">-->
-    <div class="questions" ng-if="user.block == block.id">
+    <div class="questions">
         <a class="home" href="/user_{{user.id}}/blocks">
             <i class="material-icons">chevron_left</i>
             <span>Блоки</span>
         </a>
-        <h1>Блок {{block.content_id}}. {{block.name}}.</h1>
+        <!--Вернуться назад - временная функция-->
+        <button ng-if="user.block > 1 || user.page > 1" class="go_back" ng-click="go_back()">Назад на страницу</button>
+        <br />
+        <!--------------------------------------->
         <form novalidate name="block_form" ng-submit="block_submit(questions)">
 
-            <div ng-repeat="question in questions">
+            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && (!questions[q_index - 1].user_answers[questions[q_index - 1].id].value || questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val)">
+<!--            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val">-->
 
+                <p class="question_text" ng-bind-html="question.text_before"></p>
+<!--                 Table layout -->
                 <div ng-if="$index >= found_table[0] && $index <= found_table[1]" class="table" ng-class="{ 'start' : $parent.$index == found_table[0], 'end' : $parent.$index == found_table[1] }">
                     <div>{{question.text}}</div>
                     <div ng-repeat="answer in question.answers">
                         <span ng-if="$parent.$index == found_table[0]">{{answer.text}}</span>
-                        <input type="radio" name="{{question.name}}_{{question.q}}" value="{{answer.value}}" ng-model="question.user_answers[question.id]">
+                        <input type="radio" name="{{question.name}}_{{question.q}}" value="{{answer.value}}" ng-model="question.user_answers[question.id]" required>
                     </div>
                 </div>
 
                 <div class="question_wrapper" ng-if="$index < found_table[0] || $index > found_table[1] || found_table.length == 0">
-                    <span>{{question.text}}</span>
-                    <div class="checkbox" ng-if="question.answers.length != 1 && answer.options.indexOf('explanation') != 0" ng-repeat="answer in question.answers" ng-class="{ 'other' : answer.options.indexOf('other') == 0 }">
-                        <input ng-if="question.options.indexOf('checkbox') == null" type="radio" name="{{question.name}}_{{question.q}}" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers[question.id]" required />
+                    <span ng-bind-html="question.text"></span>
+                    <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers" ng-init="a_index = $index" ng-class="{ 'other' : answer.options.indexOf('other') == 0, 'explanation' : answer.options.indexOf('explanation') == 0 }">
+<!--                    Radio layout-->
+                        <input ng-if="question.options.indexOf('checkbox') != 0 && answer.options.indexOf('explanation') != 0" type="radio" name="{{question.name}}_{{question.q}}" id="{{answer.id}}" ng-value="{ 'value' : answer.value, 'options' : answer.options }" ng-model="question.user_answers[question.id]" ng-change="make_default(q_index)" required />
+<!--                    Checkbox layout-->
+<!--                        <input ng-if="question.options.indexOf('checkbox') != null" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-change="reformat_answers(q_index)" required ng-required="no_answers(q_index)" ng-true-value="1" ng-false-value=""/>-->
+                        <input ng-if="question.options.indexOf('checkbox') == 0 && answer.options.indexOf('explanation') != 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-required="!question.user_answers.multiple"/>
 
-                        <input ng-if="question.options.indexOf('checkbox') != null" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-required="!question.user_answers.multiple" />
+                        <label ng-if="answer.options.indexOf('explanation') != 0" for="{{answer.id}}">{{answer.text}}</label>
 
-                        <label for="{{answer.id}}">{{answer.text}}</label>
+                        <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
+
+<!--                    Explanation text field for checkbox-->
+                        <input class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[question.answers[answer.id]">
+<!--                    -->
+
+<!--                    Explanation text field for radio-->
+                        <input ng-if="answer.options.indexOf('explanation') == 0 && question.user_answers[question.id].value == question.answers[a_index - 1].value" type="text" maxlength="255" ng-model="question.user_answers[answer.id]">
+<!--                    -->
 
                     </div>
 
-                    <div class="explanation" ng-if="question.answers[question.answers.length - 1].options.indexOf('explanation') == 0 && question.user_answers[question.id] == question.answers[question.answers.length - 2].value">
-                        <input type="text" maxlength="255" ng-model="question.user_answers.text[question.id]">
-                    </div>
-
-                    <div class="explanation" ng-if="question.answers[question.answers.length - 1].options.indexOf('explanation') == 0 && question.user_answers.multiple[question.answers[question.answers.length - 1].id - 1]">
-                        <input type="text" maxlength="255" ng-model="question.user_answers.text[question.id]">
-                    </div>
+<!--                    Text field layout-->
                     <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}" ng-model="question.user_answers[question.id]" required>
+                    <span ng-if="question.answers.length == 1" ng-bind-html="question.answers[0].text_after"></span>
 
                 </div>
 
-            </div>
+                <p class="question_text" ng-bind-html="question.text_after"></p>
 
+            </div>
             <input type="submit" value="Далее" ng-disabled="block_form.$invalid" />
         </form>
     </div>

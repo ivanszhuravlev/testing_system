@@ -4,13 +4,13 @@
         $scope.blocks = [];
 
         BlocksService.getBlocks().success(function(data) {
-            $scope.blocks = data;
+            $rootScope.blocks = data;
 
-            var pages = BlocksService.getPagesNum($scope.blocks),
-                current_page = BlocksService.getCurrentPage($scope.blocks, $rootScope.user.block, $rootScope.user.page),
+            var pages = BlocksService.getPagesNum($rootScope.blocks),
+                current_page = BlocksService.getCurrentPage($rootScope.blocks, $rootScope.user.block, $rootScope.user.page),
                 progress = BlocksService.countProgress(pages, current_page - 1);
             
-            $scope.progress = { width : progress + "%" };
+            $rootScope.progress = { width : progress + "%" };
         });
 
     });
