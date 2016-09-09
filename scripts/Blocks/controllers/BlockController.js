@@ -1,6 +1,6 @@
 angular.module("testApp")
 
-.controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel) {
+.controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll) {
     var block_prom = BlocksService.getBlock($routeParams.blockId);
 
     if (UserModel.user.suits == 0) {
@@ -27,14 +27,23 @@ angular.module("testApp")
     };
 
     $scope.make_default = function(id) {
-        if ($scope.questions[id + 1].ifnot) {
-//            alert('success');
+        if ($scope.questions[id + 1] && $scope.questions[id + 1].ifnot) {
             if (!$scope.questions[id].user_answers[$scope.questions[id].id].value || $scope.questions[id].user_answers[$scope.questions[id].id].value == $scope.questions[id + 1].ifnot.prev_val) {
                 $scope.questions[id + 1].user_answers[$scope.questions[id + 1].id] = $scope.questions[id + 1].ifnot.default_val;
-//                alert($scope.questions[id + 1].user_answers[id + 1]);
+            } else {
+                $scope.questions[id + 1].user_answers[$scope.questions[id + 1].id] = "";
             }
-//            console.log($scope.questions[id + 1].ifnot);
         }
+        if ($scope.questions[id + 2] && $scope.questions[id + 2].ifnot) {
+            $scope.make_default(id + 1);
+        }
+    };
+    
+    $scope.show_error = function(field_id) {
+        var field = document.getElementById(field_id);
+        field.setAttribute('max', 239);
+        console.log(field_id);
+        console.log(field.getAttribute('max'));
     };
     
     $scope.questions = [];
@@ -59,37 +68,66 @@ angular.module("testApp")
         $scope.block.name = block.name;
         $scope.block.content_id = block.content_id;
 
-        var questions_prom = BlocksService.getQuestions(block.content_id, block.id, $routeParams.pageId);
-
-        questions_prom.success(function (questions) {
-            var keys = Object.keys(questions);
-            console.log(questions);
-            keys.sort();
-            for (var i in keys) {
-                $scope.questions.push(questions[keys[i]]);
-            }
-            $scope.found_table = BlocksService.find_table($scope.questions);
-//            console.log($scope.questions);
-            $scope.questions.forEach(function(question){
-                question.user_answers = {};
-
-                if (question.options && question.options.indexOf('ifnot') === 0) {
-                    var mask = /ifnot_previous_(\d+)_(\w+)/,
-                        ifnot = mask.exec(  question.options.trim());
-                    question.ifnot = {
-                        prev_val: ifnot[1],
-                        default_val: ifnot[2] 
-                    };
-                }
-
+        if ($scope.block.content_id == 9 && $routeParams.pageId == 35) {
+            BlocksService.getResults($rootScope.user).success(function(result){
+                $scope.test_result = result;
+                console.log(result);
             });
+        }
 
-//            var pages = BlocksService.getPagesNum($rootScope.blocks),
-//                current_page = BlocksService.getCurrentPage($rootScope.blocks, $rootScope.user.block, $rootScope.user.page),
-//                progress = BlocksService.countProgress(pages, current_page - 1);
-//
-//            $rootScope.progress = { width : progress + "%" };
-        });
+        if ($scope.block.content_id == 9 && $routeParams.pageId % 2 === 0) {
+            var interv_answer_prom = BlocksService.getAnswerPage($routeParams.pageId);
+
+            interv_answer_prom.success(function (html_text) {
+                $scope.html_text = html_text;
+                console.log($scope.html_text);
+            });
+        } else {
+            var questions_prom = BlocksService.getQuestions(block.content_id, block.id, $routeParams.pageId);
+
+            questions_prom.success(function (questions) {
+                var keys = Object.keys(questions);
+                console.log(questions);
+                keys.sort();
+                for (var i in keys) {
+                    $scope.questions.push(questions[keys[i]]);
+                }
+                $scope.found_table = BlocksService.find_table($scope.questions);
+    //            console.log($scope.questions);
+                $scope.questions.forEach(function(question){
+                    question.user_answers = {};
+                    var mask;
+                    if (question.options && question.options.indexOf('ifnot') === 0) {
+                        mask = /ifnot_previous_(\d+)_(\w+)/;
+                        var ifnot = mask.exec(  question.options.trim() );
+                        question.ifnot = {
+                            prev_val: ifnot[1],
+                            default_val: ifnot[2] 
+                        };
+                    }
+
+                    if (question.options && question.options.indexOf('img') === 0) {
+                        mask = /img_top_(\w+.\w+)_(auto|\d+px)_(auto|\d+px)/;
+                        var img = mask.exec(  question.options.trim() );
+                        question.img = {
+                            src: img[1],
+                            style: {
+                                'width': img[2],
+                                'height': img[3],
+                                'margin-bottom': "30px",
+                            }
+                        };
+                    }
+
+                });
+
+    //            var pages = BlocksService.getPagesNum($rootScope.blocks),
+    //                current_page = BlocksService.getCurrentPage($rootScope.blocks, $rootScope.user.block, $rootScope.user.page),
+    //                progress = BlocksService.countProgress(pages, current_page - 1);
+    //
+    //            $rootScope.progress = { width : progress + "%" };
+            });
+        }
     });
 
     $scope.block_submit = function (questions) {
@@ -138,22 +176,27 @@ angular.module("testApp")
 
         }
 
+        var block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+
         BlocksService.saveResult(result, result_multiple, $rootScope.user.id, $routeParams.blockId).success(function (response) {
-            if (response == "pass") {
-                UserService.set($rootScope.user.id).then(function () {
-                    $location.path('/user_' + $rootScope.user.id +
-                        '/block_' + $rootScope.user.block +
-                        '/' + $rootScope.user.page).replace();
-                });
-            } else {
-                UserService.updatePage($rootScope.user, $routeParams.blockId).success(function () {
+            BlocksService.calculate($routeParams.blockId, $routeParams.pageId, $scope.questions, $rootScope.user).success(function (calc_response) {
+                console.log(calc_response);
+                if (response == "pass") {
                     UserService.set($rootScope.user.id).then(function () {
                         $location.path('/user_' + $rootScope.user.id +
                             '/block_' + $rootScope.user.block +
                             '/' + $rootScope.user.page).replace();
                     });
-                });
-            }
+                } else {
+                    UserService.updatePage($rootScope.user, block_id).success(function () {
+                        UserService.set($rootScope.user.id).then(function () {
+                            $location.path('/user_' + $rootScope.user.id +
+                                '/block_' + $rootScope.user.block +
+                                '/' + $rootScope.user.page).replace();
+                        });
+                    });
+                }
+            });
         });
     };
 
@@ -165,5 +208,28 @@ angular.module("testApp")
                     '/' + $rootScope.user.page).replace();
             });
         });
+    };
+
+    /*
+     * Показываем следующий вопрос первого блока интервенции
+     */
+    $scope.next_question = function() {
+        var block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+
+        UserService.updatePage($rootScope.user, block_id).success(function () {
+            UserService.set($rootScope.user.id).then(function () {
+                $location.path(
+                    '/user_' + $rootScope.user.id +
+                    '/block_' + $rootScope.user.block +
+                    '/' + $rootScope.user.page
+                ).replace();
+            });
+        });
+    };
+
+    $scope.scrollTo = function(target) {
+        $location.hash(target);
+        $anchorScroll();
+        $location.hash("");
     };
 });

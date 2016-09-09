@@ -79,7 +79,7 @@ foreach ($answers as $answer) {
         /*
          * Берем id вопросов, значения которых будем заполнять автоматически
          */
-        $ids = mysqli_query($link, "SELECT id FROM questions WHERE s = '" . $block_id . "' AND (q > '" . $current_q[0] . "' AND q < '" . $last_page_q[count($last_page_q) - 1] . "')");
+        $ids = mysqli_query($link, "SELECT id FROM questions WHERE s = '" . $block_id . "' AND (q > '" . $current_q[0] . "' AND q <= '" . $last_page_q[count($last_page_q) - 1] . "')");
 
         /*
          * Подставляем значения
@@ -98,12 +98,20 @@ foreach ($answers as $answer) {
          */
         print("pass");
     }
-
-    $query = mysqli_query($link, "INSERT INTO user_answers SET " .
-                          "user_id = '" . $user_id . "'," .
-                          "question_id = '" . $answer['id'] . "'," .
-                          "value = '" . $answer['value'] . "'"
-                         );
+    
+    if ($block_id == 8) {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                              "user_id = '" . $user_id . "'," .
+                              "question_id = '" . $answer['id'] . "'," .
+                              "value = '" . $answer['value'] . "'"
+                             );
+    } else {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                              "user_id = '" . $user_id . "'," .
+                              "question_id = '" . $answer['id'] . "'," .
+                              "value = '" . $answer['value'] . "'"
+                             );
+    }
 }
 
 

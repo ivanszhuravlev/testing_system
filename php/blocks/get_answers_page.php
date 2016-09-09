@@ -1,10 +1,7 @@
 <?
-/**
- * Получаем JSON-строку с ником юзера
- */
 $data = json_decode(file_get_contents('php://input'), true);
 
-$id = $data['id'];
+$page_id = $data['page_id'];
 
 /*
  * Подключаемся к базе данных
@@ -20,8 +17,9 @@ if (!$connect) {
     die("Not found!");
 }
 
-$query = mysqli_query($link, "SELECT id, name, content_id FROM pages WHERE id = '" . $id . "' AND (type = 'block' OR type = 'intervention')");
+$query = mysqli_query($link, "SELECT text FROM right_answers WHERE page = '" . $page_id . "'");
 
-$block = mysqli_fetch_assoc($query);
+$right_answer = mysqli_fetch_assoc($query);
+//iconv ('windows-1251', 'utf-8', $right_answer['text']);
 
-print(json_encode($block));
+print($right_answer['text']);

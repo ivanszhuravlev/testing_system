@@ -24,7 +24,8 @@ $query = mysqli_query($link, "SELECT email,
                                      block,
                                      page,
                                      suits,
-                                     passed FROM users WHERE id = '" . $id . "'");
+                                     passed,
+                                     is_admin FROM users WHERE id = '" . $id . "'");
 
 $user = mysqli_fetch_assoc($query);
 

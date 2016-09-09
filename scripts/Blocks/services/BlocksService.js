@@ -15,6 +15,10 @@ angular.module('testApp')
                 });
             },
 
+            getAnswerPage: function (page) {
+                return $http.post('./php/blocks/get_answers_page.php', { page_id: page });
+            },
+
             getBlock: function (id) {
                 return $http.post('./php/blocks/get_block.php', {
                     id: id
@@ -60,8 +64,37 @@ angular.module('testApp')
                 });
             },
 
+            calculate: function (block_id, page_id, questions, user) {
+
+                if (block_id == 8 && (page_id == 23 || page_id == 31 || page_id == 33)) {
+                    return $http.post('./php/questions/calc_mult_interv.php', {
+                        block_id: block_id,
+                        page_id: page_id,
+                        answers: questions[0].user_answers.multiple,
+                        user: user
+                    });
+                } else {
+                    var ids = {};
+
+                    questions.forEach(function(question) {
+                        ids[question.id] = question.id;
+                    });
+
+                    return $http.post('./php/questions/calc.php', {
+                        block_id: block_id,
+                        page_id: page_id,
+                        ids: ids,
+                        user: user
+                    });
+                }
+            },
+
             goBack: function (user) {
                 return $http.post('./php/user/go_back.php', { user: user });
+            },
+
+            getResults: function (user) {
+                return $http.post('./php/blocks/get_results.php', { user: user });
             },
 
             find_table: function (questions) {

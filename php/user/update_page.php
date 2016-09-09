@@ -29,7 +29,9 @@ while ( $row = mysqli_fetch_assoc($query) ) {
     array_push($pages, $row);
 }
 
-if ($user['page'] < count($pages)) {
+$pages_num = $block_id == 9 ? 35 : count($pages);
+
+if ($user['page'] < $pages_num) {
     $query = mysqli_query($link, "UPDATE users SET page = page + 1 WHERE id = '" . $user['id'] . "'");
 } else {
     $query = mysqli_query($link, "UPDATE users SET block = block + 1, page = 1 WHERE id = '" . $user['id'] . "'");

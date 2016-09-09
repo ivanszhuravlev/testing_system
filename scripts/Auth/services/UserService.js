@@ -15,18 +15,19 @@ angular.module('testApp')
                 return $http.post('./php/user/get.php', { id : id }).success(function(data) {
                     localStorage.setItem('user_id', id);
 
-                    UserModel.user.id     = id;
-                    UserModel.user.email  = data.email;
-                    UserModel.user.nick   = data.nickname;
-                    UserModel.user.stage  = data.stage;
-                    UserModel.user.block  = data.block;
-                    UserModel.user.page   = data.page;
-                    UserModel.user.suits  = data.suits;
-                    UserModel.user.passed = data.passed;
+                    UserModel.user.id       = id;
+                    UserModel.user.email    = data.email;
+                    UserModel.user.nick     = data.nickname;
+                    UserModel.user.stage    = data.stage;
+                    UserModel.user.block    = data.block;
+                    UserModel.user.page     = data.page;
+                    UserModel.user.suits    = data.suits;
+                    UserModel.user.passed   = data.passed;
+                    UserModel.user.is_admin = data.is_admin;
 
-                    if (data.nickname == "ivan" || data.nickname == "admin") {
-                        UserModel.user.is_admin = 1;
-                    }
+//                    if (data.is_admin == "ivan" || data.nickname == "admin") {
+//                        UserModel.user.is_admin = 1;
+//                    }
                 });
             },
 
