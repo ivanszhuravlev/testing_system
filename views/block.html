@@ -60,7 +60,7 @@
                         <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
 
 <!--                    Explanation text field for checkbox-->
-                        <textarea class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]"></textarea>
+                        <input type="text" class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]">
 <!--                    -->
 
 <!--                    Explanation text field for radio-->
