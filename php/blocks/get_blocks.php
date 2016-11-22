@@ -17,7 +17,7 @@ $blocks = array();
 
 $query = mysqli_query($link, "SELECT * FROM pages WHERE type = 'block'");
 
-while ( $row = mysqli_fetch_array($query) ) {
+while ( $row = mysqli_fetch_assoc($query) ) {
     array_push($blocks, $row);
 }
 

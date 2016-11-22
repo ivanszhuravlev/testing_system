@@ -225,11 +225,14 @@ angular.module("testApp")
 
                 });
 
-    //            var pages = BlocksService.getPagesNum($rootScope.blocks),
-    //                current_page = BlocksService.getCurrentPage($rootScope.blocks, $rootScope.user.block, $rootScope.user.page),
-    //                progress = BlocksService.countProgress(pages, current_page - 1);
-    //
-    //            $rootScope.progress = { width : progress + "%" };
+                BlocksService.getBlocks().success(function(data){
+                    var pages = BlocksService.getPagesNum(data),
+                        current_page = BlocksService.getCurrentPage(data, $rootScope.user.block, $rootScope.user.page),
+                        progress = BlocksService.countProgress(pages, current_page);
+
+                    $rootScope.progress = { width : progress + "%" };
+                });
+
             });
         }
     });

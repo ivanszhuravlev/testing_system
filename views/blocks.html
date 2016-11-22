@@ -103,7 +103,7 @@
 <a href="#" ng-click="logout()">Выйти</a>
 
 </div>
-<div class="progress_bar" ng-if="user.block < 8">
+<div class="progress_bar" ng-if="(user.visit == 1 || (user.visit == 2 && user.diff_v2 && user.diff_v2 <= 0) || (user.visit == 3 && user.diff_v3 && user.diff_v3 <= 0)) && user.suits == 1 && user.block < 8">
     <div class="progress" ng-style="progress"></div>
 </div>
 <div class="container intro">
