@@ -2,8 +2,7 @@ angular.module("testApp")
 
 .controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll, $window) {
     var block_prom = BlocksService.getBlock($routeParams.blockId);
-//    $scope.game_path = "./game/index.html";
-
+//    $scope.game_path = "./game/index.html";$routeParams.blockId
     $scope.no_answers = function(id) {
         var answers = $scope.questions[id].user_answers.multiple,
             item;
@@ -144,9 +143,9 @@ angular.module("testApp")
                             $scope.results_page = "./views/intervention/part_5.html";
                             break;
                         case "40":
-                            var block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+                            var block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 
-                            UserService.updatePage($rootScope.user, block_id).success(function (new_page) {
+                            UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
                                 $rootScope.user.block = new_page.block;
                                 $rootScope.user.page  = new_page.page;
                                 $location.path(
@@ -176,10 +175,10 @@ angular.module("testApp")
 
             questions_prom.success(function (questions) {
                 var keys = Object.keys(questions),
-                    block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+                    block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 //                console.log(JSON.stringify(keys));
                 if (JSON.stringify(keys) == "[]") {
-                    UserService.updatePage($rootScope.user, block_id).success(function (new_page) {
+                    UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
                         $rootScope.user.block = new_page.block;
                         $rootScope.user.page  = new_page.page;
                         $location.path(
@@ -285,7 +284,7 @@ angular.module("testApp")
 
         }
 
-        var block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+        var block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 
         BlocksService.saveResult(result, result_multiple, $rootScope.user.id, $routeParams.blockId).success(function (response) {
             BlocksService.calculate($routeParams.blockId, $routeParams.pageId, $scope.questions, $rootScope.user).success(function (calc_response) {
@@ -309,7 +308,7 @@ angular.module("testApp")
                                 '/' + $rootScope.user.page).replace();
                         });
                     } else {
-                        UserService.updatePage($rootScope.user, block_id).success(function (new_page) {
+                        UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
                             $rootScope.user.block = new_page.block;
                             $rootScope.user.page  = new_page.page;
                             $rootScope.user.is_right = new_is_right;
@@ -346,9 +345,9 @@ angular.module("testApp")
      * Показываем следующий вопрос первого блока интервенции
      */
     $scope.next_question = function() {
-        var block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
+        var block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 
-        UserService.updatePage($rootScope.user, block_id).success(function (new_page) {
+        UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
             $rootScope.user.block = new_page.block;
             $rootScope.user.page  = new_page.page;
             $location.path(

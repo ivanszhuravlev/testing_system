@@ -21,15 +21,19 @@ if (!$connect) {
     die(json_encode("Not found!"));
 }
 
-$query = mysqli_query($link, "SELECT DISTINCT page FROM questions WHERE s = '" . $block_id . "'");
+//$query = mysqli_query($link, "SELECT DISTINCT page FROM questions WHERE s = '" . $block_id . "'");
 
-$pages = array();
+$query = mysqli_query($link, "SELECT pages_num FROM pages WHERE id = " . $block_id . "");
 
-while ( $row = mysqli_fetch_assoc($query) ) {
-    array_push($pages, $row);
-}
+$block = mysqli_fetch_assoc($query);
 
-$pages_num = $block_id == 9 ? 41 : count($pages);
+//$pages = array();
+//
+//while ( $row = mysqli_fetch_assoc($query) ) {
+//    array_push($pages, $row);
+//}
+
+$pages_num = $block_id == 9 ? 41 : $block['pages_num'];
 
 if ($user['page'] < $pages_num) {
     $query = mysqli_query($link, "UPDATE users SET page = page + 1 WHERE id = '" . $user['id'] . "'");
