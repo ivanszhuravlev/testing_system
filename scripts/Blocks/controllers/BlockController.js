@@ -177,18 +177,18 @@ angular.module("testApp")
             questions_prom.success(function (questions) {
                 var keys = Object.keys(questions),
                     block_id = $routeParams.blockId >= 8 ? $scope.block.content_id : $routeParams.blockId;
-                console.log(JSON.stringify(keys));
-//                if (JSON.stringify(keys) == "[]") {
-//                    UserService.updatePage($rootScope.user, block_id).success(function () {
-//                        UserService.set($rootScope.user.id).then(function () {
-//                            $location.path(
-//                                '/user_' + $rootScope.user.id +
-//                                '/block_' + $rootScope.user.block +
-//                                '/' + $rootScope.user.page
-//                            ).replace();
-//                        });
-//                    });
-//                }
+//                console.log(JSON.stringify(keys));
+                if (JSON.stringify(keys) == "[]") {
+                    UserService.updatePage($rootScope.user, block_id).success(function (new_page) {
+                        $rootScope.user.block = new_page.block;
+                        $rootScope.user.page  = new_page.page;
+                        $location.path(
+                            '/user_' + $rootScope.user.id +
+                            '/block_' + $rootScope.user.block +
+                            '/' + $rootScope.user.page
+                        ).replace();
+                    });
+                }
 
                 keys.sort();
                 for (var i in keys) {
