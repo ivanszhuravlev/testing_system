@@ -28,9 +28,14 @@ $user = mysqli_fetch_assoc($query);
  * Код ошибки:
  * 0 - email не найден
  * 1 - email уже занят
+ * 2 - email не email
  */
-if (is_null($user)) {
+if (filter_var($email, FILTER_VALIDATE_EMAIL)==false) {
+	die ("2");
+}
+elseif (is_null($user)) {
     die("0");
-} else {
+} 
+else {
     die("1");
 }

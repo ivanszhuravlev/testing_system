@@ -6,26 +6,25 @@
 
 form.enter-form,
 form.register-form {
-    display: block;
-    width: 280px;
+    width: 40%;
+    margin: 0 auto;
 }
 
     textarea {
-        display: block;
-        box-sizing: border-box;
-        padding: 9px 12px;
-        border: 1px solid #c9c9c9;
-        border-radius: 3px;
-
-        width: 100%;
-        min-height: 120px;
-        margin-bottom: 14px;
-        resize: vertical;
-
-        color: #444444;
-        font-family: 'Open Sans';
-        font-size: 13px;
-        line-height: 1.4em;
+            display: block;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
+    width: 45%;
+    /* min-height: 120px; */
+    margin-bottom: 14px;
+    margin-left: 5%;
+    resize: vertical;
+    color: #444444;
+    font-family: 'Open Sans';
+    font-size: 13px;
+    line-height: 1.4em;
     }
 
     label {
@@ -52,16 +51,36 @@ form.register-form {
             color: #444444;
         }
 
-        input[type="submit"] {
-            width: auto;
-            background: #3fa16e;
-            border: 0;
-            color: #ffffff;
-            padding: 9px 16px;
-            cursor: pointer;
-            display: inline-block;
+        input[type="number"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
         }
 
+        input[type="submit"] {
+               
+				background: #3fa16e;
+				border: 0;
+				color: #ffffff;
+				padding: 9px 16px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 5%;
+    font-size: 25pt;
+    width: 90%;
+        }
+		
+        .register-form  input[type="submit"], a.green {
+    background: #3fa16e;
+    border: 0;
+    color: #ffffff;
+    padding: 2%;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0; 
+    width: 100%;
+    font-size: 175%;
+	     }
         input[type="text"]::after {
             font-family: "Material Icons";
             font-size: 24px;
@@ -86,3 +105,8 @@ form.register-form {
         content: "close";
         color: #000000;
     }
+	.incorrect {
+	border: 1px solid red;
+    background-color: #ffebeb;
+	}
+	

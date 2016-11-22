@@ -7,6 +7,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $content_id = $data['content_id'];
 $block_id   = $data['block_id'];
 $page_id    = $data['page_id'];
+$user       = $data['user'];
 
 /*
  * Подключаемся к базе данных
@@ -24,36 +25,73 @@ if (!$connect) {
 
 switch ($block_id) {
     case "5":
-        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
-                                                            (name = 'sexmale' OR
-                                                             name = 'sexfemale' OR
-                                                             name = 'sexvag' OR
-                                                             name = 'sexvagsafe' OR
-                                                             name = 'sexanal' OR
-                                                             name = 'sexanalsafe' OR
-                                                             name = 'sextalk' OR
-                                                             name = 'sexlastsafe' OR
-                                                             name = 'steadysexpart' OR
-                                                             name = 'hivstatpart' OR
-                                                             name = 'conceive')
-                                                             AND page = '" . $page_id . "'");
+        if ($user['visit'] == 1) {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                                (name = 'sexmale' OR
+                                                                 name = 'sexfemale' OR
+                                                                 name = 'sexvag' OR
+                                                                 name = 'sexvagsafe' OR
+                                                                 name = 'sexanal' OR
+                                                                 name = 'sexanalsafe' OR
+                                                                 name = 'sextalk' OR
+                                                                 name = 'sexlastsafe' OR
+                                                                 name = 'steadysexpart' OR
+                                                                 name = 'hivstatpart' OR
+                                                                 name = 'conceive')
+                                                                 AND page = '" . $page_id . "'");
+        } else {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                                (name = 'sexmale' OR
+                                                                 name = 'sexfemale' OR
+                                                                 name = 'sexvag' OR
+                                                                 name = 'sexvagsafe' OR
+                                                                 name = 'sexanal' OR
+                                                                 name = 'sexanalsafe' OR
+                                                                 name = 'sextalk' OR
+                                                                 name = 'sexlastsafe' OR
+                                                                 name = 'steadysexpart' OR
+                                                                 name = 'hivstatpart' OR
+                                                                 name = 'conceive')
+                                                                 AND page = '" . $page_id . "'
+                                                                 AND v = 1");
+        }
         break;
     case "6":
-        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
-                                                            (name = 'pss1' OR
-                                                             name = 'pss2' OR
-                                                             name = 'pss3' OR
-                                                             name = 'pss4' OR
-                                                             name = 'pss5' OR
-                                                             name = 'pss6' OR
-                                                             name = 'pss7' OR
-                                                             name = 'pss8' OR
-                                                             name = 'pss9' OR
-                                                             name = 'pss10')
-                                                             AND page = '" . $page_id . "'");
+        if ($user['visit'] == 1) {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                                (name = 'pss1' OR
+                                                                 name = 'pss2' OR
+                                                                 name = 'pss3' OR
+                                                                 name = 'pss4' OR
+                                                                 name = 'pss5' OR
+                                                                 name = 'pss6' OR
+                                                                 name = 'pss7' OR
+                                                                 name = 'pss8' OR
+                                                                 name = 'pss9' OR
+                                                                 name = 'pss10')
+                                                                 AND page = '" . $page_id . "'");
+        } else {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND
+                                                                (name = 'pss1' OR
+                                                                 name = 'pss2' OR
+                                                                 name = 'pss3' OR
+                                                                 name = 'pss4' OR
+                                                                 name = 'pss5' OR
+                                                                 name = 'pss6' OR
+                                                                 name = 'pss7' OR
+                                                                 name = 'pss8' OR
+                                                                 name = 'pss9' OR
+                                                                 name = 'pss10')
+                                                                 AND page = '" . $page_id . "' 
+                                                                 AND v = 1");
+        }
         break;
     default:
-        $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
+        if ($user['visit'] == 1) {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "'");
+        } else {
+            $query = mysqli_query($link, "SELECT * FROM questions WHERE s = '" . $content_id . "' AND page = '" . $page_id . "' AND v = 1");
+        }
         break;
 }
 

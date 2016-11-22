@@ -1,0 +1,39 @@
+* {margin:0px; padding:0px;}
+html {width:100%; height:100%;}
+body {height:100%; font: normal 14px Tahoma, sans-serif; color:black; background-color:white;}
+
+#blockGame {position:relative; width:100%; min-width:300px; height:100%; min-height:200px; background-color:aqua; overflow:hidden;}
+.block1 {width:100%; height:42.5%; background-color:white;}
+.block2 {width:100%; height:42.5%; background-color:#f1f1f1;}
+.block3 {width:100%; height:15%; background-color:white; text-align:center;}
+
+.progress {position:absolute; left:10%; top:43%; width:80%; height:10%; border: 1px solid black;  background-color:#ebebeb;}
+.progress_val {position:absolute; left:0; bottom:0; height:100%; background-color:yellow; }
+
+.thmb {    position: absolute;
+    border-radius: 25%;
+    border: 1px solid #ebebeb;
+    background-size: cover;
+    overflow: visible;
+    cursor: move;}
+.thmb:hover {border-color:white;}
+
+.thmb .count {position:absolute; right: -10%; top: 0; width:25%; height:25%; border-radius: 50%; color: white; text-shadow: 1px 1px 2px white, 0 0 1em white; background-color: #5f5f5f; text-align: center;}
+
+.thmb .btn {position:absolute; right:-10%; bottom:-9%; width:25%; height:25%; background-color:yellow; border-radius:50%; text-align: center; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.5);}
+.thmb .btn:hover {border-color:white;}
+
+.drag {position:absolute; display:none; height:15%; border:1px solid white; background-size: cover; cursor:move;}
+
+.zdorovie {
+
+    z-index: 20;
+    position: relative;
+    text-align: center;
+    padding-top: -2%;
+    font-family: Arial Black;
+    font-size: 193%;
+    text-shadow: 1px 1px 2px black;
+    opacity: 0.25;
+    color: white;
+    }

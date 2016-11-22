@@ -1,30 +1,136 @@
-<aside>
-    <header>
-        <img src="img/logo.png" class="logo">
-    </header>
+<aside ng-include="'/views/static/header.html'"></aside>	
+<div class="nav">
 
-    <div class="logout-panel">
-        <span>Здравствуйте, {{user.nick}}</span>
-        <a ng-click="logout()">Выйти</a>
-    </div>
+<div class="blocks" ng-if="user.suits != 0 && user.block == 8">
+    <a href="/user_{{user.id}}/block_8/35"
+       ng-if="user.page >= 35">
+        <div class="block">
+            <span class="id">Часть 1.</span>
+            <span class="name">Знания</span>
+        </div>
+    </a>
 
-    <nav ng-include="nav"></nav>
+    <a href="/user_{{user.id}}/block_8/36"
+       ng-if="user.page >= 36">
+        <div class="block">
+            <span class="id">Часть 2.</span>
+            <span class="name">Принятие диагноза</span>
+        </div>
+    </a>
 
-    <footer>
-        <span>При поддержке гранта РГНФ №321</span>
-    </footer>
-</aside>
+    <a href="/user_{{user.id}}/block_8/37"
+       ng-if="user.page >= 37">
+        <div class="block">
+            <span class="id">Часть 3.</span>
+            <span class="name">Сексуальные отношения</span>
+        </div>
+    </a>
+
+    <a href="/user_{{user.id}}/block_8/38"
+       ng-if="user.page >= 38">
+        <div class="block">
+            <span class="id">Часть 4.</span>
+            <span class="name">Правовые вопросы</span>
+        </div>
+    </a>
+
+    <a href="/user_{{user.id}}/block_8/39"
+       ng-if="user.page >= 39">
+        <div class="block">
+            <span class="id">Часть 5.</span>
+            <span class="name">Приверженность к лечению</span>
+        </div>
+    </a>
+
+    <a href="/user_{{user.id}}/block_8/40"
+       ng-if="user.page >= 40">
+        <div class="block">
+            <span class="id">Часть 6.</span>
+            <span class="name">Образ жизни</span>
+        </div>
+    </a>
+
+    <a href="/user_{{user.id}}/block_8/41"
+       ng-if="user.page >= 41">
+        <div class="block">
+            <span class="id">Часть 7.</span>
+            <span class="name">Употребление наркотиков</span>
+        </div>
+    </a>
+</div>
+
+<a href="/user_{{user.id}}/info">
+    <span class="item" >
+       
+        <span>Полезная информация</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/links">
+    <span class="item" >
+       
+        <span>Полезные ссылки</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/developers">
+    <span class="item" >
+       
+        <span>Информация о программе и разработчиках</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/parser" ng-if="user.is_admin">
+    <span class="item">
+       
+        <span>Добавить переменную</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/users_list">
+    <span class="item" ng-if="user.is_admin">
+       
+        <span>Список пользователей</span>
+    </span>
+</a>
+
+<a href="/user_{{user.id}}/users_answers">
+    <span class="item" ng-if="user.is_admin">
+       
+        <span>Ответы пользователей</span>
+    </span>
+</a>
+<a href="#" ng-click="logout()">Выйти</a>
+
+</div>
 <div class="progress_bar" ng-if="user.block < 8">
     <div class="progress" ng-style="progress"></div>
 </div>
 <div class="container intro">
-    <div ng-if="user.block == 1 && user.passed == 0">
+    <div ng-if="user.block == 1 && user.visit == 1 && user.suits == 1">
         <p>Поздравляем! Вы зарегистрированы и стали участников нашей программы. Сейчас мы хотим попросить Вас заполнить анкету. Это займет примерно 30 минут Вашего времени. После заполнения анкеты на адрес Вашей электронной почты, которую Вы указали при регистрации, будет отправлен номер карты Webmoney на сумму 500 рублей, которую Вы сможете использовать для покупок в интернете или для оплаты своего мобильного телефона.</p>
 
         <p>Желаете перейти к анкетированию?</p>
         <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
             <button class="action">Да</button>
         </a>
+    </div>
+
+    <div ng-if="user.block > 1 && user.block < 8 && user.suits == 1">
+        <p>В прошлый свой визит на наш сайт, Вы не успели до конца заполнить он-лайн анкету.</p>
+
+        <p>Желаете продолжить анкетирование?</p>
+        <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
+            <button class="action">Да</button>
+        </a>
+    </div>
+
+    <div ng-if="user.suits == 0">
+        <p ng-if="user.suits == 0 && user.block == 3 && user.page == 2">Данная профилактическая он-лайн программа, направлена на оказание поддержки людям, живущим с ВИЧ-инфекцией. Так как Вы не обследовались когда-либо на ВИЧ, то данная программа Вам не подходит. Спасибо, что уделили время нашей программе. Если Вас интересует дополнительная информация о ВИЧ/СПИД, Вы можете  ознакомиться с ней в разделе «Полезные ссылки».</p>
+        <p ng-if="user.suits == 0 && user.block == 3 && user.page == 3">Данная профилактическая он-лайн программа, направлена на оказание поддержки людям, живущим с ВИЧ-инфекцией. Так как у Вас ВИЧ-инфекция не обнаружена, то данная программа Вам не подходит. Спасибо, что уделили время нашей программе. Если Вас интересует дополнительная информация о ВИЧ/СПИД, Вы можете  ознакомиться с ней в разделе «Полезные ссылки».</p>
+        <button class="action green" ng-click="returnToTest(user)">Вернуться к прохождению тестирования</button>
+        <br />
+        <span><i>Только на время тестирования системы</i></span>
     </div>
 
 <!--
@@ -43,17 +149,42 @@
     </div>
 -->
 
-    <div ng-if="user.block > 1 && user.passed == 0">
-        <p>В прошлый свой визит на наш сайт, Вы не успели до конца заполнить он-лайн анкету.</p>
+    <div ng-if="user.block == 8 && user.suits == 1">
+        <p>Вы прошли следующие части программы:</p>
+        <ul>
+            <li ng-repeat="part in parts" ng-if="user.page > part.id">Часть {{$index + 1}}. {{part.name}}</li>
+        </ul>
+        <p>Желаете перейти к следующей части программы?</p>
+        <a href="/user_{{user.id}}/block_8/{{user.page}}" class="action">
+            <button class="action">Да, я хочу перейти к части {{user.page - 34}}</button>
+        </a>
+        <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
+    </div>
 
-        <p>Желаете продолжить анкетирование?</p>
+    <div ng-if="((user.visit == 2 && user.diff_v2 && user.diff_v2 <= 0) || (user.visit == 3 && user.diff_v3 && user.diff_v3 <= 0)) && user.suits == 1 && user.block == 1 && user.page == 1">
+        <p>Вы прошли все части нашей программы. Сейчас мы хотим попросить Вас заполнить еще раз анкету. Это займет примерно 20 минут Вашего времени. После заполнения анкеты на адрес Вашей электронной почты, которую Вы указали при регистрации, будет отправлен номер карты Webmoney на сумму 500 рублей, которую Вы сможете использовать для покупок в интернете или для оплаты своего мобильного телефона.</p>
+
+        <p>Желаете перейти к анкетированию?</p>
         <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
             <button class="action">Да</button>
         </a>
+
+        <p>С результатами Вашего анкетного тестирования, а также с уже Вами пройдеными частями программы и другими полезными материалами, Вы сможете ознакомиться после прохождения анкетирования.</p>
     </div>
 
+    <div ng-if="((user.visit == 2 && user.diff_v2 && user.diff_v2 > 0) || (user.visit == 3 && user.diff_v3 && user.diff_v3 > 0) || user.visit == 999) && user.suits == 1">
+        <p>Вы прошли все части нашей программы.</p>
+        <p>Если Вы хотите еще раз ознакомиться с уже пройдеными частями программы, дополнительными материалами или хотите посмотреть результаты Вашего анкетного тестирования, используйте меню расположенное на левой стороне данной страницы.</p>
+
+        <button ng-if="user.is_admin == 1 " class="action green admin_only" ng-click="skip_visit(user)">Перейти к следующему визиту</button>
+    </div>
+
+<!--
     <div ng-if="user.passed == 1">
         <p>Вы прошли все части нашей программы.
 Если Вы хотите еще раз ознакомиться с уже пройдеными частями программы, дополнительными материалами или хотите посмотреть результаты Вашего анкетного тестирования, используйте меню расположенное на левой стороне данной страницы.</p>
     </div>
+-->
 </div>
+
+ <footer ng-include="'/views/static/footer.html'"></footer>

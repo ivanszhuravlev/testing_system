@@ -18,15 +18,30 @@ if (!$connect) {
     die("Not found!");
 }
 
-$query = mysqli_query($link, "SELECT email,
+$query = mysqli_query($link, "SELECT id,
+                                     email,
                                      nickname,
-                                     stage,
+                                     visit,
                                      block,
                                      page,
                                      suits,
-                                     passed,
-                                     is_admin FROM users WHERE id = '" . $id . "'");
+                                     date_reg,
+                                     date_v1,
+                                     date_v2,
+                                     date_v3,
+                                     is_admin,
+                                     is_right FROM users WHERE id = '" . $id . "'");
 
 $user = mysqli_fetch_assoc($query);
+
+if ($user['date_v1'] != null) {
+//    $user['diff_v1_v2'] = "hello";
+    $now = new DateTime(date("Y-m-d"));
+    $date_v2 = new DateTime($user['date_v2']);
+    $date_v3 = new DateTime($user['date_v3']);
+
+    $user['diff_v2'] = date_diff($now, $date_v2)->format('%R%a');
+    $user['diff_v3'] = date_diff($now, $date_v3)->format('%R%a');
+}
 
 echo(json_encode($user));

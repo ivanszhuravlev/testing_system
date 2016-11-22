@@ -7,11 +7,12 @@ angular.module('testApp')
                 return $http.get('./php/blocks/get_blocks.php');
             },
 
-            getQuestions: function (content_id, block_id, page_id) {
+            getQuestions: function (content_id, block_id, page_id, user) {
                 return $http.post('./php/blocks/get_questions.php', {
                     content_id: content_id,
                     block_id: block_id,
                     page_id: page_id,
+                    user: user
                 });
             },
 
@@ -97,11 +98,15 @@ angular.module('testApp')
                 return $http.post('./php/blocks/get_results.php', { user: user });
             },
 
+            getDrugAnswers: function (user) {
+                return $http.post('./php/blocks/get_drug_answers.php', { user: user });
+            },
+
             find_table: function (questions) {
                 var table_start = -1,
                     table_end = -1,
-                    is_table = -1,
-                    next_is_table = -1;
+                    is_table = false,
+                    next_is_table = false;
 
                 questions.forEach(function(question, index) {
                     /**
@@ -110,14 +115,16 @@ angular.module('testApp')
                      *
                      */
                     if (question.options !== null) {
-                        is_table = question.options.indexOf("table");
+                        is_table = /^table/.test(question.options);
+//                        alert(is_table);
+//                        is_table = question.options.indexOf("table");
                     }
 
                     /**
                      * Находим начальную позицию таблицы.
                      *
                      */
-                    if (is_table != -1 && table_start === -1) {
+                    if (is_table && table_start === -1) {
                         table_start = index;
                     }
 
@@ -127,19 +134,20 @@ angular.module('testApp')
                      *
                      */
                     if (questions[index + 1] && questions[index + 1].options !== null) {
-                        next_is_table = questions[index + 1].options.indexOf("table");
+                        next_is_table = /^table/.test(questions[index + 1].options);
+//                        next_is_table = questions[index + 1].options.indexOf("table");
                     } else {
-                        next_is_table = -1;
+                        next_is_table = false;
                     }
 
                     /**
                      * Находим конечную позицию таблицы.
                      *
                      */
-                    if (is_table != -1 && (!questions[index + 1] || next_is_table == -1)) {
+                    if (is_table && (!questions[index + 1] || !next_is_table)) {
                         table_end = index;
 
-                        is_table = -1;
+                        is_table = false;
                     }
 
                 });

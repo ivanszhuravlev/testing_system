@@ -18,16 +18,28 @@ angular.module('testApp')
             make_json : function (vars, answers) {
                 var result = [];
 
-                for (var a_index in answers) {
-                    var row = { "Пользователь (id)" : a_index };
+                for (var uid in answers) {
+                    var row = { "Пользователь (id)" : uid },
+                        answer = answers[uid];
 
                     for (var v_index in vars) {
-                        var variable = vars[v_index];
+                        var variable = vars[v_index],
+                            this_answer = answer[variable['id']],
+                            order = /\w+?_s(\d{1,2})q(\d{1,2})(.{1,2})/.exec(variable['var']);
 
-                        row[variable['var']] = answers[a_index][variable['id']];
-//                        row[variable['var']] = answers[a_index];
+                        if (this_answer && this_answer[variable.visit]) {
+                            row["(" + v_index + ") " + variable.var] = this_answer[variable.visit]['value'];
+                        } else {
+//                            if (variable.is_multiple) {
+//                                row["(" + v_index + ") " + variable.var] = "0";
+//                            } else {
+//                                row["(" + v_index + ") " + variable.var] = "-";
+//                            }
+                            row["(" + v_index + ") " + variable.var] = "-";
+                        }
 
                     }
+
                     result.push(row);
                 }
 

@@ -1,0 +1,19 @@
+<aside>
+    <header>
+        <img src="img/logo.png" class="logo">
+    </header>
+
+    <div class="logout-panel">
+        <span>Здравствуйте, {{user.nick}}</span>
+        <a ng-click="logout()">Выйти</a>
+    </div>
+
+    <nav ng-include="nav"></nav>
+
+    <footer>
+        <span>При поддержке гранта РГНФ №321</span>
+    </footer>
+</aside>
+<div class="container">
+    <p>Информация о программе и разработчиках.</p>
+</div>

@@ -5,13 +5,24 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
             connected.then(function(message) {
 
                 if (!message.data) {
-                    $location.path('/').replace();;
+                    $location.path('/').replace();
                 } else {
                     var id = localStorage.getItem('user_id');
 
-                    UserService.set(id);
+                    if (id) {
+//                        alert(id);
+                        $rootScope.user = {};
+                        UserService.getUser(id).success(function(data){
+//                            alert(data.id);
+                            $rootScope.user = UserService.set(data);
 
-                    $rootScope.user = UserService.get();
+                            if ($rootScope.user.suits == 0) {
+                                $location.path('/user_' + $rootScope.user.id + '/');
+                            }
+                        });
+                    } else {
+                        $location.path('/').replace();
+                    }
                 }
             });
     })
@@ -59,6 +70,18 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
                     templateUrl: './views/users_answers.html',
                     controller: 'UsersAnswersController',
                     controllerAs: 'users_answers_controller'
+                })
+                .when('/user_:userId/links', {
+                    templateUrl: './views/additional_pages/links.html'
+                })
+                .when('/user_:userId/info', {
+                    templateUrl: './views/additional_pages/info.html'
+                })
+				.when('/acceptance', {
+                    templateUrl: './views/additional_pages/acception.html'
+                })
+                .when('/user_:userId/developers', {
+                    templateUrl: './views/additional_pages/developers.html'
                 })
                 .when('/user_:userId', {
                     redirectTo: '/user_:userId/blocks'

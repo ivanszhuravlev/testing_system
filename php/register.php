@@ -42,6 +42,7 @@ if ($password != $repeat_password) {
 $query = mysqli_query($link, "INSERT INTO users SET " .
                       "nickname = '" . $nickname . "'," .
                       "email    = '" . $email . "'," .
+                      "date_reg  = CURDATE()," .
                       "password = '" . password_hash($password, PASSWORD_DEFAULT) . "'"
                      );
 

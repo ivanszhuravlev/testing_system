@@ -37,3 +37,9 @@ if ($user['page'] == 1) {
 } else {
     $query = mysqli_query($link, "UPDATE users SET page = page - 1 WHERE id = '" . $user['id'] . "'");
 }
+
+$query = mysqli_query($link, "SELECT block, page FROM users WHERE id = '" . $user['id'] . "'");
+
+$result = mysqli_fetch_assoc($query);
+
+echo(json_encode($result));

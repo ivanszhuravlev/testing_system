@@ -29,10 +29,16 @@ while ( $row = mysqli_fetch_assoc($query) ) {
     array_push($pages, $row);
 }
 
-$pages_num = $block_id == 9 ? 35 : count($pages);
+$pages_num = $block_id == 9 ? 41 : count($pages);
 
 if ($user['page'] < $pages_num) {
     $query = mysqli_query($link, "UPDATE users SET page = page + 1 WHERE id = '" . $user['id'] . "'");
 } else {
     $query = mysqli_query($link, "UPDATE users SET block = block + 1, page = 1 WHERE id = '" . $user['id'] . "'");
 }
+
+$query = mysqli_query($link, "SELECT block, page FROM users WHERE id = '" . $user['id'] . "'");
+
+$result = mysqli_fetch_assoc($query);
+
+echo(json_encode($result));

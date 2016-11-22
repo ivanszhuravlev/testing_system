@@ -1,22 +1,10 @@
-<aside>
-    <header>
-        <img src="img/logo.png" class="logo">
-    </header>
+<aside ng-include="'/views/static/header.html'"></aside>	
 
-    <div class="logout-panel">
-        <span>Здравствуйте, {{user.nick}}</span>
-        <a ng-click="logout()">Выйти</a>
-    </div>
-
-    <nav ng-include="nav"></nav>
-
-    <footer>
-        <span>При поддержке гранта РГНФ №321</span>
-    </footer>
-</aside>
 <div class="container">
     <a class="home" href="/user_{{user.id}}/blocks">
         Назад, к блокам
     </a>
     <a class="action" ng-click="download()"><button>Скачать таблицу</button></a>
 </div>
+
+ <footer ng-include="'/views/static/footer.html'"></footer>

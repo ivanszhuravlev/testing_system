@@ -1,0 +1,249 @@
+﻿.intervention {
+    width: auto;
+    background-color: transparent;
+}
+.intervention p, .intervention i , .intervention div{
+    font-size: 16pt;
+}
+
+div.video_stub {
+  display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 59%;
+}
+
+h3 {
+    text-align: center;
+    font-size: 17pt;
+    margin-top: 35px; 
+}
+
+div.adv,
+div.disadv {
+    font-size: 14px;
+    line-height: 23.8px;
+}
+
+.green, input[type="submit"].green, button.green {
+    background: #3fa16e;
+    color: #fdfdfd;
+    font-size: 20pt;
+    font-weight: 700;
+    float: right;
+	width: 100%;
+}
+.nomoretoday{
+    font-size: 20pt;
+    font-weight: 700;
+    float: right;
+	background:#e8e8e8;
+	    width: 100%;
+}
+.nomoretoday:hover{
+background:##b9b9b9;
+}
+.green:hover {
+    background: #378f61;
+}
+
+.green:disabled {
+    background: #46494d;
+    cursor: default;
+}
+
+.intervention label {
+    line-height: 23.8px;
+    display: inline;
+    vertical-align: text-top;
+}
+
+    .intervention label.spoiler {
+        color: #177DFF;
+        padding-bottom: 2px;
+		margin-left: 7%;
+        border-bottom: 1px dashed #177DFF;
+        cursor: pointer;
+    }
+
+        .intervention label.spoiler:hover {
+            border-bottom: 1px solid #177DFF;
+        }
+.intervention div.spoiler {
+background-color: #e9f6ff;
+    border-top: 5px solid #dcf0ff;
+	}
+.intervention input[type="checkbox"] {
+    display: inline;
+    vertical-align: text-top;
+    margin-right: 10px;
+}
+
+    .intervention input[type="checkbox"].spoiler {
+        display: none;
+    }
+
+div.multicol {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+    div.multicol > div:first-of-type {
+         margin: 0;
+    }
+
+.intervention ul{
+    padding: 0;
+    margin: 0 0 25px 0;
+}
+
+    .intervention ul li {
+     
+    line-height: 160%;
+    vertical-align: middle;
+    padding-top: 10%;
+    margin: 5% 5%;
+	    background-size: 10%;
+    }
+.int_heading {
+    font-size: 50pt;
+    font-weight: bold;
+    font-family: 'Calibri';
+    margin: 0;
+}
+ul.minus {
+list-style: none;
+}
+ul.plus {
+list-style: none;
+}
+.intervention ul.minus li {
+
+    background: url(/img/pics/minus.png) no-repeat 50% 0 ;
+    background-size: 7%;
+}
+.intervention ul.plus li {
+    background: url(/img/pics/plus.png) no-repeat 50% 0 ;
+    background-size: 7%;
+}
+.intervention h4 {
+text-align: center;
+}
+.illustration {
+width: 100%;
+}
+.illustration_dual {
+
+    width: 49%;
+    position: relative;
+}
+.consultant {
+      background: url(/img/pics/consultant.png) no-repeat 0 0;
+    color: #002f75;
+    padding: 3% 0 3% 25%;
+    left: -25%;
+    width: 100%;
+    position: relative;
+}
+.accept {
+font-size: 18pt;
+padding: 5%;
+}
+p {
+/* padding: 0 7%;*/
+}
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0; top: 2px;
+  width: 17px; height: 17px;
+  border: 1px solid #aaa;
+  background: #f8f8f8;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.3)
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  position: absolute;
+  top: 3px; left: 4px;
+  font-size: 18px;
+  line-height: 0.8;
+  color: #09ad7e;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 1px dotted blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 1px solid #4778d9!important;
+}
+.video_desc {
+margin: 1% 0;
+}
+div.container.ng-scope {
+    padding: 1% 10% !important;
+    box-sizing: border-box;
+    width: 100%;
+}
+.intervention_content {
+padding: 5%;
+background: #fff;
+}
+.parallax { 
+
+    height: 100vh;
+    /* min-height: 100vh; */
+    /* width: 125%; */
+    background-color: #e1d0e8;
+    /* left: -25%; */
+    /* position: fixed; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+       background-size: 75%;
+
+}

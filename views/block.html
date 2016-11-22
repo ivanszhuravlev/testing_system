@@ -1,3 +1,4 @@
+<!--
 <aside class="hidden">
     <header>
         <img src="img/logo.png" class="logo">
@@ -14,12 +15,13 @@
         <span>При поддержке гранта РГНФ №321</span>
     </footer>
 </aside>
+-->
 <div class="progress_bar" ng-if="block.content_id < 9">
     <div class="progress" ng-style="progress"></div>
 </div>
 <div class="container translated block">
 <!--    <div class="questions" ng-if="user.block == block.id">-->
-    <div class="questions">
+    <div ng-class="{ 'questions' : (user.block < 8) || (user.block == 8 && user.page <= 34), 'intervention' : !((user.block < 8) || (user.block == 8 && user.page <= 34)) }" >
         <a class="home" href="/user_{{user.id}}/blocks">
             <i class="material-icons">chevron_left</i>
             <span>Блоки</span>
@@ -30,22 +32,22 @@
         <!--------------------------------------->
         <form ng-if="block.content_id < 9" novalidate name="block_form" ng-submit="block_submit(questions)">
 
-            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && (!questions[q_index - 1].user_answers[questions[q_index - 1].id].value || questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val)" class="question">
+            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && (!questions[q_index - 1].user_answers[questions[q_index - 1].id].value || questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val) && user.visit == 1" class="question">
 <!--            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val">-->
 
                 <p class="question_text" ng-bind-html="question.text_before"></p>
                 <img ng-if="question.options.indexOf('img') == 0" ng-src="../img/{{question.img.src}}" ng-style="question.img.style" />
 <!--                 Table layout -->
-                <div ng-if="$index >= found_table[0] && $index <= found_table[1]" class="table" ng-class="{ 'start' : $parent.$index == found_table[0], 'end' : $parent.$index == found_table[1], 'invalid' : block_form.{{question.name}}_{{question.q}}.$invalid || block_form{{question.name}}_{{question.q}}.$pristine }">
+                <div ng-if="$index >= found_table[0] && $index <= found_table[1]" class="table experiment" ng-class="{ 'start' : $parent.$index == found_table[0], 'end' : $parent.$index == found_table[1], 'invalid' : block_form.{{question.name}}_{{question.q}}.$invalid || block_form{{question.name}}_{{question.q}}.$pristine }">
                     <div>{{question.text}}</div>
-                    <div ng-repeat="answer in question.answers">
+                    <div ng-repeat="answer in question.answers" class="t_row">
                         <span ng-if="$parent.$index == found_table[0]">{{answer.text}}</span>
                         <input type="radio" name="{{question.name}}_{{question.q}}" value="{{answer.value}}" ng-model="question.user_answers[question.id]" required>
                     </div>
                 </div>
 
                 <div class="question_wrapper" ng-if="$index < found_table[0] || $index > found_table[1] || found_table.length == 0" ng-class="{ 'invalid' : block_form.{{question.name}}_{{question.q}}.$invalid || block_form{{question.name}}_{{question.q}}.$pristine }">
-                    <span ng-bind-html="question.text"></span>
+                    <span ng-bind="question.key" class="qid"></span><span ng-bind-html="question.text"></span>
                     <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers" ng-init="a_index = $index" ng-class="{ 'other' : answer.options.indexOf('other') == 0, 'explanation' : answer.options.indexOf('explanation') == 0 }">
 <!--                    Radio layout-->
                         <input ng-if="question.options.indexOf('checkbox') != 0 && answer.options.indexOf('explanation') != 0" type="radio" name="{{question.name}}_{{question.q}}" id="{{answer.id}}" ng-value="{ 'value' : answer.value, 'options' : answer.options }" ng-model="question.user_answers[question.id]" ng-change="make_default(q_index)" required />
@@ -58,7 +60,7 @@
                         <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
 
 <!--                    Explanation text field for checkbox-->
-                        <input class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[question.answers[answer.id]">
+                        <textarea class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]"></textarea>
 <!--                    -->
 
 <!--                    Explanation text field for radio-->
@@ -68,10 +70,11 @@
                     </div>
 
 <!--                    Text field layout-->
-                    <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}" ng-model="question.user_answers[question.id]" name="{{question.name}}_{{question.q}}" id="id_{{question.name}}_{{question.q}}" ng-pattern="/^\d+$/" max="2" required>
+                    <input ng-if="question.answers.length == 1" type="text" maxlength="{{question.answers[0].symbols}}" ng-model="question.user_answers[question.id]" name="{{question.name}}_{{question.q}}" id="id_{{question.name}}_{{question.q}}" ng-pattern="/^\d+$/" isless="{{q_index}}" required>
 <!--                    <p ng-bind="block_form.{{question.name}}_{{question.q}}.max"></p>-->
                     <span ng-if="question.answers.length == 1" ng-bind-html="question.answers[0].text_after"></span>
                     <div ng-if="question.answers.length == 1" ng-show="block_form.{{question.name}}_{{question.q}}.$error.pattern" class="error">Введите число</div>
+                    <div ng-show="block_form.{{question.name}}_{{question.q}}.$error.isless" class="error">Это невозможно!</div>
 
                 </div>
 
@@ -105,9 +108,15 @@
             <button ng-if="user.page < 34" class="green" ng-click="next_question()">Следующий вопрос</button>
             <button ng-if="user.page == 34" class="green" ng-click="next_question()">Узнать результаты теста знаний на ВИЧ/СПИД</button>
         </div>
-        
-        <div ng-if="user.page == 35">
-            <p>Из 17 вопросов теста знаний о ВИЧ/СПИД Вы ответили правильно на {{test_result}} вопросов. С более подробными и детальными сведениями по каждому из рассмотренных вопросов Вы можете ознакомиться в разделах «Полезная информация» и «Полезные ссылки». Правильная и актуальная информация об особенностях жизни с ВИЧ поможет Вам лучше заботиться о себе и о своём здоровье.</p>
+
+        <div ng-if="user.page >= 35">
+            <article ng-include="results_page"></article>
+            <button ng-if="user.page < 41 && user.page == 35" class="green" ng-click="next_question()" ng-disabled="false">Перейти к следующей части программы</button>
+
+            <button ng-if="user.page < 41 && user.page != 35" class="green" ng-click="next_question()" ng-disabled="!accepted">Перейти к следующей части программы</button>
+            <a ng-if="user.page < 41" href="/user_{{user.id}}/blocks"><button>Закончить на сегодня и вернуться на главную страницу сайта</button></a>
+
+            <button ng-if="user.page == 41" class="green" ng-click="finish()" ng-disabled="!accepted">Далее</button>
         </div>
     </div>
 

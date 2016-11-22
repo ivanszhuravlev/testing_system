@@ -35,8 +35,10 @@ angular.module('testApp')
                             $location.path('/user_' + response.id + '/blocks').replace();
 
                             UserService.set(response.id);
-
-                            $rootScope.user = UserService.get();
+                            $rootScope.user = {};
+                            UserService.getUser(response.id).success(function(data){
+                                $rootScope.user = UserService.set(data);
+                            });
                             break;
                     }
                 });

@@ -23,9 +23,7 @@ if (!$connect) {
 $result = array();
 
 foreach ($uids as $id) {
-//    $result[$id] = array();
-
-    $query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value 
+    $query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
                                   FROM user_answers 
                                   WHERE user_id = '" . $id . "'");
     while ( $row = mysqli_fetch_assoc($query) ) {
@@ -40,8 +38,12 @@ foreach ($uids as $id) {
         } else {
             $qid = $row['question_id'];
         }
+        
+        $visit = $row['visit'];
 
-        $result[$id][$qid] = $value;
+        $result[$id][$qid][$visit] = [
+            "value" => $value
+        ];
     }
 }
 
