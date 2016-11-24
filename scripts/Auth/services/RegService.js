@@ -68,7 +68,10 @@ angular.module('testApp')
                     $location.path('/user_' + data.id + '/blocks').replace();
 
                     UserService.set(data.id);
-                    $rootScope.user = UserService.get();
+                    $rootScope.user = {};
+                    UserService.getUser(data.id).success(function(user){
+                        $rootScope.user = UserService.set(user);
+                    });
                 });
             }
 			else if (model.reg_user.pass_equal == 1) {
