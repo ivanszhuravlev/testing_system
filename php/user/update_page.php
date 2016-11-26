@@ -33,7 +33,7 @@ $block = mysqli_fetch_assoc($query);
 //    array_push($pages, $row);
 //}
 
-$pages_num = $block_id == 9 ? 41 : $block['pages_num'];
+$pages_num = $block_id == 8 ? 41 : $block['pages_num'];
 
 if ($user['page'] < $pages_num) {
     $query = mysqli_query($link, "UPDATE users SET page = page + 1 WHERE id = '" . $user['id'] . "'");
