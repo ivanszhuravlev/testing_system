@@ -1,4 +1,4 @@
-﻿.intervention {
+.intervention {
     width: auto;
     background-color: transparent;
 }
@@ -41,7 +41,7 @@ div.disadv {
 	    width: 100%;
 }
 .nomoretoday:hover{
-background:##b9b9b9;
+background:#b9b9b9;
 }
 .green:hover {
     background: #378f61;
@@ -224,11 +224,13 @@ label:hover:before {
 .video_desc {
 margin: 1% 0;
 }
+/*
 div.container.ng-scope {
     padding: 1% 10% !important;
     box-sizing: border-box;
     width: 100%;
 }
+*/
 .intervention_content {
 padding: 5%;
 background: #fff;

@@ -1,4 +1,4 @@
-<aside ng-include="'/views/static/header.html'"></aside>	
+<header ng-include="'/views/static/header.html'"></header>	
 <div class="nav">
 
 <div class="blocks" ng-if="user.suits != 0 && user.block == 8">
@@ -156,7 +156,8 @@
         </ul>
         <p>Желаете перейти к следующей части программы?</p>
         <a href="/user_{{user.id}}/block_8/{{user.page}}" class="action">
-            <button class="action">Да, я хочу перейти к части {{user.page - 34}}</button>
+            <button ng-if="user.page > 35" class="action">Да, я хочу перейти к части {{user.page - 34}}</button>
+            <button ng-if="user.page <= 35" class="action">Да, я хочу перейти к части 1</button>
         </a>
         <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
     </div>

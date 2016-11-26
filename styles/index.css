@@ -35,23 +35,27 @@ content {
     display: flex;
     flex-flow: row wrap;
     min-height: 100vh;
+    /* Header + progress-bar */
+    margin-top: 83px;
     justify-content: flex-start;
 }
 
 div.container {
     flex-grow: 1;
-    display: flex;
+    flex-basis: 0%;
+    order: 3;
     flex-flow: column;
     font-family: 'Open Sans';
-    padding: 20px 48px 20px 308px;
+    padding: 10px 28px 10px 28px;
     box-sizing: border-box;
 }
-div.container.ng-scope {
 
-    padding: 7% 20% 0 20%;
-    box-sizing: border-box;
-	width: 100%;
-}
+    div.container.main {
+        padding: 7% 20% 0 20%;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
     a.action {
         display: inline-flex;
         flex-flow: row nowrap;
@@ -77,6 +81,7 @@ div.container.ng-scope {
     padding: 1%;
     }
 
+/*
 aside.ng-scope {
     background: #ffffff;
     padding: 0;
@@ -85,20 +90,25 @@ aside.ng-scope {
     height: 20%;
     align-items: stretch;
 }
+*/
 
     header {
-    border-bottom: 1px solid #e1e7ef;
-      border-bottom: 1px solid #e1e7ef;
-    /* padding: 16px 28px; */
-    position: fixed;
-    background: white;
-    /* margin-bottom: 5%; */
-    width: 100%;
+        order: 1;
+        align-self: flex-start;
+        flex-basis: 100%;
+        border-bottom: 1px solid #e1e7ef;
+        padding: 4px 14px; 
+        position: fixed;
+        width: 100%;
+        top:0;
+        background: #ffffff;
+        box-sizing: border-box;
+        z-index: 9999999;
     }
 
     header .logo {
-	
-
+        height: 70px;
+        width: auto;
     }
 
     div.banners {
@@ -111,15 +121,23 @@ aside.ng-scope {
     }
 
     footer {
-    font-family: 'Open Sans';
-    color: #333333;
-    font-size: 11px;
-    padding: 16px 28px;
-    width: 100%;
-    bottom: 0;
-    border-top: 1px solid #e1e7ef;
-    background: #b7bdca;
+        order: 4;
+        align-self: flex-end;
+        font-family: 'Open Sans';
+        color: #333333;
+        font-size: 11px;
+        padding: 16px 28px;
+/*        width: 100%;*/
+        flex-basis: 100%;
+        bottom: 0;
+        border-top: 1px solid #e1e7ef;
+        background: #b7bdca;
+        box-sizing: border-box;
     }
+
+.intro footer {
+    margin-top: -83px;
+}
 
     aside button {
         padding: 8px 16px;
@@ -183,6 +201,25 @@ aside.ng-scope {
             .logout-panel button:hover {
                 background: #eaeaea;
             }
+
+    .nav {
+        order: 2;
+        align-self: stretch;
+        display: inline-flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        padding: 25px 28px;
+        flex-basis: 250px;
+        border-right: 1px solid #e1e7ef;
+        box-sizing: border-box;
+    }
+
+    .nav a {
+        padding-bottom: 8px;
+        font-family: 'Open Sans';
+/*        color: #333333;*/
+        font-size: 14px;
+    }
 
     aside nav {
         display: flex;

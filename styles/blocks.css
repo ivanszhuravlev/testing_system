@@ -1,4 +1,4 @@
-﻿div.blocks {
+div.blocks {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -60,8 +60,8 @@ aside.hidden {
 }
 
 div.container.intro {
-    padding: 5% 5% 1% 5%;
-	width: 78%;
+/*  padding: 5% 5% 1% 5%;*/
+/*	width: 78%;*/
 }
 
 div.container.translated {
@@ -75,8 +75,8 @@ div.container.block {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-	    background-color: #e1d0e8;
-		
+    background-color: #e1d0e8;
+    padding: 1% 20% !important;
 }
 
 p.question_text {
@@ -309,7 +309,7 @@ div.progress_bar {
 
 
 div.progress_bar .progress {
-     background: #3fa16e;
+    background: #3fa16e;
     height: 100%;
 }
 
@@ -353,37 +353,24 @@ span.qid.ng-binding:after {
     100% { padding-left: 48px; }
 }
 .table_question {
-font-size: 11pt !important; 
+    font-size: 11pt !important; 
     padding: 2% 0 2% 2% !important; 
 }
 
 
 .intervention_button
- {
-               
-				background: #3fa16e;
-				border: 0;
-				color: #ffffff;
-				padding: 9px 16px;
-				cursor: pointer;
-				display: inline-block;
-				font-size: 25pt;
-        }
-		
+{
+    background: #3fa16e;
+    border: 0;
+    color: #ffffff;
+    padding: 9px 16px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 25pt;
+}
 
-.nav {
-width: 19%;
-    padding: 5% 1%;
-    border-right: 1px solid #e1e7ef;
-	 
-}
-.nav a {
-display: block;
-   padding-bottom: 5%;
-font-family: 'Open Sans';
-}
 .question_text:empty {
-margin:0;
+    margin:0;
 }
 
  input[type="text"].ng-invalid,
