@@ -148,7 +148,7 @@ width: 200px;
 
     div.questions a.home, .intervention a.home{
             text-decoration: none;
-    color: #488ee0;
+    color: #cabbd0;
     display: inline-flex;
     margin-left: -7px;
     position: absolute;
@@ -316,7 +316,7 @@ div.progress_bar .progress {
 button.go_back {
     display: block;
     background: none;
-	color: #488ee0;
+	color: #cabbd0;
     display: inline-flex;
     margin-left: -7px;
     position: absolute;
@@ -358,8 +358,7 @@ span.qid.ng-binding:after {
 }
 
 
-.intervention_button
-{
+.intervention_button {
     background: #3fa16e;
     border: 0;
     color: #ffffff;

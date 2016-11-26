@@ -112,12 +112,13 @@ aside.ng-scope {
     }
 
     div.banners {
-       width: 75%;
-    /* display: flex; */
+    /* width: 75%; */
+    display: inline;
+    height: 15%;
     /* flex-flow: row wrap; */
     justify-content: space-around;
     /* margin-top: 20px; */
-    margin: 0 auto;
+    margin: 0 15%;
     }
 
     footer {
@@ -163,6 +164,8 @@ aside.ng-scope {
     margin: 0;
      position: fixed;
     right: 0;
+	
+    z-index: 201;
     }
 
          button.enter-button:hover {
@@ -248,7 +251,7 @@ aside.ng-scope {
             }
 
 .banners img {
-    height: 85%;
+height: 35%;
 }
             nav span img {
                 height: 12px;
@@ -262,3 +265,41 @@ iframe {
 .enter_buttons {
     margin: 0 auto;
 	}
+	h1.register {
+	    margin: 0 auto;
+    color: black;
+    font-size: 17pt;
+    padding: 0;
+	}
+	#status {
+	
+    margin: 1% auto;
+	}
+	.info {
+	
+    display: inline-block;
+	}
+	.hiv {
+background-image: url(img/banners/hivspb.png);
+}
+.eva {
+background-image: url(img/banners/eva.png);
+}
+.lenobl {
+background-image: url(img/banners/lo.png);
+}
+.arvt {
+background-image: url(img/banners/arvt.png);
+}
+.hiv:hover {
+content: '<img src="img/banners/hivspb.png">';
+}
+.eva:hover {
+background-image: url(img/banners/eva-hover.png);
+}
+.lenobl:hover {
+background-image: url(img/banners/lo-hover.png);
+}
+.arvt:hover {
+background-image: url(img/banners/arvt-hover.png);
+}

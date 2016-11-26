@@ -3,14 +3,14 @@
     background-color: transparent;
 }
 .intervention p, .intervention i , .intervention div{
-    font-size: 16pt;
+     font-size: 14pt;
+    margin: 0px;
 }
 
 div.video_stub {
   display: block;
     margin: auto;
     margin-bottom: 10px;
-    width: 59%;
 }
 
 h3 {
@@ -232,12 +232,11 @@ div.container.ng-scope {
 }
 */
 .intervention_content {
-padding: 5%;
-background: #fff;
+       padding: 3% 5% 1% 5%;
+		background: #fff;
 }
 .parallax { 
-
-    height: 100vh;
+height: 90vh;
     /* min-height: 100vh; */
     /* width: 125%; */
     background-color: #e1d0e8;
@@ -247,5 +246,17 @@ background: #fff;
     background-position: center;
     background-repeat: no-repeat;
        background-size: 75%;
+}
 
+
+.parallax2 { 
+height: 90vh;
+    /* min-height: 100vh; */
+    /* width: 125%; */
+    /* left: -25%; */
+    /* position: fixed; */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+       background-size: 75%;
 }
