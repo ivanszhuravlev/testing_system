@@ -168,7 +168,7 @@ angular.module("testApp")
 
             interv_answer_prom.success(function (html_text) {
                 $scope.html_text = html_text;
-                console.log($scope.html_text);
+//                console.log($scope.html_text);
             });
         } else {
             var questions_prom = BlocksService.getQuestions(block.content_id, block.id, $routeParams.pageId, UserModel.user);
@@ -177,7 +177,7 @@ angular.module("testApp")
                 var keys = Object.keys(questions),
                     block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 //                console.log(JSON.stringify(keys));
-                if (JSON.stringify(keys) == "[]") {
+                if (JSON.stringify(keys) == "[]" && $routeParams.pageId < 35) {
                     UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
                         $rootScope.user.block = new_page.block;
                         $rootScope.user.page  = new_page.page;
