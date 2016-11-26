@@ -210,7 +210,7 @@ angular.module("testApp")
                     }
 
                     if (question.options && question.options.indexOf('img') === 0) {
-                        mask = /img_top_(\w+.\w+)_(auto|\d+px)_(auto|\d+px)/;
+                        mask = /img_top_(\w+.\w+)_(auto|\d+px|\d+%)_(auto|\d+px)/;
                         var img = mask.exec(  question.options.trim() );
                         question.img = {
                             src: img[1],
