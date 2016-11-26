@@ -109,4 +109,8 @@ form.register-form {
 	border: 1px solid red;
     background-color: #ffebeb;
 	}
+	input[type="checkbox"] {
+	
+    margin-right: -2px;
+	}
 	
