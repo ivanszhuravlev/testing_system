@@ -250,9 +250,10 @@ aside.ng-scope {
                 color: #777777;
             }
 
-.banners img {
-height: 35%;
-}
+            .banners img {
+                height: 45px;
+            }
+
             nav span img {
                 height: 12px;
                 width: auto;
