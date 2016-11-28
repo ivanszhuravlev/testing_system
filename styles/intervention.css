@@ -3,10 +3,18 @@
     background-color: transparent;
 }
 .intervention p, .intervention i , .intervention div{
-     font-size: 14pt;
+     font-size: 17pt;
     margin: 0px;
+	
+    font-weight: 200;
 }
-
+div.container.block {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    background-color: #e1d0e8;
+    padding: 1% 12% !important;
+}
 div.video_stub {
   display: block;
     margin: auto;
@@ -85,7 +93,7 @@ background-color: #e9f6ff;
 
 div.multicol {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
 }
 
@@ -99,12 +107,11 @@ div.multicol {
 }
 
     .intervention ul li {
-     
-    line-height: 160%;
+         line-height: 160%;
     vertical-align: middle;
-    padding-top: 10%;
-    margin: 5% 5%;
-	    background-size: 10%;
+    padding: 1% 1% 1% 4%;
+    /* margin: 5% 5%; */
+    /* background-size: 10%; */
     }
 .int_heading {
     font-size: 50pt;
@@ -120,12 +127,12 @@ list-style: none;
 }
 .intervention ul.minus li {
 
-    background: url(/img/pics/minus.png) no-repeat 50% 0 ;
-    background-size: 7%;
+    background: url(/img/pics/minus.png) no-repeat 0% 50%;
+    background-size: 2%;
 }
 .intervention ul.plus li {
-    background: url(/img/pics/plus.png) no-repeat 50% 0 ;
-    background-size: 7%;
+    background: url(/img/pics/plus.png) no-repeat 0% 50%;
+    background-size: 2%;
 }
 .intervention h4 {
 text-align: center;
@@ -221,8 +228,11 @@ p {
 label:hover:before {
   border: 1px solid #4778d9!important;
 }
-.video_desc {
-margin: 1% 0;
+.video_desc {    
+margin: 1% 0 !important;
+    line-height: 180%;
+	
+    text-align: center;
 }
 /*
 div.container.ng-scope {
