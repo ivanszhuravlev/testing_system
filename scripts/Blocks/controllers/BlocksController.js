@@ -30,11 +30,4 @@
                 });
             });
         };
-
-        $scope.skip_visit = function(user) {
-            UserService.skipVisit(user).success(function(){
-                location.reload();
-            });
-        };
-
     });

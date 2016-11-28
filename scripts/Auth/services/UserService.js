@@ -78,10 +78,6 @@ angular.module('testApp')
 
             makeSuitable : function(user) {
                 return $http.post('./php/user/make_suitable.php', { user : user });
-            },
-
-            skipVisit : function(user) {
-                return $http.post('./php/user/skip_visit.php', { user : user });
             }
         };
     }]);
