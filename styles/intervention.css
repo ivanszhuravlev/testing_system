@@ -146,12 +146,21 @@ width: 100%;
     position: relative;
 }
 .consultant {
-      background: url(/img/pics/consultant.png) no-repeat 0 0;
+font-family: 'Bad Script', cursive;
+    background: url(http://img13.deviantart.net/9ad9/i/2013/319/b/a/yellow_paper_by_lukeaustinart-d6ucigl.jpg) no-repeat 0 0;
     color: #002f75;
-    padding: 3% 0 3% 25%;
-    left: -25%;
+    padding: 3% 0 3% 3%;
+     left: 0%; 
     width: 100%;
-    position: relative;
+    /* position: relative; */
+}
+.consultant p, .consultant i {
+font-size:18px;
+}
+.remark {
+    font-family: serif;
+    font-size: 9pt;
+    line-height: 0px;
 }
 .accept {
 font-size: 18pt;
