@@ -430,3 +430,12 @@ input[type="text"].ng-valid-pattern  {
 .intervention_questions {
 padding:5%;
 }
+
+.green, input[type="submit"].green, button.green {
+    background: #3fa16e;
+    color: #fdfdfd;
+    font-size: 20pt;
+    font-weight: 700;
+    float: right;
+	width: 100%;
+}
