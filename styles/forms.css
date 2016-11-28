@@ -6,7 +6,7 @@
 
 form.enter-form,
 form.register-form {
-    width: 40%;
+    width: 25%;
     margin: 0 auto;
 }
 
@@ -59,15 +59,16 @@ form.register-form {
 
         input[type="submit"] {
                
-				background: #3fa16e;
-				border: 0;
-				color: #ffffff;
-				padding: 9px 16px;
+				
+    background: #3fa16e;
+    border: 0;
+    color: #ffffff;
+    padding: 9px 16px;
     cursor: pointer;
     display: inline-block;
-    margin: 5%;
+    /* margin: 5%; */
     font-size: 25pt;
-    width: 90%;
+    width: 100%;
         }
 		
         .register-form  input[type="submit"], a.green {
@@ -112,5 +113,8 @@ form.register-form {
 	input[type="checkbox"] {
 	
     margin-right: -2px;
+	}
+	.next_question {
+	margin-bottom: 0;
 	}
 	

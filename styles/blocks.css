@@ -133,13 +133,15 @@ p.question_text {
                         }
 
                     div.table.end {
-                        margin-bottom: 36px;
+                       /* margin-bottom: 36px;*/
                     }
 
                 div.table div:first-child {
 width: 200px;
     /* font-size: 12px; */
     overflow: hidden;
+	
+    padding-left: 2%;
                 }
 
                 div.table div:not(:first-child) {
@@ -425,3 +427,6 @@ input[type="text"].ng-valid-pattern  {
 .answer {
     font-size: 22pt;
 	}
+.intervention_questions {
+padding:5%;
+}

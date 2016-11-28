@@ -28,7 +28,6 @@
         </a>
         <!--Вернуться назад - временная функция-->
         <button ng-if="user.block > 1 || user.page > 1" class="go_back" ng-click="go_back()">Назад на страницу</button>
-        <br />
         <!--------------------------------------->
         <form ng-if="block.content_id < 9" novalidate name="block_form" ng-submit="block_submit(questions)">
 
@@ -81,7 +80,7 @@
                 <p class="question_text" ng-bind-html="question.text_after"></p>
 
             </div>
-            <input type="submit" value="Далее" ng-disabled="block_form.$invalid" />
+            <input type="submit" value="Далее" ng-disabled="block_form.$invalid" class="next_question" />
         </form>
 
         <form ng-if="block.content_id == 9 && user.page % 2 !== 0 && user.page < 35" novalidate name="intervention_form" ng-submit="block_submit(questions)">
@@ -100,10 +99,10 @@
                 </div>
             </div>
 
-            <input type="submit" value="Узнать правильный ответ" ng-disabled="intervention_form.$invalid" />
+            <input type="submit" value="Узнать правильный ответ" ng-disabled="intervention_form.$invalid"  class="next_question"/>
         </form>
 
-        <div ng-if="block.content_id == 9 && user.page % 2 === 0 && user.page < 35">
+        <div ng-if="block.content_id == 9 && user.page % 2 === 0 && user.page < 35" class="intervention_questions">
             <p compile="html_text | to_trusted"></p>
             <button ng-if="user.page < 34" class="green" ng-click="next_question()">Следующий вопрос</button>
             <button ng-if="user.page == 34" class="green" ng-click="next_question()">Узнать результаты теста знаний на ВИЧ/СПИД</button>
