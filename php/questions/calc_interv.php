@@ -74,7 +74,7 @@ switch($page_id) {
         }
         break;
     case 17:
-        if ($answers == 0) {
+        if ($answers == 1) {
             $result[0]['value'] += 1;
             $result[0]['is_right'] = true;
         } else {
