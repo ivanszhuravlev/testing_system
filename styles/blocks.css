@@ -424,7 +424,8 @@ input[type="text"].ng-valid-pattern  {
     visibility: visible;
     opacity: 1;
 }
- div.intervention_questions > b:first-child, div.intervention_questions > b:first-of-type{
+ .intervention_questions  b:first-child
+	{
     font-size: 22pt;
 	}
 .intervention_questions {
