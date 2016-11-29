@@ -155,7 +155,8 @@ font-family: 'Bad Script', cursive;
     /* position: relative; */
 }
 .consultant p, .consultant i {
-font-size:18px;
+
+    font-size: 25px;
 }
 .remark {
     font-family: serif;
@@ -266,7 +267,12 @@ height: 90vh;
     background-repeat: no-repeat;
        background-size: 75%;
 }
-
+.section_start {
+    border-left: 4px solid #67ca67;
+    padding-left: 1%;
+    display: block;
+    background: #ebffe7;
+}
 
 .parallax2 { 
 height: 90vh;

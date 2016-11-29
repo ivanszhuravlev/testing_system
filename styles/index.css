@@ -230,10 +230,15 @@ div.container.intro {
     }
 
     .nav a {
-        padding-bottom: 8px;
         font-family: 'Open Sans';
 /*        color: #333333;*/
         font-size: 14px;
+		
+    padding: 10px;
+    background-color: #b7bdca;
+    color: #fff;
+    margin: 3% 0;
+    text-decoration: none;
     }
 
     aside nav {
@@ -315,4 +320,6 @@ background-image: url(img/banners/lo-hover.png);
 }
 .arvt:hover {
 background-image: url(img/banners/arvt-hover.png);
+}
+.item {
 }

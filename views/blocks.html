@@ -139,12 +139,10 @@
         <ul>
             <li ng-repeat="block in blocks" ng-if="block.id < user.block">{{block.id}}. {{block.name}}</li>
         </ul>
-
         <p>Желаете перейти к следующей части программы?</p>
         <a href="/user_{{user.id}}/block_{{user.block}}/{{user.page}}" class="action">
             <button class="action">Да, я хочу перейти к части {{user.block}}</button>
         </a>
-
         <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
     </div>
 -->
@@ -156,8 +154,8 @@
         </ul>
         <p>Желаете перейти к следующей части программы?</p>
         <a href="/user_{{user.id}}/block_8/{{user.page}}" class="action">
-            <button ng-if="user.page > 35" class="action">Да, я хочу перейти к части {{user.page - 34}}</button>
-            <button ng-if="user.page <= 35" class="action">Да, я хочу перейти к части 1</button>
+            <button ng-if="user.page > 35" class="action">Да, я хочу перейти к следующей части</button>
+            <button ng-if="user.page <= 35" class="action">Да, я хочу перейти к следующей части</button>
         </a>
         <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
     </div>
