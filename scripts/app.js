@@ -77,6 +77,9 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
                 .when('/user_:userId/info', {
                     templateUrl: './views/additional_pages/info.html'
                 })
+				.when('/noacception', {
+                    templateUrl: './views/additional_pages/noacception.html'
+                })
 				.when('/acceptance', {
                     templateUrl: './views/additional_pages/acception.html'
                 })
