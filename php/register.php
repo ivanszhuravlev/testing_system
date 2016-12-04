@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Получаем JSON-строку с данными юзера
  */
@@ -38,6 +38,21 @@ if ($password == "" && $repeat_password == "") {
 if ($password != $repeat_password) {
     die(json_encode("Different passwords: " . $password . " | " . $repeat_password));
 }
+
+$subject = 'Регистрация в программе vPLUS';
+$message = 'Уважаемый '.$nickname.'!  Вы успешно зарегистрировались в программе vPLUS.
+Ваши данные для входа: 
+http://vplus.psy.spbu.ru/enter
+Логин:'. $email .'
+Пароль:'. $password .'
+С уважением, команда разработчиков';
+
+$headers = 'From: no-reply@vplus.psy.spbu.ru' . "\r\n" .
+    'Reply-To: admin@vplus.psy.spbu.ru' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($email, $subject, $message, $headers);
+
 
 $query = mysqli_query($link, "INSERT INTO users SET " .
                       "nickname = '" . $nickname . "'," .
