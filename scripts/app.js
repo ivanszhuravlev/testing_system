@@ -16,8 +16,8 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
 //                            alert(data.id);
                             $rootScope.user = UserService.set(data);
 
-                            if ($rootScope.user.suits == 0) {
-                                $location.path('/user_' + $rootScope.user.id + '/');
+                            if ($rootScope.user.suits === '0') {
+                                $location.path('/user_' + $rootScope.user.id + '/nohiv');
                             }
                         });
                     } else {
@@ -80,7 +80,7 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
 				.when('/noacception', {
                     templateUrl: './views/additional_pages/noacception.html'
                 })
-				.when('/nohiv', {
+				.when('/user_:userId/nohiv', {
                     templateUrl: './views/additional_pages/nohiv.html'
                 })
 				.when('/acceptance', {
