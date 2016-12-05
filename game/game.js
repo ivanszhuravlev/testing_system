@@ -406,7 +406,7 @@ function resize()
     //var startX = 0;
     //var startY = (block1.clientHeight - iconSize * 3 - progress.element.clientHeight / 2) / 2;
 
-    var height = block1.clientHeight - progress.element.clientHeight * 2;
+    var height = block1.clientHeight - progress.element.clientHeight * 1.3;
     if (stepSize * 2 > height)
     {
         iconSize = height / 2.5;
