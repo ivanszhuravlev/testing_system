@@ -64,6 +64,14 @@ switch($user['page']) {
         $result['children'] = $row['value'];
         break;
     case 38:
+        $query = mysqli_query($link, "SELECT question_id, value FROM user_answers WHERE question_id >= '42' AND question_id <= '45' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+
+        $result['sex'] = array();
+
+        while( $row = mysqli_fetch_assoc($query) ) {
+            $result['sex'][$row['question_id']] = $row['value'];
+        }
+
         $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '38' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
         $row = mysqli_fetch_assoc($query);
 
@@ -80,6 +88,21 @@ switch($user['page']) {
         $result['children'] = $row['value'];
         break;
     case 39:
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '38' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+        $row = mysqli_fetch_assoc($query);
+
+        $result['idrug'] = $row['value'];
+
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '82' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+        $row = mysqli_fetch_assoc($query);
+
+        $result['conceive'] = $row['value'];
+
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '2' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+        $row = mysqli_fetch_assoc($query);
+
+        $result['children'] = $row['value'];
+
         $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '15' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
         $row = mysqli_fetch_assoc($query);
 
@@ -91,6 +114,17 @@ switch($user['page']) {
         $result['arvt'] = $row['value'];
         break;
     case 40:
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '15' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+        $row = mysqli_fetch_assoc($query);
+
+        $result['aidscenter'] = $row['value'];
+
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE question_id = '19' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
+        $row = mysqli_fetch_assoc($query);
+
+        $result['arvt'] = $row['value'];
+        break;
+    case 41:
         $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'audit' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
         $row = mysqli_fetch_assoc($query);
 
@@ -106,8 +140,6 @@ switch($user['page']) {
 
         $result['ss'] = $row['value'];
         break;
-//    case 41:
-//        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'audit' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
 
 }
 
