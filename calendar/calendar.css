@@ -1,0 +1,86 @@
+input[type="radio"]{
+	cursor: pointer;
+}
+.month{
+	position: relative;
+	display: inline-block;
+	margin: 5px;
+	background-color: whitesmoke;
+	vertical-align: top;
+}
+.month .month-year{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	font-size: 11px;
+	color: gray;
+	cursor: default;
+}
+.month .month-name{
+	background-color: lightgray;
+	color: #333;
+	text-align: center;
+	padding: 5px 10px;
+	cursor: default;
+}
+.month .month-week-wraper{
+	background-color: transparent;
+}
+.month .month-week-wraper .month-week-cell{
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background-color: floralwhite;
+	color: gray;
+	cursor: default;
+	margin: 1px;
+}
+.month .month-days-wraper{
+	background-color: transparent;
+}
+.month .month-days-wraper .month-days-cell{
+	position: relative;
+	float: left;
+	width: 40px;
+	height: 40px;
+	background-color: #ededed;
+	cursor: default;
+	margin: 1px;
+}
+.month .month-days-wraper .month-days-cell:nth-child(7n+1){
+	clear: left;
+}
+.month .month-days-wraper .month-days-cell font{
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	text-align: center;
+	background-color: transparent;
+	font-size: 13px;
+	padding: 2px 3px;
+}
+.month .month-days-wraper .month-days-cell .month-days-cell-tbl{
+	display: table-cell;
+	width: inherit;
+	height: calc(40px - 4px);
+	vertical-align: bottom;
+	background-color: transparent;
+}
+.month .month-days-wraper .month-days-cell-empty{
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 1px;
+}
+.metka{
+	display: block;
+	height: 5px;
+	background-color: lightgray;
+	margin-bottom: 1px;
+}
+.metka:last-child{
+	margin-bottom: 0;
+}
