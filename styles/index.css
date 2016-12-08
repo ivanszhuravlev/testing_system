@@ -120,7 +120,6 @@ aside.ng-scope {
     div.banners {
     /* width: 75%; */
     display: inline;
-    height: 15%;
     /* flex-flow: row wrap; */
     justify-content: space-around;
     /* margin-top: 20px; */
@@ -267,9 +266,6 @@ div.container.intro {
                 color: #777777;
             }
 
-            .banners img {
-                height: 45px;
-            }
 
             nav span img {
                 height: 12px;
