@@ -1,6 +1,18 @@
 angular.module("testApp")
 
 .controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll, $window) {
+    /**
+     *
+     * Refreshing user's data.
+     *
+     */
+    UserService.getUser($rootScope.user.id).success(function(data){
+        $rootScope.user = UserService.set(data);
+        if ($rootScope.user.suits === '0') {
+            $location.path('/user_' + $rootScope.user.id + '/nohiv');
+        }
+    });
+
     var block_prom = BlocksService.getBlock($routeParams.blockId);
 //    $scope.game_path = "./game/index.html";$routeParams.blockId
     $scope.no_answers = function(id) {
