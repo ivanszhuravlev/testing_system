@@ -30,11 +30,11 @@ angular.module('testApp')
                         if (this_answer && this_answer[variable.visit]) {
                             row["(" + v_index + ") " + variable.var] = this_answer[variable.visit]['value'];
                         } else {
-                            if (variable.is_multiple) {
-                                row["(" + v_index + ") " + variable.var] = "0";
-                            } else {
-                                row["(" + v_index + ") " + variable.var] = "0";
-                            }
+//                            if (variable.is_multiple) {
+//                                row["(" + v_index + ") " + variable.var] = "0";
+//                            } else {
+//                                row["(" + v_index + ") " + variable.var] = "0";
+//                            }
                             row["(" + v_index + ") " + variable.var] = "";
                         }
 
