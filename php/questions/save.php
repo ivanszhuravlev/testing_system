@@ -45,6 +45,7 @@ foreach ($answers as $answer) {
          */
         if (strpos($answer['options'], 'doesnt_suit') === 0) {
             $doesnt_suit = mysqli_query($link, "UPDATE users SET suits = '0' WHERE id = '" . $user_id . "'");
+            die("doesnt_suit");
         }
 
         /*
@@ -122,46 +123,74 @@ foreach ($answers as $answer) {
                                   "visit = '" . $user['visit'] . "'"
                                  );
         } else {
-            $query = mysqli_query($link, "INSERT INTO user_answers SET " .
-                                  "user_id = '" . $user_id . "'," .
-                                  "question_id = '" . $answer['id'] . "'," .
-                                  "value = '" . $answer['value'] . "'," .
-                                  "visit = '" . $user['visit'] . "'"
-                                 );
+            if ($answer['answer_id']) {
+                $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                                      "user_id = '" . $user_id . "'," .
+                                      "answer_id = '" . $answer['answer_id'] . "'," .
+                                      "text_value = '" . $answer['value'] . "'," .
+                                      "visit = '" . $user['visit'] . "'"
+                                     );
+            } else {
+                $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                                      "user_id = '" . $user_id . "'," .
+                                      "question_id = '" . $answer['id'] . "'," .
+                                      "value = '" . $answer['value'] . "'," .
+                                      "visit = '" . $user['visit'] . "'"
+                                     );
+            }
         }
     }
 }
 
+$all_mult_answers = array();
+
+/**
+ *
+ * Находим все варианты ответов для вопросов с чекбоксами
+ *
+ */
+foreach ($mult_answers as $answer) {
+    $query = mysqli_query($link, "SELECT * FROM answers WHERE question_id = '" . $answer['qid'] . "'");
+
+    while ( $row_answer = mysqli_fetch_assoc($query) ) {
+        $all_mult_answers[ $row_answer['id'] ] = array(
+            'id' => $row_answer['id'],
+            'qid' => $row_answer['question_id'],
+            'value' => 0
+        );
+    }
+}
 
 foreach ($mult_answers as $answer) {
+    $all_mult_answers[ $answer['id'] ] = $answer;
+}
 
+foreach ($mult_answers as $answer) {
     $select_question = mysqli_query($link, "SELECT id FROM user_answers WHERE question_id = '" . $answer['qid'] . "' AND user_id = " . $user_id . " AND visit = " . $user['visit']);
     $question = mysqli_fetch_assoc($select_question);
 
-    if ($question && $user['is_admin'] == 1) {
+    if ($question) {
         mysqli_query($link, "DELETE FROM user_answers WHERE question_id = '" . $answer['qid'] . "' AND user_id = " . $user_id . " AND visit = " . $user['visit']);
-        $select_question = mysqli_query($link, "SELECT id FROM user_answers WHERE question_id = '" . $answer['qid'] . "' AND user_id = " . $user_id . " AND visit = " . $user['visit']);
-        $question = mysqli_fetch_assoc($select_question);
     }
+}
 
-    if ($question == false) {
-        if (gettype($answer['value']) == 'string') {
-            $query = mysqli_query($link, "INSERT INTO user_answers SET " .
-                              "user_id = '" . $user_id . "'," .
-                              "question_id = '" . $answer['qid'] . "'," .
-                              "answer_id = '" . $answer['id'] . "'," .
-                              "value = '0'," .
-                              "text_value = '" . $answer['value'] . "'," .
-                              "visit = '" . $user['visit'] . "'"
-                             );
-        } else {
-            $query = mysqli_query($link, "INSERT INTO user_answers SET " .
-                              "user_id = '" . $user_id . "'," .
-                              "question_id = '" . $answer['qid'] . "'," .
-                              "answer_id = '" . $answer['id'] . "'," .
-                              "value = '" . $answer['value'] . "'," .
-                              "visit = '" . $user['visit'] . "'"
-                             );
-        }
+foreach ($all_mult_answers as $answer) {
+    if (gettype($answer['value']) == 'string') {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                          "user_id = '" . $user_id . "'," .
+                          "question_id = '" . $answer['qid'] . "'," .
+                          "answer_id = '" . $answer['id'] . "'," .
+                          "value = '0'," .
+                          "text_value = '" . $answer['value'] . "'," .
+                          "visit = '" . $user['visit'] . "'"
+                         );
+    } else {
+        $query = mysqli_query($link, "INSERT INTO user_answers SET " .
+                          "user_id = '" . $user_id . "'," .
+                          "question_id = '" . $answer['qid'] . "'," .
+                          "answer_id = '" . $answer['id'] . "'," .
+                          "value = '" . $answer['value'] . "'," .
+                          "visit = '" . $user['visit'] . "'"
+                         );
     }
 }

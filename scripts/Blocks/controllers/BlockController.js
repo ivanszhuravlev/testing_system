@@ -1,20 +1,9 @@
 angular.module("testApp")
 
 .controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll, $window) {
-    /**
-     *
-     * Refreshing user's data.
-     *
-     */
-    UserService.getUser($rootScope.user.id).success(function(data){
-        $rootScope.user = UserService.set(data);
-        if ($rootScope.user.suits === '0') {
-            $location.path('/user_' + $rootScope.user.id + '/nohiv');
-        }
-    });
 
     var block_prom = BlocksService.getBlock($routeParams.blockId);
-//    $scope.game_path = "./game/index.html";$routeParams.blockId
+
     $scope.no_answers = function(id) {
         var answers = $scope.questions[id].user_answers.multiple,
             item;
@@ -26,9 +15,8 @@ angular.module("testApp")
 
     $scope.reformat_answers = function(id) {
         var answers = $scope.questions[id].user_answers.multiple;
-
         for (var key in answers) {
-            if (answers[key] === undefined) {
+            if (answers[key] === false) {
                 delete answers[key];
             }
         }
@@ -50,8 +38,8 @@ angular.module("testApp")
     $scope.show_error = function(field_id) {
         var field = document.getElementById(field_id);
         field.setAttribute('max', 239);
-        console.log(field_id);
-        console.log(field.getAttribute('max'));
+//        console.log(field_id);
+//        console.log(field.getAttribute('max'));
     };
     
     $scope.questions = [];
@@ -73,6 +61,11 @@ angular.module("testApp")
     };
 
     block_prom.success(function (block) {
+
+        if ($rootScope.user.suits === '0') {
+            $location.path('/user_' + $rootScope.user.id + '/nohiv');
+        }
+
         $scope.block.name = block.name;
         $scope.block.content_id = block.content_id;
         $scope.results_page = "";
@@ -255,18 +248,29 @@ angular.module("testApp")
             for (var a_index in questions[q_index].user_answers) {
                 if (a_index != 'multiple') {
                     var value_arr = questions[q_index].user_answers[a_index];
-                    if (typeof value_arr == 'object') {
+
+                    if (a_index.indexOf('explanation') == 0) {
+                        var mask = /(\d+)/,
+                            answer_arr = mask.exec(a_index);
                         result.push({
-                            id: a_index,
-                            value: value_arr.value,
-                            options: value_arr.options
-                        });
-                    } else {
-                        result.push({
-                            id: a_index,
+                            answer_id: answer_arr[1],
                             value: value_arr,
                             options: null
                         });
+                    } else {
+                        if (typeof value_arr == 'object') {
+                            result.push({
+                                id: a_index,
+                                value: value_arr.value,
+                                options: value_arr.options
+                            });
+                        } else {
+                            result.push({
+                                id: a_index,
+                                value: value_arr,
+                                options: null
+                            });
+                        }
                     }
                 }
 
@@ -295,6 +299,8 @@ angular.module("testApp")
             }
 
         }
+//        console.log(result);
+//        console.log(result_multiple);
 
         var block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 
@@ -309,15 +315,20 @@ angular.module("testApp")
                 }
 
                 UserService.saveIsRight($rootScope.user.id, is_right).success(function(new_is_right){
-                    if (response == "pass") {
+                    if (response == "pass" || response == "doesnt_suit") {
                         UserService.getUser($rootScope.user.id).success(function (new_user_data) {
                             $rootScope.user.block    = new_user_data.block;
                             $rootScope.user.page     = new_user_data.page;
                             $rootScope.user.is_right = new_is_right;
+                            $rootScope.user.suits = new_user_data.suits;
 
-                            $location.path('/user_' + $rootScope.user.id +
-                                '/block_' + $rootScope.user.block +
-                                '/' + $rootScope.user.page).replace();
+                            if ($rootScope.user.suits == "0") {
+                                $location.path('/user_' + $rootScope.user.id + '/nohiv');
+                            } else {
+                                $location.path('/user_' + $rootScope.user.id +
+                                    '/block_' + $rootScope.user.block +
+                                    '/' + $rootScope.user.page).replace();
+                            }
                         });
                     } else {
                         UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
@@ -343,7 +354,7 @@ angular.module("testApp")
     };
 
     $scope.go_back = function () {
-        console.log($rootScope.user.block + " " + $rootScope.user.page);
+//        console.log($rootScope.user.block + " " + $rootScope.user.page);
         BlocksService.goBack($rootScope.user).success(function (new_page) {
             $rootScope.user.block = new_page.block;
             $rootScope.user.page  = new_page.page;

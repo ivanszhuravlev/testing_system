@@ -31,9 +31,8 @@
         <!--------------------------------------->
         <form ng-if="block.content_id < 9" novalidate name="block_form" ng-submit="block_submit(questions)">
 
-            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && (!questions[q_index - 1].user_answers[questions[q_index - 1].id].value || questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val) && user.visit == 1" class="question">
+            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') === 0 && (!questions[q_index - 1].user_answers[questions[q_index - 1].id].value || questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val)" class="question">
 <!--            <div ng-repeat="question in questions" ng-init="q_index = $index" ng-hide="question.options.indexOf('ifnot') == 0 && questions[q_index - 1].user_answers[questions[q_index - 1].id].value == question.ifnot.prev_val">-->
-
                 <p class="question_text" ng-bind-html="question.text_before"></p>
                 <img ng-if="question.options.indexOf('img') == 0" ng-src="../img/{{question.img.src}}" ng-style="question.img.style" />
 <!--                 Table layout -->
@@ -45,26 +44,28 @@
                     </div>
                 </div>
 
-                <div class="question_wrapper" ng-if="$index < found_table[0] || $index > found_table[1] || found_table.length == 0" ng-class="{ 'invalid' : block_form.{{question.name}}_{{question.q}}.$invalid || block_form{{question.name}}_{{question.q}}.$pristine }">
+                <div class="question_wrapper" ng-if="$index < found_table[0] || $index > found_table[1] || found_table.length == 0" ng-class="{ 'invalid' : block_form.{{question.name}}_{{question.q}}.$invalid || block_form{{question.name}}_{{question.q}}.$pristine || (question.options.indexOf('checkbox') == 0 && no_answers(q_index)) }">
                     <span ng-bind="question.key" class="qid"></span><span ng-bind-html="question.text"></span>
                     <div class="checkbox" ng-if="question.answers.length != 1" ng-repeat="answer in question.answers" ng-init="a_index = $index" ng-class="{ 'other' : answer.options.indexOf('other') == 0, 'explanation' : answer.options.indexOf('explanation') == 0 }">
 <!--                    Radio layout-->
                         <input ng-if="question.options.indexOf('checkbox') != 0 && answer.options.indexOf('explanation') != 0" type="radio" name="{{question.name}}_{{question.q}}" id="{{answer.id}}" ng-value="{ 'value' : answer.value, 'options' : answer.options }" ng-model="question.user_answers[question.id]" ng-change="make_default(q_index)" required />
 <!--                    Checkbox layout-->
 <!--                        <input ng-if="question.options.indexOf('checkbox') != null" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-change="reformat_answers(q_index)" required ng-required="no_answers(q_index)" ng-true-value="1" ng-false-value=""/>-->
-                        <input ng-if="question.options.indexOf('checkbox') == 0 && answer.options.indexOf('explanation') != 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-required="!question.user_answers.multiple"/>
+                        <input ng-if="question.options.indexOf('checkbox') == 0 && answer.options.indexOf('explanation') != 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-required="no_answers(q_index)" ng-change="reformat_answers(q_index)"/>
 
                         <label ng-if="answer.options.indexOf('explanation') != 0" for="{{answer.id}}">{{answer.text}}</label>
 
-                        <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
+                        <div ng-class="{ 'invalid' : question.user_answers.multiple[answer.id] === '' }">
+                            <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
 
-<!--                    Explanation text field for checkbox-->
-                        <input type="text" class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]">
-<!--                    -->
+    <!--                    Explanation text field for checkbox-->
+                            <input type="text" class="explanation" ng-show="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]">
+    <!--                    -->
 
-<!--                    Explanation text field for radio-->
-                        <input ng-if="answer.options.indexOf('explanation') == 0 && question.user_answers[question.id].value == question.answers[a_index - 1].value" type="text" maxlength="255" ng-model="question.user_answers[answer.id]">
-<!--                    -->
+    <!--                    Explanation text field for radio-->
+                            <input ng-show="answer.options.indexOf('explanation') == 0 && question.user_answers[question.id].value == question.answers[a_index - 1].value" type="text" maxlength="255" ng-model="question.user_answers['explanation_' + answer.id]">
+    <!--                    -->
+                        </div>
 
                     </div>
 
