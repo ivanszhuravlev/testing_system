@@ -70,7 +70,9 @@ div.container.translated {
     animation-fill-mode: forwards;
     padding-left: 48px;*/
 }
-
+.translated  li {
+list-style: square url("img/checkmark-black.png");
+}
 div.container.block {
     display: flex;
     flex-flow: column nowrap;

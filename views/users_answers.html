@@ -1,10 +1,11 @@
-<aside ng-include="'/views/static/header.html'"></aside>	
+<header ng-include="'/views/static/header.html'"></header>
 
 <div class="container">
     <a class="home" href="/user_{{user.id}}/blocks">
         Назад, к блокам
     </a>
-    <a class="action" ng-click="download()"><button>Скачать таблицу</button></a>
+   <br><br><br><br> <br><a class="action" ng-click="download()"><button>Скачать таблицу</button></a>
+ <div ng-include="'/php/users_answers/table.php'"></div>
 </div>
 
  <footer ng-include="'/views/static/footer.html'"></footer>
