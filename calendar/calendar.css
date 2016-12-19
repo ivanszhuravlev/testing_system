@@ -1,3 +1,6 @@
+body {
+font-family: 'Open Sans';
+}
 input[type="radio"]{
 	cursor: pointer;
 }
@@ -25,13 +28,14 @@ input[type="radio"]{
 }
 .month .month-week-wraper{
 	background-color: transparent;
+	display:none;
 }
 .month .month-week-wraper .month-week-cell{
 	display: inline-block;
-	width: 40px;
-	height: 40px;
+	width: 20px;
+	height: 20px;
 	text-align: center;
-	line-height: 40px;
+	line-height: 20px;
 	background-color: floralwhite;
 	color: gray;
 	cursor: default;
@@ -43,11 +47,13 @@ input[type="radio"]{
 .month .month-days-wraper .month-days-cell{
 	position: relative;
 	float: left;
-	width: 40px;
-	height: 40px;
-	background-color: #ededed;
+	width: 20px;
+	height: 20px;
+	background-color: #d0d0d0;
 	cursor: default;
 	margin: 1px;
+	
+    color: #fff;
 }
 .month .month-days-wraper .month-days-cell:nth-child(7n+1){
 	clear: left;
@@ -65,19 +71,19 @@ input[type="radio"]{
 .month .month-days-wraper .month-days-cell .month-days-cell-tbl{
 	display: table-cell;
 	width: inherit;
-	height: calc(40px - 4px);
+	height: calc(20px - 4px);
 	vertical-align: bottom;
 	background-color: transparent;
 }
 .month .month-days-wraper .month-days-cell-empty{
 	float: left;
-	width: 40px;
-	height: 40px;
+	width: 20px;
+	height: 20px;
 	margin: 1px;
 }
 .metka{
 	display: block;
-	height: 5px;
+	height: 3px;
 	background-color: lightgray;
 	margin-bottom: 1px;
 }

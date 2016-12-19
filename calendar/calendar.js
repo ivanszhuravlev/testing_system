@@ -114,7 +114,7 @@ var App = {
 				];
 			}
 		
-		} else if (vaart === 2){
+		}  if (vaart === 2){
 			if (vich) {
 				//aStatuses: ["green", "red", "orange", "yellow", "blue"],
 				//				0		1		2		  3		  4

@@ -1,4 +1,4 @@
-div.blocks {
+﻿div.blocks {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -71,7 +71,7 @@ div.container.translated {
     padding-left: 48px;*/
 }
 .translated  li {
-list-style: square url("img/checkmark-black.png");
+list-style: square url("/img/checkmark-black.png");
 }
 div.container.block {
     display: flex;
@@ -89,7 +89,9 @@ p.question_text {
     /* background-color: #f0eedd; */
     padding: 0 5% 0 5%;
 }
-
+p.question_text img {
+	width:100%;
+}
     div.container.block form input[type="submit"]:disabled {
         background: #46494d;
         cursor: default;
@@ -302,11 +304,12 @@ color: #585c60;
 
 
 div.progress_bar {
-    position: absolute;
+    position: fixed;
     /* top: 20px; */
     /* right: 20px; */
     width: 100%;
     height: 5px;
+	z-index:10000;
     /* border: 1px solid #83888e; */
 }
 

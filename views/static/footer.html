@@ -55,12 +55,25 @@ height:57px;
 background: url(img/banners/arvt.png);
 
 background-size: cover;
+}/* Tooltip container */
+a.tooltip {
+  text-decoration:none;
+  border:none;
+}
+
+.tooltip .tooltiptext 
+{
+  bottom: 100%;
+    left: 50%; 
+
+    margin-left: -65px;
+    width: 130px;
 }
 </style>
  <div class="banners">
-    <a href="http://www.hiv-spb.ru/" target="_blank" ><img src="img/spacer.png" class="hiv" alt="Центр по профилактике и борьбе 
-со СПИД и инфекционными заболеваниями (СПб)"></a>
-    <a href="http://evanetwork.ru/ru/" target="_blank"><img src="img/spacer.png" class="eva" alt="E.B.A."></a>
-    <a href="http://www.lenoblspid.ru/" target="_blank"><img src="img/spacer.png" class="lenobl" alt="Центр по профилактике и борьбе со СПИД и инфекционными заболеваниями (Ленинградская область)"></a>
-    <a href="http://arvt.ru/" target="_blank"><img src="img/spacer.png" class="arvt" alt="Антиретровирусная терапия онлайн"></a>
+ <a href="http://www.hiv-spb.ru/" target="_blank" class="tooltip"><img src="img/spacer.png" class="hiv " alt="Центр по профилактике и борьбе 
+со СПИД и инфекционными заболеваниями (СПб)"> <span class="tooltiptext">СПб Центр по профилактике и борьбе со СПИД и инфекционными заболеваниями</span></a>
+    <a href="http://evanetwork.ru/ru/" target="_blank" class="tooltip"><img src="img/spacer.png" class="eva" alt="E.B.A."><span class="tooltiptext">НП «Е.В.А.»</span></a>
+    <a href="http://www.lenoblspid.ru/" target="_blank" class="tooltip"><img src="img/spacer.png" class="lenobl" alt="Центр по профилактике и борьбе со СПИД и инфекционными заболеваниями (Ленинградская область)"> <span class="tooltiptext">Ленинградский областной Центр по профилактике и борьбе со СПИД и инфекционными заболеваниями</span></a>
+    <a href="http://arvt.ru/" target="_blank" class="tooltip"><img src="img/spacer.png" class="arvt" alt="Антиретровирусная терапия онлайн"><span class="tooltiptext">arvt.ru</span></a>
 </div>
