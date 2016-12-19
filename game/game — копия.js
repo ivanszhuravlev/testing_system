@@ -7,7 +7,7 @@ icons[0] =
     [
         { count: 1, score: 0 },
         { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 3, score: -2 },
     ]
 };
 icons[1] =
@@ -17,8 +17,8 @@ icons[1] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: -2 },
+        { count: 2, score: 2 },
+        { count: 3, score: -1 },
     ]
 };
 icons[2] =
@@ -29,7 +29,7 @@ icons[2] =
     [
         { count: 1, score: 0 },
         { count: 2, score: -2 },
-        { count: 3, score: -2 },
+        { count: 3, score: -4 },
     ]
 };
 icons[3] =
@@ -39,8 +39,8 @@ icons[3] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 2, score: -2 },
+        { count: 3, score: -3 },
     ]
 };
 icons[4] =
@@ -50,8 +50,8 @@ icons[4] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[5] =
@@ -61,8 +61,8 @@ icons[5] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1.5 },
-        { count: 3, score: -2 },
+        { count: 2, score: -3 },
+        { count: 3, score: -4 },
     ]
 };
 icons[6] =
@@ -73,7 +73,7 @@ icons[6] =
     [
         { count: 1, score: 1 },
         { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 3, score: -2 },
     ]
 };
 icons[7] =
@@ -83,8 +83,8 @@ icons[7] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[8] =
@@ -94,8 +94,8 @@ icons[8] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 2, score: -2 },
+        { count: 3, score: -3 },
     ]
 };
 icons[9] =
@@ -105,8 +105,8 @@ icons[9] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1},
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[10] =
@@ -116,8 +116,8 @@ icons[10] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 var blockGame, block1, block2;

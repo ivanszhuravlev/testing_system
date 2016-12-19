@@ -12,7 +12,7 @@ background: #fff;
     .blocks a {
         display: flex;
         flex-grow: 1;
-        margin-bottom: 9px;
+        margin-bottom: 0px;
         text-decoration: none;
     }
 
@@ -24,10 +24,9 @@ background: #fff;
         position: relative;
         width: 100%;
         box-sizing: border-box;
-        border: 1px solid #e1e7ef;
         padding: 0;
         font-size: 14px;
-        color: #444444;
+        color: #fff;
         cursor: pointer;
         border-radius: 2px;
         padding: 9px 14px;

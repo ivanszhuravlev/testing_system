@@ -232,17 +232,18 @@ div.container.intro {
     }
 
     .nav a {
-        font-family: 'Open Sans';
-/*        color: #333333;*/
-        font-size: 14px;
-		
+    font-family: 'Open Sans';
+    /* color: #333333; */
+    font-size: 14px;
     padding: 10px;
     background-color: #b7bdca;
     color: #fff;
     margin: 3% 0;
     text-decoration: none;
     }
-
+ .nav a:hover {
+   background-color: #868a94;
+ }
     aside nav {
         display: flex;
         flex-flow: column nowrap;

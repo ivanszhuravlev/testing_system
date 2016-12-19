@@ -70,46 +70,43 @@
     </a>
 </div>
 
+<div class="blocks">
 <a href="/user_{{user.id}}/info">
-    <span class="item" >
-        <img src="img/nav-icon.png" />
+    <div class="block" >
         <span>Полезная информация</span>
-    </span>
+     </div>
 </a>
 
 <a href="/user_{{user.id}}/links">
-    <span class="item" >
-        <img src="img/nav-icon.png" />
+    <div class="block" >
+       
         <span>Полезные ссылки</span>
-    </span>
+    </div>
 </a>
 
 <a href="/user_{{user.id}}/developpers">
-    <span class="item" >
-        <img src="img/nav-icon.png" />
+    <div class="block" >
         <span>Информация о программе и разработчиках</span>
-    </span>
+     </div>
 </a>
 
 <a href="/user_{{user.id}}/parser" ng-if="user.is_admin">
-    <span class="item">
-        <img src="img/nav-icon.png" />
+     <div class="block">
         <span>Добавить переменную</span>
-    </span>
+    </div>
 </a>
 
 <a href="/user_{{user.id}}/users_list">
-    <span class="item" ng-if="user.is_admin">
-        <img src="img/nav-icon.png" />
+     <div class="block" ng-if="user.is_admin">
         <span>Список пользователей</span>
-    </span>
+     </div>
 </a>
 
 <a href="/user_{{user.id}}/users_answers">
-    <span class="item" ng-if="user.is_admin">
-        <img src="img/nav-icon.png" />
+    <div class="block" ng-if="user.is_admin">
         <span>Ответы пользователей</span>
-    </span>
+    </div>
 </a>
 
 
+</div>
