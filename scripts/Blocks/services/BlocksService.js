@@ -95,8 +95,8 @@ angular.module('testApp')
                 return $http.post('./php/user/go_back.php', { user: user });
             },
 
-            getResults: function (user) {
-                return $http.post('./php/blocks/get_results.php', { user: user });
+            getResults: function (user, page_id) {
+                return $http.post('./php/blocks/get_results.php', { page_id: page_id, user: user });
             },
 
             getDrugAnswers: function (user) {

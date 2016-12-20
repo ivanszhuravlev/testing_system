@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles/forms.css" />
     <link rel="stylesheet" href="styles/parser.css" />
     <link rel="stylesheet" href="styles/blocks.css" />
+    <link rel="stylesheet" href="styles/preloader.css" />
 	<link href="https://fonts.googleapis.com/css?family=Bad+Script&amp;subset=cyrillic" rel="stylesheet">
 
 <meta http-equiv="Cache-Control" content="no-cache">
@@ -17,8 +18,13 @@
 
 <body ng-controller="IndexController">
 
-		<noscript>Ваш браузер не поддерживает JavaScript! <a href="http://enable-javascript.com/ru/">Инструкции по исправлению ошибки.</a></noscript>
-    <content ng-view></content>
+    <noscript>Ваш браузер не поддерживает JavaScript! <a href="http://enable-javascript.com/ru/">Инструкции по исправлению ошибки.</a></noscript>
+
+    <div class="loader_wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <content ng-view ng-cloak></content>
 
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/angular-route.js"></script>
@@ -55,6 +61,7 @@
         <script src="scripts/Blocks/directives/compile.js"></script>
     <!-- Block -->
         <script src="scripts/Blocks/controllers/BlockController.js"></script>
+        <script src="scripts/Blocks/controllers/InterventionController.js"></script>
     <!-- Users answers -->
         <script src="scripts/UsersAnswers/controllers/UsersAnswersController.js"></script>
         <script src="scripts/UsersAnswers/services/UsersAnswersService.js"></script>

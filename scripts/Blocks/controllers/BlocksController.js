@@ -2,16 +2,43 @@
 
     .controller("BlocksController", function ($scope, BlocksService, $rootScope, UserService, $location) {
         $scope.blocks = [];
+        $scope.parts = [];
+        BlocksService.getDrugAnswers($rootScope.user).success(function(answers){
+            if (answers.idrug_q5 == 1 && answers.idrug_q6 == 1) {
+                $scope.parts = [
+                    { name: "Знания", id: 35 },
+                    { name: "Принятие диагноза", id: 36 },
+                    { name: "Употребление наркотиков", id: 41},
+                    { name: "Сексуальные отношения", id: 37 },
+                    { name: "Правовые вопросы", id: 38 },
+                    { name: "Приверженность к лечению", id: 39 },
+                    { name: "Образ жизни", id: 40 }
+                ];
+            }
 
-        $scope.parts = [
-            { name: "Знания", id: 35 },
-            { name: "Принятие диагноза", id: 36 },
-            { name: "Сексуальные отношения", id: 37 },
-            { name: "Правовые вопросы", id: 38 },
-            { name: "Приверженность к лечению", id: 39 },
-            { name: "Образ жизни", id: 40 },
-            { name: "Употребление наркотиков", id: 41}
-        ];
+            if (answers.idrug_q5 == 1 && answers.idrug_q6 != 1) {
+                $scope.parts = [
+                    { name: "Знания", id: 35 },
+                    { name: "Принятие диагноза", id: 36 },
+                    { name: "Сексуальные отношения", id: 37 },
+                    { name: "Правовые вопросы", id: 38 },
+                    { name: "Приверженность к лечению", id: 39 },
+                    { name: "Употребление наркотиков", id: 41},
+                    { name: "Образ жизни", id: 40 }
+                ];
+            }
+
+            if (answers.idrug_q5 !=1 || answers.idrug_q5 == null) {
+                $scope.parts = [
+                    { name: "Знания", id: 35 },
+                    { name: "Принятие диагноза", id: 36 },
+                    { name: "Сексуальные отношения", id: 37 },
+                    { name: "Правовые вопросы", id: 38 },
+                    { name: "Приверженность к лечению", id: 39 },
+                    { name: "Образ жизни", id: 41 }
+                ];
+            }
+        });
 
         BlocksService.getBlocks().success(function(data){
             var pages = BlocksService.getPagesNum(data),

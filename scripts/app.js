@@ -15,6 +15,7 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
                         UserService.getUser(id).success(function(data){
 //                            alert(data.id);
                             $rootScope.user = UserService.set(data);
+                            $rootScope.user.page = parseInt($rootScope.user.page);
 
                             if ($rootScope.user.suits === '0') {
                                 $location.path('/user_' + $rootScope.user.id + '/nohiv');
@@ -70,6 +71,11 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
                     templateUrl: './views/users_answers.html',
                     controller: 'UsersAnswersController',
                     controllerAs: 'users_answers_controller'
+                })
+                .when('/user_:userId/intervention/:pageId', {
+                    templateUrl: './views/intervention/wrapper.html',
+                    controller: 'InterventionController',
+                    controllerAs: 'intervention_controller'
                 })
                 .when('/user_:userId/links', {
                     templateUrl: './views/additional_pages/links.html'

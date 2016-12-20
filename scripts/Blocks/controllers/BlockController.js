@@ -16,13 +16,32 @@ angular.module("testApp")
     $scope.reformat_answers = function(id) {
         var answers = $scope.questions[id].user_answers.multiple;
         for (var key in answers) {
-            if (answers[key] === false) {
+            if (answers[key] === undefined || answers[key] === false) {
+                delete answers[key];
+            }
+
+            if (typeof answers[key] == 'string' && !answers[key - 1]) {
                 delete answers[key];
             }
         }
     };
 
-    $scope.make_default = function(id) {
+    $scope.reformat_explanation = function(qid, aid) {
+        var answer = $scope.questions[qid].user_answers.multiple[aid];
+        if (answer === '') {
+            delete $scope.questions[qid].user_answers.multiple[aid];
+             $scope.reformat_answers(qid);
+        }
+    };
+
+    $scope.remove_explanation = function(qid, aid) {
+        var answer = $scope.questions[qid].user_answers['explanation_' + aid];
+        if (answer === '') {
+            $scope.questions[qid].user_answers['explanation_' + aid] = undefined;
+        }
+    };
+
+    $scope.make_default = function(id, answers) {
         if ($scope.questions[id + 1] && $scope.questions[id + 1].ifnot) {
             if (!$scope.questions[id].user_answers[$scope.questions[id].id].value || $scope.questions[id].user_answers[$scope.questions[id].id].value == $scope.questions[id + 1].ifnot.prev_val) {
                 $scope.questions[id + 1].user_answers[$scope.questions[id + 1].id] = $scope.questions[id + 1].ifnot.default_val;
@@ -32,6 +51,12 @@ angular.module("testApp")
         }
         if ($scope.questions[id + 2] && $scope.questions[id + 2].ifnot) {
             $scope.make_default(id + 1);
+        }
+
+        var len = answers.length;
+
+        if (answers[len - 1].options == 'explanation') {
+            $scope.questions[id].user_answers['explanation_' + answers[len - 1].id] = undefined;
         }
     };
     
@@ -71,7 +96,7 @@ angular.module("testApp")
         $scope.results_page = "";
 
         if ($scope.block.content_id == 9 && $routeParams.pageId >= 35) {
-            BlocksService.getResults($rootScope.user).success(function(result){
+            BlocksService.getResults($rootScope.user, $rootScope.user.page).success(function(result){
                 $scope.test_result = result;
 //                console.log(result);
             });

@@ -3,6 +3,7 @@
 $data = json_decode(file_get_contents('php://input'), true);
 
 $user = $data["user"];
+$page_id = $data["page_id"];
 
 /*
  * Подключаемся к базе данных
@@ -17,7 +18,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/tools/db-connect.php');
 if (!$connect) {
     die(json_encode("Not found!"));
 }
-switch($user['page']) {
+switch($page_id) {
     case 35:
         $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'hivknow' AND user_id = '" . $user['id'] . "'");
         $row = mysqli_fetch_assoc($query);

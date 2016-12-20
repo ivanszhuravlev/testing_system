@@ -71,6 +71,7 @@ angular.module('testApp')
                     $rootScope.user = {};
                     UserService.getUser(data.id).success(function(user){
                         $rootScope.user = UserService.set(user);
+                        $rootScope.user.page = parseInt($rootScope.user.page);
                     });
                 });
             }
