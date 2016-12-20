@@ -16,9 +16,21 @@ angular.module("testApp")
     $scope.reformat_answers = function(id) {
         var answers = $scope.questions[id].user_answers.multiple;
         for (var key in answers) {
-            if (answers[key] === false) {
+            if (answers[key] === undefined || answers[key] === false) {
                 delete answers[key];
             }
+
+            if (typeof answers[key] == 'string') {
+                delete answers[key];
+            }
+        }
+    };
+
+    $scope.reformat_explanation = function(qid, aid) {
+        var answer = $scope.questions[qid].user_answers.multiple[aid];
+        if (answer === '') {
+            delete $scope.questions[qid].user_answers.multiple[aid];
+             $scope.reformat_answers(qid);
         }
     };
 

@@ -50,16 +50,15 @@
 <!--                    Radio layout-->
                         <input ng-if="question.options.indexOf('checkbox') != 0 && answer.options.indexOf('explanation') != 0" type="radio" name="{{question.name}}_{{question.q}}" id="{{answer.id}}" ng-value="{ 'value' : answer.value, 'options' : answer.options }" ng-model="question.user_answers[question.id]" ng-change="make_default(q_index)" required />
 <!--                    Checkbox layout-->
-<!--                        <input ng-if="question.options.indexOf('checkbox') != null" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-change="reformat_answers(q_index)" required ng-required="no_answers(q_index)" ng-true-value="1" ng-false-value=""/>-->
                         <input ng-if="question.options.indexOf('checkbox') == 0 && answer.options.indexOf('explanation') != 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="question.user_answers.multiple[answer.id]" ng-required="no_answers(q_index)" ng-change="reformat_answers(q_index)"/>
 
                         <label ng-if="answer.options.indexOf('explanation') != 0" for="{{answer.id}}">{{answer.text}}</label>
 
-                        <div ng-class="{ 'invalid' : question.user_answers.multiple[answer.id] === '' }">
+                        <div ng-class="{ 'invalid' : !question.user_answers.multiple[answer.id] || question.user_answers.multiple[answer.id] === '' }">
                             <label ng-if="question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" for="{{answer.id}}"><i>{{answer.text}}</i></label>
 
     <!--                    Explanation text field for checkbox-->
-                            <input type="text" class="explanation" ng-show="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]">
+                            <input type="text" class="explanation" ng-if="question.options.indexOf('checkbox') == 0 && question.answers[a_index].options.indexOf('explanation') == 0 && question.user_answers.multiple[answer.id - 1]" type="text" maxlength="255" ng-model="question.user_answers.multiple[answer.id]" ng-change="reformat_explanation(q_index, answer.id)" required>
     <!--                    -->
 
     <!--                    Explanation text field for radio-->
