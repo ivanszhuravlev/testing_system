@@ -44,7 +44,7 @@ var App = {
 		var mon  = nextDate.getMonth();
 		var totalDays = nextDate.daysInMonth();
 		
-		// нужно вычеслить первый вторник
+		// нужно вычислить первый вторник
 		var tuesdayNum = 0;
 		for(var i=0; i<totalDays; i++){
 			var tmpDate = new Date(year, mon, i+1);
@@ -59,7 +59,8 @@ var App = {
 		// задали дату X
 		dateX = new Date(year, mon, tuesdayNum);
 		
-		if (vaart === 1){
+		if (vaart === 1)
+		{
 			if (vich) {
 				//aStatuses: ["green", "red", "orange", "yellow", "blue"],
 				//				0		1		2		  3		  4
@@ -114,11 +115,28 @@ var App = {
 				];
 			}
 		
-		}  if (vaart === 2){
+		}  if (vaart === 2)
+		{
 			if (vich) {
 				//aStatuses: ["green", "red", "orange", "yellow", "blue"],
 				//				0		1		2		  3		  4
 				aData = [
+				[0, 3],
+				[0, 1],
+				[10, 2],
+				[10, 0],
+				[10, 1],
+				[10, 3],
+				[14, 3],
+				[14, 3],
+				[15, 3],
+				[15, 3],
+				[16, 3],
+				[16, 3],
+				[20, 3],
+				[20, 3],
+				[20, 0],
+				[20, 2],
 					[104, 0],
 					[104, 1],
 					[188, 0],
@@ -132,6 +150,20 @@ var App = {
 				//aStatuses: ["green", "red", "orange", "yellow", "blue"],
 				//				0		1		2		  3		  4
 				aData = [
+				[0, 0],
+				[0, 1],
+				[0, 3],
+				[10, 0],
+				[10, 2],
+				[14, 3],
+				[14, 3],
+				[15, 3],
+				[15, 3],
+				[16, 3],
+				[16, 3],
+				[20, 3],
+				[20, 3],
+				[20, 0],
 					[0, 0],
 					[0, 1],
 					[84, 0],
@@ -145,7 +177,8 @@ var App = {
 				];
 			}
 		
-		} else if(vich === 1) {
+		} 
+		else if(vich === 1) {
 			//aStatuses: ["green", "red", "orange", "yellow", "blue"],
 			//				0		1		2		  3		  4
 			aData = [
