@@ -2,59 +2,13 @@
 <div class="nav">
 
 <div class="blocks" ng-if="user.suits != 0 && user.block == 8">
-    <a href="/user_{{user.id}}/block_8/35"
+    <a ng-repeat="part in parts" ng-init="part_index = $index + 1" 
+       ng-href="/user_{{user.id}}/intervention/{{part.id}}"
+       ng-class="{ 'disabled' : user.page < part.id}"
        ng-if="user.page >= 35">
         <div class="block">
-            <span class="id">Часть 1.</span>
-            <span class="name">Знания</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/36"
-       ng-if="user.page >= 36">
-        <div class="block">
-            <span class="id">Часть 2.</span>
-            <span class="name">Принятие диагноза</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/37"
-       ng-if="user.page >= 37">
-        <div class="block">
-            <span class="id">Часть 3.</span>
-            <span class="name">Сексуальные отношения</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/38"
-       ng-if="user.page >= 38">
-        <div class="block">
-            <span class="id">Часть 4.</span>
-            <span class="name">Правовые вопросы</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/39"
-       ng-if="user.page >= 39">
-        <div class="block">
-            <span class="id">Часть 5.</span>
-            <span class="name">Приверженность к лечению</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/40"
-       ng-if="user.page >= 40">
-        <div class="block">
-            <span class="id">Часть 6.</span>
-            <span class="name">Образ жизни</span>
-        </div>
-    </a>
-
-    <a href="/user_{{user.id}}/block_8/41"
-       ng-if="user.page >= 41">
-        <div class="block">
-            <span class="id">Часть 7.</span>
-            <span class="name">Употребление наркотиков</span>
+            <span class="id">Часть {{part_index}}.</span>
+            <span class="name">{{part.name}}</span>
         </div>
     </a>
 </div>

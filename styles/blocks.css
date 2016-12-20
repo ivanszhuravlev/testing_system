@@ -1,4 +1,4 @@
-﻿div.blocks {
+div.blocks {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -6,33 +6,9 @@
     width: 100%;
 }
 .intervention_content {
-padding: 5%;
-background: #fff;
+    padding: 5%;
+    background: #fff;
 }
-    .blocks a {
-        display: flex;
-        flex-grow: 1;
-        margin-bottom: 9px;
-        text-decoration: none;
-    }
-
-        .blocks a:last-child{
-            margin-bottom: 0;
-        }
-
-    .blocks .block {
-        position: relative;
-        width: 100%;
-        box-sizing: border-box;
-        border: 1px solid #e1e7ef;
-        padding: 0;
-        font-size: 14px;
-        color: #444444;
-        cursor: pointer;
-        border-radius: 2px;
-        padding: 9px 14px;
-        transition: all ease-out 100ms;
-    }
 
         .block .icon {
             position: absolute;
@@ -40,7 +16,6 @@ background: #fff;
             right: 12px;
             color: #cad4e0;
         }
-
 
         .block .id {
 /*            margin-bottom: 16px;*/

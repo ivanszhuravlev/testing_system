@@ -99,8 +99,9 @@
 	<!-- children -->
 </div>	
 	<div class="intervention_content">
-<br /><input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/ >
-<label class="int_accept" for="accept">
+<br />
+<input ng-if="!intervention_controller" type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/ >
+<label ng-if="!intervention_controller" class="int_accept" for="accept">
 <b> Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b>
 </label>
 </div>

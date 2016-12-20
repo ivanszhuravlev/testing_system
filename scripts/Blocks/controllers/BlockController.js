@@ -96,7 +96,7 @@ angular.module("testApp")
         $scope.results_page = "";
 
         if ($scope.block.content_id == 9 && $routeParams.pageId >= 35) {
-            BlocksService.getResults($rootScope.user).success(function(result){
+            BlocksService.getResults($rootScope.user, $rootScope.user.page).success(function(result){
                 $scope.test_result = result;
 //                console.log(result);
             });

@@ -38,6 +38,7 @@ angular.module('testApp')
                             $rootScope.user = {};
                             UserService.getUser(response.id).success(function(data){
                                 $rootScope.user = UserService.set(data);
+                                $rootScope.user.page = parseInt($rootScope.user.page);
                             });
                             break;
                     }
