@@ -124,12 +124,13 @@ div.multicol {
     /* background-size: 10%; */
     }
 .int_heading {
-    font-size: 50pt;
+    font-size: 67px;
     font-weight: bold;
     font-family: 'Calibri';
     margin: 0;
+	max-height:67px;
 	    position: absolute;
-    bottom: 77px;
+    bottom: 62px;
     background: -webkit-linear-gradient(top,rgba(255,0,0,0),rgba(255,208,232,1));
     background: -o-linear-gradient(bottom,rgba(255,0,0,0),rgba(255,208,232,1));
     background: -moz-linear-gradient(bottom,rgba(255,0,0,0),rgba(255,208,232,1));
@@ -262,7 +263,6 @@ label:hover:before {
     margin: 1% 0 !important;
     line-height: 180%;
 
-    padding-left: 1%;
 }
 .video_with_desc {
     border-left: 4px solid #3c89fd;
