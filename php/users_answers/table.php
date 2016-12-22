@@ -22,34 +22,83 @@ while ( $row = mysqli_fetch_array($query) ) {
     array_push($uids, $row[0]);
 	
 }
-echo "<pre>";
-print_r($uids);
+
+
+echo "<table border=1>";
+echo "<tr>";
+		//выбираем вопросы и формируем шапку таблице
+		 $query2 = mysqli_query($link, "SELECT id, name, s, q, v FROM questions");
+			 while ( $row = mysqli_fetch_assoc($query2) ) {
+
+				if ($row['q'] / 10 < 1) {
+					$q = '0' . $row['q'];
+				} else {
+					$q = $row['q'];
+				}
+				
+				if ($i == 1) {
+					$v = $row['v'] ? 'v' . $i : 'b';           
+					 $question_vars[$i . $row['s'] . $q . $row['name']] = [
+						"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+						"id"    => $row['id'],
+						"visit" => $i
+					];
+				} else {
+					if ($row['v']) {
+						$v = 'v' . $i;
+					  
+						$question_vars[$i . $row['s'] . $q . $row['name']] = [
+							"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+							"id"    => $row['id'],
+							"visit" => $i
+						];
+					}
+				}
+			}
+			echo "<td>ID\Переменные</td>";
+			foreach ($question_vars as $var ) {
+				echo "<td>";				
+				print_r ($var['id']);
+				echo ":";	
+				print_r ($var['var']);
+				echo "</td>";
+			}
+
+echo "</tr>";
+foreach ($uids as $id) {	
+	//берем каждого пользователя
+	echo "<tr><td>".$id."</td>";  
+		//берем каждый ID вопроса
+		foreach ($question_vars as $var ) 
+		{			
+		//выбираем вопрос с таким ID из ответов пользователей для каждого пользователя по очереди
+			$query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
+										  FROM user_answers 
+										  WHERE user_id = '" . $id . "'
+										  AND question_id='" . $var['id'] . "'
+										  ");
+			while ( $row = mysqli_fetch_assoc($query) ) {
+				echo "<td>
+				".$row['value']."
+				</td>";
+			}
+			
+		}
+	echo "</tr>";
+}
+echo "</table>";
+
+
+
+
+
+//выводим переменные
+echo "Вывод переменных<pre>";
+foreach ($question_vars as $var ) {
+ print_r ($var['id']);echo ": ";
+ print_r ($var['var']);echo "<br>";
+ }
 echo "</pre>";
 
-foreach ($uids as $id) {
-    $query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
-                                  FROM user_answers 
-                                  WHERE user_id = '" . $id . "'");
-    while ( $row = mysqli_fetch_assoc($query) ) {
-        if ($row['text_value']) {
-            $value = $row['text_value'];
-        } else {
-            $value = $row['value'];
-        }
 
-        if ($row['answer_id']) {
-            $qid = $row['answer_id'];
-        } else {
-            $qid = $row['question_id'];
-        }
-        
-        $visit = $row['visit'];
-
-        $result[$id][$qid][$visit] = [
-            "value" => $value
-        ];
-    }
-}
-
-print_r($result);
 ?>
