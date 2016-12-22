@@ -7,7 +7,7 @@
         $scope.blocks = [];
         $scope.parts = [];
         BlocksService.getDrugAnswers($rootScope.user).success(function(answers){
-            if ($rootScope.user.have_seen == 1) {
+            if ($rootScope.user.have_seen == 1 && $rootScope.user.page < 41) {
                 UserService.saveHaveSeen($rootScope.user, false).success(function(){
                     UserService.updatePage($rootScope.user, $rootScope.user.block).success(function (new_page) {
                         $rootScope.user.block = new_page.block;

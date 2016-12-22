@@ -124,7 +124,7 @@
                 </button>
             </a>
 
-            <button ng-if="accepted" style="    width: 100%;    font-size: larger;" ng-click="redirect_to_blocks()">Закончить на сегодня и вернуться на главную страницу сайта</button>
+            <button ng-if="user.page < 41 && accepted" style="    width: 100%;    font-size: larger;" ng-click="redirect_to_blocks()">Закончить на сегодня и вернуться на главную страницу сайта</button>
 
             <button ng-if="user.page == 41" class="green" ng-click="finish()" ng-disabled="!accepted">Далее</button>
         </div>

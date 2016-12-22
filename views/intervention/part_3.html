@@ -112,7 +112,7 @@
 </div>	
 	<div class="intervention_content">
 <br />
-<p ng-show="!intervention_controller" class="int_accept_box">
+<p ng-show="!intervention_controller || (intervention_controller && current_page.index == user.page - 34)" class="int_accept_box">
     <input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted" ng-change="save_have_seen(user, $parent.accepted)"/>
     <label class="int_accept" for="accept"><b>Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b></label>
 </p>
