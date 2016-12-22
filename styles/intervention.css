@@ -1,4 +1,4 @@
-﻿.intervention {
+.intervention {
     width: auto;
     background-color: transparent;
 }
@@ -313,4 +313,16 @@ height: 90vh;
 background: url(/img/pics/consultant2.png);
     background-repeat: no-repeat;
     padding-left: 11%;
+}
+
+.scrollup {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    display: none;
+    text-indent: -9999px;
+    background: url('icon_top.png') no-repeat;
+    background-color: #000;
 }
