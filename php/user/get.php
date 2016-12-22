@@ -30,7 +30,8 @@ $query = mysqli_query($link, "SELECT id,
                                      date_v2,
                                      date_v3,
                                      is_admin,
-                                     is_right FROM users WHERE id = '" . $id . "'");
+                                     is_right,
+                                     have_seen FROM users WHERE id = '" . $id . "'");
 
 $user = mysqli_fetch_assoc($query);
 

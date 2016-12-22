@@ -1,6 +1,7 @@
 angular.module("testApp")
 
-.controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll, $window) {
+.controller("BlockController", function ($scope, BlocksService, UserService, $routeParams, $rootScope, $location, UserModel, $anchorScroll, $window, $cacheFactory, $route) {
+    var $httpDefaultCache = $cacheFactory.get('$http');
 
     var block_prom = BlocksService.getBlock($routeParams.blockId);
 
@@ -395,15 +396,25 @@ angular.module("testApp")
     $scope.next_question = function() {
         var block_id = $routeParams.blockId >= 5 ? $scope.block.content_id : $routeParams.blockId;
 
-        UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
-            $rootScope.user.block = new_page.block;
-            $rootScope.user.page  = new_page.page;
-            $location.path(
-                '/user_' + $rootScope.user.id +
-                '/block_' + $rootScope.user.block +
-                '/' + $rootScope.user.page
-            ).replace();
+        UserService.saveHaveSeen($rootScope.user, false).success(function(){
+            UserService.updatePage($rootScope.user, $routeParams.blockId).success(function (new_page) {
+                $rootScope.user.block = new_page.block;
+                $rootScope.user.page  = new_page.page;
+                $location.path(
+                    '/user_' + $rootScope.user.id +
+                    '/block_' + $rootScope.user.block +
+                    '/' + $rootScope.user.page
+                ).replace();
+
+                $httpDefaultCache.removeAll();
+            });
         });
+    };
+
+    $scope.redirect_to_blocks = function() {
+//        alert("redirect");
+        $window.location.href = '/user_' + $rootScope.user.id + '/blocks';
+        $httpDefaultCache.removeAll();
     };
 
     $scope.scrollTo = function(target) {
@@ -424,6 +435,10 @@ angular.module("testApp")
 //                }
 //        }
 //    };
+    
+    $scope.save_have_seen = function(user, accepted) {
+        UserService.saveHaveSeen(user, accepted);
+    };
 
     $rootScope.compare = function(a1, a2) {
         return a1.length == a2.length && a1.every((v,i)=>v === a2[i]);

@@ -1,9 +1,25 @@
     angular.module("testApp")
 
-    .controller("BlocksController", function ($scope, BlocksService, $rootScope, UserService, $location) {
+    .controller("BlocksController", function ($scope, BlocksService, $rootScope, UserService, $location, $cacheFactory, $route) {
+        var $httpDefaultCache = $cacheFactory.get('$http');
+        $httpDefaultCache.removeAll();
+
         $scope.blocks = [];
         $scope.parts = [];
         BlocksService.getDrugAnswers($rootScope.user).success(function(answers){
+            if ($rootScope.user.have_seen == 1) {
+                UserService.saveHaveSeen($rootScope.user, false).success(function(){
+                    UserService.updatePage($rootScope.user, $rootScope.user.block).success(function (new_page) {
+                        $rootScope.user.block = new_page.block;
+                        $rootScope.user.page  = new_page.page;
+                        $location.path(
+                            '/user_' + $rootScope.user.id +
+                            '/blocks'
+                        ).replace();
+                    });
+                });
+            }
+
             if (answers.idrug_q5 == 1 && answers.idrug_q6 == 1) {
                 $scope.parts = [
                     { name: "Знания", id: 35 },

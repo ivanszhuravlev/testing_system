@@ -36,6 +36,7 @@ angular.module('testApp')
                     UserModel.user.date_v2  = data.date_v2 ? data.date_v2 : 0;
                     UserModel.user.date_v3  = data.date_v3 ? data.date_v3 : 0;
                     UserModel.user.is_right = data.is_right;
+                    UserModel.user.have_seen = data.have_seen;
 
                     if (data.diff_v2 || data.diff_v3) {
                         UserModel.user.diff_v2 = data.diff_v2;
@@ -52,6 +53,10 @@ angular.module('testApp')
 
             updateVisit : function(user) {
                 return $http.post('./php/user/update_visit.php', { user : user });
+            },
+
+            saveHaveSeen : function(user, accepted) {
+                return $http.post('./php/user/save_have_seen.php', { user : user, accepted : accepted });
             },
 
             logout : function() {

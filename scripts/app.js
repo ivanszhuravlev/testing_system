@@ -1,7 +1,6 @@
 angular.module('testApp', ['ngRoute', 'ngSanitize'])
-    .run(function(SessionService, $rootScope, UserService, $location) {
+    .run(function(SessionService, $rootScope, UserService, $location, $cacheFactory) {
             var connected = SessionService.check();
-
             connected.then(function(message) {
 
                 if (!message.data) {
@@ -13,6 +12,9 @@ angular.module('testApp', ['ngRoute', 'ngSanitize'])
 //                        alert(id);
                         $rootScope.user = {};
                         UserService.getUser(id).success(function(data){
+                            if (data.have_seen == 1) {
+                                $cacheFactory.get('$http').removeAll();
+                            }
 //                            alert(data.id);
                             $rootScope.user = UserService.set(data);
                             $rootScope.user.page = parseInt($rootScope.user.page);

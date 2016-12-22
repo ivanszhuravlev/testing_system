@@ -117,7 +117,14 @@
             <button ng-if="user.page < 41 && user.page == 35" class="green" ng-click="next_question()" ng-disabled="false">Перейти к следующей части программы</button>
 
             <button ng-if="user.page < 41 && user.page != 35" class="green" ng-click="next_question()" ng-disabled="!accepted">Перейти к следующей части программы</button>
-            <a ng-if="user.page < 41" href="/user_{{user.id}}/blocks"><button style="    width: 100%;    font-size: larger;">Закончить на сегодня и вернуться на главную страницу сайта</button></a>
+
+            <a ng-if="user.page < 41 && !accepted" href="/user_{{user.id}}/blocks">
+                <button style="    width: 100%;    font-size: larger;">
+                Закончить на сегодня и вернуться на главную страницу сайта
+                </button>
+            </a>
+
+            <button ng-if="accepted" style="    width: 100%;    font-size: larger;" ng-click="redirect_to_blocks()">Закончить на сегодня и вернуться на главную страницу сайта</button>
 
             <button ng-if="user.page == 41" class="green" ng-click="finish()" ng-disabled="!accepted">Далее</button>
         </div>
