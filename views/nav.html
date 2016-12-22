@@ -18,7 +18,7 @@
     
     <a ng-repeat="part in parts" ng-init="part_index = $index + 1" 
        ng-href="/user_{{user.id}}/intervention/{{part.id}}"
-       ng-class="{ 'disabled' : user.page < part.id}"
+       ng-class="{ 'disabled' : user.page - 34 < part_index}"
        ng-if="user.page >= 35">
         <div class="block">
             <span class="id">Часть {{part_index}}.</span>

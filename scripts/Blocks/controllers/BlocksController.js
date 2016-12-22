@@ -57,4 +57,16 @@
                 });
             });
         };
+
+        $scope.next_question = function() {
+            UserService.updatePage($rootScope.user, $rootScope.user.block).success(function (new_page) {
+                $rootScope.user.block = new_page.block;
+                $rootScope.user.page  = new_page.page;
+                $location.path(
+                    '/user_' + $rootScope.user.id +
+                    '/block_' + $rootScope.user.block +
+                    '/' + $rootScope.user.page
+                ).replace();
+            });
+        };
     });

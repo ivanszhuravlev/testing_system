@@ -104,11 +104,9 @@
 	</div>
 	<iframe src="https://www.youtube.com/embed/oJEKYPPndFc?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
 </div>
-<p>
-<input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/ >
-<label class="int_accept" for="accept">
-<b> Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b>
-</label>
+<p ng-show="!intervention_controller" class="int_accept_box">
+    <input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/>
+    <label class="int_accept" for="accept"><b>Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b></label>
 </p>
 <br /><br />
 </div>

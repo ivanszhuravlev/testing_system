@@ -49,12 +49,14 @@
     <div ng-if="user.block == 8 && user.suits == 1">
         <p>Вы прошли следующие части программы:</p>
         <ul>
-            <li ng-repeat="part in parts" ng-if="user.page > part.id">Часть {{$index + 1}}. {{part.name}}</li>
+            <li ng-repeat="part in parts" ng-if="user.page > part.id || (user.page == 35 && part.id == 35)">Часть {{$index + 1}}. {{part.name}}</li>
         </ul>
         <p>Желаете перейти к следующей части программы?</p>
-        <a href="/user_{{user.id}}/block_8/{{user.page}}" class="action">
-            <button ng-if="user.page > 35" class="action">Да, я хочу перейти к следующей части</button>
-            <button ng-if="user.page <= 35" class="action">Да, я хочу перейти к следующей части</button>
+        <a ng-if="user.page != 35" href="/user_{{user.id}}/block_8/{{user.page}}" class="action">
+            <button class="action">Да, я хочу продолжить</button>
+        </a>
+        <a ng-if="user.page == 35" class="action">
+            <button ng-click="next_question()" class="action">Да, я хочу продолжить</button>
         </a>
         <p>Если же Вы хотите еще раз ознакомиться с уже пройдеными частями программы или дополнительными материалами используйте меню расположенное на левой стороне данной страницы.</p>
     </div>

@@ -100,10 +100,8 @@
 </div>	
 	<div class="intervention_content">
 <br />
-<p>
-<input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/ >
-<label class="int_accept" for="accept">
-<b> Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b>
-</label>
+<p ng-show="!intervention_controller" class="int_accept_box">
+    <input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/>
+    <label class="int_accept" for="accept"><b>Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b></label>
 </p>
 </div>
