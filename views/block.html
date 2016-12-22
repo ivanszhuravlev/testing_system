@@ -95,7 +95,7 @@
 <!--                    Radio layout-->
                     <input ng-if="questions[0].options.indexOf('checkbox') != 0" type="radio" name="{{questions[0].name}}_{{questions[0].q}}" id="{{answer.id}}" ng-value="{ 'value' : answer.value }" ng-model="questions[0].user_answers[questions[0].id]" required />
 <!--                    Checkbox layout-->
-                    <input ng-if="questions[0].options.indexOf('checkbox') == 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="questions[0].user_answers.multiple[answer.id]" ng-required="!questions[0].user_answers.multiple"/>
+                    <input ng-if="questions[0].options.indexOf('checkbox') == 0" type="checkbox" id="{{answer.id}}" value="{{answer.value}}" ng-model="questions[0].user_answers.multiple[answer.id]" ng-required="no_answers(0)" ng-change="reformat_answers(0)"/>
 
                     <label for="{{answer.id}}">{{answer.text}}</label>
                 </div>

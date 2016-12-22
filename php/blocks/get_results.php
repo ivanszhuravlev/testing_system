@@ -25,10 +25,10 @@ switch($page_id) {
 
         $result += $row['value'];
 
-    //    $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'condom' AND user_id = '" . $user['id'] . "'");
-      //  $row = mysqli_fetch_assoc($query);
+        $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'condom' AND user_id = '" . $user['id'] . "'");
+        $row = mysqli_fetch_assoc($query);
 
-       // $result += $row['value'];
+        $result += $row['value'];
         break;
     case 36:
         $query = mysqli_query($link, "SELECT value FROM user_answers WHERE variable = 'hss' AND user_id = '" . $user['id'] . "' AND visit = '" . $user['visit'] . "'");
