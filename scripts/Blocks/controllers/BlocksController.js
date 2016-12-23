@@ -2,7 +2,6 @@
 
     .controller("BlocksController", function ($scope, BlocksService, $rootScope, UserService, $location, $cacheFactory, $route) {
         var $httpDefaultCache = $cacheFactory.get('$http');
-        $httpDefaultCache.removeAll();
 
         $scope.blocks = [];
         $scope.parts = [];

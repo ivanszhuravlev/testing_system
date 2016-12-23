@@ -14,7 +14,7 @@
 
 
 
-<div class="blocks" ng-if="user.suits != 0 && user.block == 8">
+<div class="blocks">
     
     <a ng-repeat="part in parts" ng-init="part_index = $index + 1" 
        ng-href="/user_{{user.id}}/intervention/{{part.id}}"

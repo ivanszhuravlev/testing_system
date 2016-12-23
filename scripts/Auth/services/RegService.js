@@ -54,7 +54,10 @@ angular.module('testApp')
 
         RegService.register = function (user) {
             var condition = model.reg_user.email      == 0 &&
-                            model.reg_user.pass_equal == 0;
+                            model.reg_user.pass_equal == 0,
+                reg_pass = document.getElementById('reg_pass'),
+                rep_pass = document.getElementById('rep_pass'),
+                reg_email = document.getElementById('reg_email');
 			
             if (condition) {
                 /**
