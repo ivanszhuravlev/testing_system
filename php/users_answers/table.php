@@ -24,121 +24,179 @@ while ( $row = mysqli_fetch_array($query) ) {
 }
 
 
-foreach ($uids as $id) {
-    $query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
-                                  FROM user_answers 
-                                  WHERE user_id = '" . $id . "'");
-    while ( $row = mysqli_fetch_assoc($query) ) {
-        if ($row['text_value']) {
-            $value = $row['text_value'];
+echo "<table border=1>";
+echo "<tr>";
+		//выбираем вопросы и формируем шапку таблице
+
+		 $query2 = mysqli_query($link, "SELECT id, name, s, q, v FROM questions");
+			 while ( $row = mysqli_fetch_assoc($query2) ) 
+			 {
+				
+				// ???
+				if ($row['q'] / 10 < 1) {
+					$q = '0' . $row['q'];
+				} else {
+					$q = $row['q'];
+				}
+				
+					if ($row['v'] == 0) 
+					{
+						$question_vars_1[$row['s'] . $q . $row['name']] = [
+						"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+						"id"    => $row['id'],
+						"visit" => '1'
+					];
+					}
+					else 
+					{
+					$question_vars_1[$row['s'] . $q . $row['name']] = [
+						"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+						"id"    => $row['id'],
+						"visit" => '1'
+					];
+					$question_vars_2[$row['s'] . $q . $row['name']] = [
+						"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+						"id"    => $row['id'],
+						"visit" => '2'
+					];
+					$question_vars_3[$row['s'] . $q . $row['name']] = [
+						"var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
+						"id"    => $row['id'],
+						"visit" => '3'
+					];
+					}
+
+			}
+			echo "<td>ID\Переменные</td>";
+			foreach ($question_vars_1 as $var ) {
+				echo "<td>";				
+				print_r ($var['id']);
+				echo ":";	
+				print_r ($var['var']);
+						echo ":";	
+				print_r ($var['visit']);
+				echo "</td>";
+			}
+			foreach ($question_vars_2 as $var ) {
+				echo "<td>";				
+				print_r ($var['id']);
+				echo ":";	
+				print_r ($var['var']);
+						echo ":";	
+				print_r ($var['visit']);
+				echo "</td>";
+			}
+			foreach ($question_vars_3 as $var ) {
+				echo "<td>";				
+				print_r ($var['id']);
+				echo ":";	
+				print_r ($var['var']);
+						echo ":";	
+				print_r ($var['visit']);
+				echo "</td>";
+			}
+
+echo "</tr>";
+foreach ($uids as $id) {	
+	//берем каждого пользователя
+	echo "<tr><td>".$id."</td>";  
+		//берем каждый ID вопроса
+		foreach ($question_vars_1 as $var ) 
+		{			
+		//выбираем вопрос с таким ID из ответов пользователей для каждого пользователя по очереди
+			$query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
+										  FROM user_answers 
+										  WHERE user_id = '" . $id . "'
+										  AND question_id='" . $var['id'] . "'
+										  AND visit ='1'
+										  ");
+			while ( $row = mysqli_fetch_assoc($query) ) {
 			
-        } else {
-            $value = $row['value'];
-        }
+			 if ($row['text_value'])
+				 {
+					$value = $row['text_value'];
+			} else {
+						$value = $row['value'];
+			}
 
-        if ($row['answer_id']) {
-            $qid = $row['answer_id'];
-        } else {
-            $qid = $row['question_id'];
-        }
-        
-        $visit = $row['visit'];
+			
+			if ($row['answer_id']) {
+						$qid = $row['answer_id'];
+			} else {
+						$qid = $row['question_id'];
+				}
+				echo "<td>1^
+				".$value."
+				</td>";
+			}
+			
+		}
+		foreach ($question_vars_2 as $var ) 
+		{			
+		//выбираем вопрос с таким ID из ответов пользователей для каждого пользователя по очереди
+			$query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
+										  FROM user_answers 
+										  WHERE user_id = '" . $id . "'
+										  AND question_id='" . $var['id'] . "'
+										  AND visit ='2'
+										  ");
+			while ( $row = mysqli_fetch_assoc($query) ) {
+			
+			 if ($row['text_value'])
+				 {
+					$value = $row['text_value'];
+					} else {
+						$value = $row['value'];
+					}
 
-        $result[$id][$qid][$visit] = [
-            "value" => $value
-        ];
-    }
+					if ($row['answer_id']) {
+						$qid = $row['answer_id'];
+					} else {
+						$qid = $row['question_id'];
+				}
+				echo "<td>2^
+				".$value."
+				</td>";
+			}
+			
+		}
+		foreach ($question_vars_3 as $var ) 
+		{			
+		//выбираем вопрос с таким ID из ответов пользователей для каждого пользователя по очереди
+			$query = mysqli_query($link, "SELECT question_id, value, answer_id, text_value, visit
+										  FROM user_answers 
+										  WHERE user_id = '" . $id . "'
+										  AND question_id='" . $var['id'] . "'
+										  AND visit ='3'
+										  ");
+			while ( $row = mysqli_fetch_assoc($query) ) {
+			
+			 if ($row['text_value'])
+				 {
+					$value = $row['text_value'];
+					} else {
+						$value = $row['value'];
+					}
+
+					if ($row['answer_id']) {
+						$qid = $row['answer_id'];
+					} else {
+						$qid = $row['question_id'];
+				}
+				echo "<td>^3
+				".$value."
+				</td>";
+			}
+			
+		}
+	echo "</tr>";
 }
+echo "</table>";
 
 
-for($i = 1; $i <= 3; $i++) {
-    $query = mysqli_query($link, "SELECT id, name, s, q, v FROM questions");
-
-    while ( $row = mysqli_fetch_assoc($query) ) {
-
-        if ($row['q'] / 10 < 1) {
-            $q = '0' . $row['q'];
-        } else {
-            $q = $row['q'];
-        }
-        
-        if ($i == 1) {
-            $v = $row['v'] ? 'v' . $i : 'b';
-            $result[$i . $row['s'] . $q . $row['name']] = [
-                "var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
-                "id"    => $row['id'],
-                "visit" => $i
-            ];
-			 $question_vars[$i . $row['s'] . $q . $row['name']] = [
-                "var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
-                "id"    => $row['id'],
-                "visit" => $i
-            ];
-        } else {
-            if ($row['v']) {
-                $v = 'v' . $i;
-                $result[$i . $row['s'] . $q . $row['name']] = [
-                    "var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
-                    "id"    => $row['id'],
-                    "visit" => $i
-                ];
-				$question_vars[$i . $row['s'] . $q . $row['name']] = [
-                    "var"   => $row['name'] . '_s' . $row['s'] . 'q' . $row['q'] . $v,
-                    "id"    => $row['id'],
-                    "visit" => $i
-                ];
-            }
-        }
-    }
-	
-}
-echo "<pre>";
-foreach ($question_vars as $var ) {
- print_r ($var['var']);echo "<br>";
- }
-echo "</pre>";
 
 
-for($i = 1; $i <= 3; $i++) {
 
-    $query = mysqli_query($link, "SELECT id, variable FROM answers");
 
-    $test = array();
-
-    while ( $row = mysqli_fetch_assoc($query) ) {
-
-        if ($row['variable']) {
-            preg_match('/([A-Za-z0-9]+)_\w(\d{1,2})\w(\d{1,2})(\w{1,2})/', $row['variable'], $matches);
-
-            $v = $matches[4] ? $matches[4] : 'b';
-
-            if ($matches[3] / 10 < 1) {
-                $q = '0' . $matches[3];
-            } else {
-                $q = $matches[3];
-            }
-
-            if ($i == 1) {
-                $v = $matches[4] ? 'v' . $i : 'b';
-                $result[$i . $matches[2] . $q . $matches[1]] = [
-                    "var"   => $matches[1] . '_s' . $matches[2] . 'q' . $matches[3] . $v, 
-                    "id"    => $row['id'],
-                    "visit" => $i,
-                    "is_multiple" => true
-                ];
-            } else {
-                if ($matches[4]) {
-                    $v = 'v' . $i;
-                    $result[$i . $matches[2] . $q . $matches[1]] = [
-                        "var"   => $matches[1] . '_s' . $matches[2] . 'q' . $matches[3] . $v, 
-                        "id"    => $row['id'],
-                        "visit" => $i,
-                        "is_multiple" => true
-                    ];
-                }
-            }
-        }
-    }
-}
 
 ?>
