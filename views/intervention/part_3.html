@@ -48,62 +48,73 @@
 	<div class="video_stub"><iframe src="https://www.youtube.com/embed/?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
 	<br />
 	<p>Рождение детей – важный этап в семейной жизни. Наличие ВИЧ-инфекции хотя бы у одного из партнёров заставляет задумываться о снижении риска инфицирования будущего ребёнка. Ниже будет рассказано, какую помощь будущие и настоящие ВИЧ-положительные мамы могут получить в Центре СПИД для себя и своих детей.</p>
-</div>
 
 
-<div ng-if="test_result['conceive'] != 1">
-    <label class="spoiler">
-        Ознакомиться с содержанием раздела "Беременность и ВИЧ"
-        <input type="checkbox" class="spoiler" ng-model="$parent.spoiler_conceive" ng-click="scrollTo('conceive')">
-    </label>
-    <div ng-show="spoiler_conceive">
-	<!-- conceive -->
-	<div ng-include="'/views/intervention/conceive.html'"></div>	
-			
-	<!-- /end conceive -->
-    </div>
-</div>
 
-<div ng-if="test_result['conceive'] == 1">
-	<!-- conceive -->
-	<div ng-include="'/views/intervention/conceive.html'"></div>	
-	<!-- /end conceive -->
-</div>
+	<div ng-if="test_result['conceive'] != 1">
+		<label class="spoiler">
+			Ознакомиться с содержанием раздела "Беременность и ВИЧ"
+			<input type="checkbox" class="spoiler" ng-model="$parent.spoiler_conceive" ng-click="scrollTo('conceive')">
+		</label>
+		<div ng-show="spoiler_conceive">
+		<!-- conceive -->
+			<div class="parallax" style="background-image: url(/img/pics/3_1_1pregnant.png);" id='conceive'></div>
+					<h2 class="int_heading2" >Беременность и ВИЧ</h2>
 
-<div ng-if="test_result['children'] != 1">
-    <label class="spoiler">Ознакомиться с содержанием раздела "Дети и ВИЧ"<input type="checkbox" class="spoiler" ng-model="$parent.spoiler_conceive2" ng-click="scrollTo('children')"></label>
-    <div ng-show="spoiler_conceive2">
-			<!-- children -->
-			<div class="parallax" style="background-image: url(/img/pics/3_2_2deti.png);" id='children'></div>
-			<h2 class="int_heading2">Дети и ВИЧ</h2>
-			<div class="intervention_content">
-				<div class="video_stub"><div class="video_desc">Для того чтобы убедиться в том, что у Вашего новорожденного ребенка нет ВИЧ-инфекции, необходимо в течение его первых 1,5 лет совершить ряд визитов в Центр СПИД. В следующем видео специалист расскажет о том, для чего и как часто Вам нужно привозить своего малыша в Центр СПИД.</div><iframe src="https://www.youtube.com/embed/X-HnDUkSaec?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-				<div class="video_stub"><div class="video_desc">Тем ВИЧ-положительным женщинам, которые принимают АРВ-терапию, важно не забывать про себя после рождения ребенка и сохранять приверженность. Послушайте, пожалуйста, личную историю о том, что помогало не забывать о приеме терапии после родов, когда у молодой мамы появилось много новых забот. Вашему ребенку нужна здоровая мама.</div><iframe src="https://www.youtube.com/embed/C3B-H62jNDw?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-				<div class="video_stub"><div class="video_desc">Если у Вашего ребенка ВИЧ-положительный статус, то по мере его взросления возникнет необходимость рассказать ему об этом. В следующем видео Вы услышите рекомендации психолога о выборе времени для разговора с ребенком о ВИЧ-инфекции, о том, как подготовиться и как вести себя во время этого непростого разговора.</div><iframe src="https://www.youtube.com/embed/QOa6Y5tgH0A?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-				<br />
+					 <div class="video_stub">
+						 <div class="video_desc">ВИЧ-положительные люди могут иметь здоровых детей без ВИЧ-инфекции. Для этого важно осознанно и заранее подходить к процессу планирования беременности. Послушайте личную историю о том, какие действия помогли дискордантной паре обезопасить своего будущего ребенка, а также ВИЧ-отрицательного партнера от заражения ВИЧ-инфекцией.
+						 </div>
+						 <iframe src="https://www.youtube.com/embed/qqWvlqP8S50?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
+					 </div>
+					<br />
+				
+		<!-- /end conceive -->
 			</div>
-		<!-- children -->
+		</div>
+	
+	<div ng-if="test_result['conceive'] == 1">
+		<!-- conceive -->
+		<div class="parallax" style="background-image: url(/img/pics/3_1_1pregnant.png);" id='conceive'></div>
+					<h2 class="int_heading2" >Беременность и ВИЧ</h2>
+					
+					 <div class="video_stub">
+						 <div class="video_desc">ВИЧ-положительные люди могут иметь здоровых детей без ВИЧ-инфекции. Для этого важно осознанно и заранее подходить к процессу планирования беременности. Послушайте личную историю о том, какие действия помогли дискордантной паре обезопасить своего будущего ребенка, а также ВИЧ-отрицательного партнера от заражения ВИЧ-инфекцией.</div><iframe src="https://www.youtube.com/embed/qqWvlqP8S50?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe>
+					 </div>
+					<br />
+		<!-- /end conceive -->
 	</div>
-</div>
-<div ng-if="test_result['children'] == 1">
 
-	<!-- children -->
-	<div class="parallax" style="background-image: url(/img/pics/3_2_2deti.png);" id='children'></div>
-	<h2 class="int_heading2">Дети и ВИЧ</h2>
-	<div class="intervention_content">
-		<div class="video_stub"><div class="video_desc">Для того чтобы убедиться в том, что у Вашего новорожденного ребенка нет ВИЧ-инфекции, необходимо в течение его первых 1,5 лет совершить ряд визитов в Центр СПИД. В следующем видео специалист расскажет о том, для чего и как часто Вам нужно привозить своего малыша в Центр СПИД.</div><iframe src="https://www.youtube.com/embed/X-HnDUkSaec?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-        <div class="video_stub"><div class="video_desc">Тем ВИЧ-положительным женщинам, которые принимают АРВ-терапию, важно не забывать про себя после рождения ребенка и сохранять приверженность. Послушайте, пожалуйста, личную историю о том, что помогало не забывать о приеме терапии после родов, когда у молодой мамы появилось много новых забот. Вашему ребенку нужна здоровая мама.</div><iframe src="https://www.youtube.com/embed/C3B-H62jNDw?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-        <div class="video_stub"><div class="video_desc">Если у Вашего ребенка ВИЧ-положительный статус, то по мере его взросления возникнет необходимость рассказать ему об этом. В следующем видео Вы услышите рекомендации психолога о выборе времени для разговора с ребенком о ВИЧ-инфекции, о том, как подготовиться и как вести себя во время этого непростого разговора.</div><iframe src="https://www.youtube.com/embed/QOa6Y5tgH0A?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
-    <br />
+	<div ng-if="test_result['children'] != 1">
+		<label class="spoiler">Ознакомиться с содержанием раздела "Дети и ВИЧ"<input type="checkbox" class="spoiler" ng-model="$parent.spoiler_conceive2" ng-click="scrollTo('children')"></label>
+		<div ng-show="spoiler_conceive2">
+				<!-- children -->
+				<div class="parallax" style="background-image: url(/img/pics/3_2_2deti.png);" id='children'></div>
+				<h2 class="int_heading2">Дети и ВИЧ</h2>
+				<div class="intervention_content">
+					<div class="video_stub"><div class="video_desc">Для того чтобы убедиться в том, что у Вашего новорожденного ребенка нет ВИЧ-инфекции, необходимо в течение его первых 1,5 лет совершить ряд визитов в Центр СПИД. В следующем видео специалист расскажет о том, для чего и как часто Вам нужно привозить своего малыша в Центр СПИД.</div><iframe src="https://www.youtube.com/embed/X-HnDUkSaec?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+					<div class="video_stub"><div class="video_desc">Тем ВИЧ-положительным женщинам, которые принимают АРВ-терапию, важно не забывать про себя после рождения ребенка и сохранять приверженность. Послушайте, пожалуйста, личную историю о том, что помогало не забывать о приеме терапии после родов, когда у молодой мамы появилось много новых забот. Вашему ребенку нужна здоровая мама.</div><iframe src="https://www.youtube.com/embed/C3B-H62jNDw?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+					<div class="video_stub"><div class="video_desc">Если у Вашего ребенка ВИЧ-положительный статус, то по мере его взросления возникнет необходимость рассказать ему об этом. В следующем видео Вы услышите рекомендации психолога о выборе времени для разговора с ребенком о ВИЧ-инфекции, о том, как подготовиться и как вести себя во время этого непростого разговора.</div><iframe src="https://www.youtube.com/embed/QOa6Y5tgH0A?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+					<br />
+				</div>
+			<!-- children -->
+		</div>
 	</div>
-	<!-- children -->
-</div>	
-	<div class="intervention_content">
+	<div ng-if="test_result['children'] == 1">
+
+		<!-- children -->
+		<div class="parallax" style="background-image: url(/img/pics/3_2_2deti.png);" id='children'></div>
+		<h2 class="int_heading2">Дети и ВИЧ</h2>
+		<div class="intervention_content">
+			<div class="video_stub"><div class="video_desc">Для того чтобы убедиться в том, что у Вашего новорожденного ребенка нет ВИЧ-инфекции, необходимо в течение его первых 1,5 лет совершить ряд визитов в Центр СПИД. В следующем видео специалист расскажет о том, для чего и как часто Вам нужно привозить своего малыша в Центр СПИД.</div><iframe src="https://www.youtube.com/embed/X-HnDUkSaec?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+			<div class="video_stub"><div class="video_desc">Тем ВИЧ-положительным женщинам, которые принимают АРВ-терапию, важно не забывать про себя после рождения ребенка и сохранять приверженность. Послушайте, пожалуйста, личную историю о том, что помогало не забывать о приеме терапии после родов, когда у молодой мамы появилось много новых забот. Вашему ребенку нужна здоровая мама.</div><iframe src="https://www.youtube.com/embed/C3B-H62jNDw?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+			<div class="video_stub"><div class="video_desc">Если у Вашего ребенка ВИЧ-положительный статус, то по мере его взросления возникнет необходимость рассказать ему об этом. В следующем видео Вы услышите рекомендации психолога о выборе времени для разговора с ребенком о ВИЧ-инфекции, о том, как подготовиться и как вести себя во время этого непростого разговора.</div><iframe src="https://www.youtube.com/embed/QOa6Y5tgH0A?showinfo=0&rel=0" frameborder="0" allowfullscreen></iframe></div>
+		<br />
+		</div>
+		<!-- children -->
+	</div>	
 <br />
-<p>
-<input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted"/ >
-<label class="int_accept" for="accept">
-<b> Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b>
-</label>
+<p ng-show="!intervention_controller || (intervention_controller && current_page.index == user.page - 34)" class="int_accept_box">
+    <input type="checkbox" id="accept" name="accept" ng-model="$parent.accepted" ng-change="save_have_seen(user, $parent.accepted)"/>
+    <label class="int_accept" for="accept"><b>Я ознакомился со всеми материалами этой части программы, которые мне были предоставлены на данной веб-странице</b></label>
 </p>
 </div>
