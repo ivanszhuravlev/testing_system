@@ -7,7 +7,7 @@ icons[0] =
     [
         { count: 1, score: 0 },
         { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 3, score: -2 },
     ]
 };
 icons[1] =
@@ -17,8 +17,8 @@ icons[1] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: -2 },
+        { count: 2, score: 2 },
+        { count: 3, score: -1 },
     ]
 };
 icons[2] =
@@ -29,7 +29,7 @@ icons[2] =
     [
         { count: 1, score: 0 },
         { count: 2, score: -2 },
-        { count: 3, score: -2 },
+        { count: 3, score: -4 },
     ]
 };
 icons[3] =
@@ -39,8 +39,8 @@ icons[3] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 2, score: -2 },
+        { count: 3, score: -3 },
     ]
 };
 icons[4] =
@@ -50,8 +50,8 @@ icons[4] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[5] =
@@ -61,8 +61,8 @@ icons[5] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1.5 },
-        { count: 3, score: -2 },
+        { count: 2, score: -3 },
+        { count: 3, score: -4 },
     ]
 };
 icons[6] =
@@ -73,7 +73,7 @@ icons[6] =
     [
         { count: 1, score: 1 },
         { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 3, score: -2 },
     ]
 };
 icons[7] =
@@ -83,8 +83,8 @@ icons[7] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[8] =
@@ -94,8 +94,8 @@ icons[8] =
     act:
     [
         { count: 1, score: -1 },
-        { count: 2, score: -1 },
-        { count: 3, score: -1 },
+        { count: 2, score: -2 },
+        { count: 3, score: -3 },
     ]
 };
 icons[9] =
@@ -105,8 +105,8 @@ icons[9] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1},
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
 icons[10] =
@@ -116,10 +116,13 @@ icons[10] =
     act:
     [
         { count: 1, score: 1 },
-        { count: 2, score: 1 },
-        { count: 3, score: 1 },
+        { count: 2, score: 2 },
+        { count: 3, score: 3 },
     ]
 };
+
+var minScore = -19, maxScore = 15;
+var score = (minScore + maxScore) / 2;
 var blockGame, block1, block2;
 var dragIconIdx = -1;
 var addDragIcon = true;
@@ -206,7 +209,7 @@ function clickIcon(e)
     var iconIdx = -1;
     for (var i = 0; i < icons.length; i++)
     {
-        if (icons[i].thmb == e.srcElement)
+        if (icons[i].thmb == e.target)
         {
             iconIdx = i;
             break;
@@ -215,6 +218,7 @@ function clickIcon(e)
 
     if (iconIdx != -1)
     {
+        redrawIconDesc(iconIdx);
         addDragIcon = true;
         icons[iconIdx].drag.style.left = icons[iconIdx].thmb.offsetLeft + "px";
         icons[iconIdx].drag.style.top = icons[iconIdx].thmb.offsetTop + "px";
@@ -322,8 +326,9 @@ function incIcon(iconIdx)
 {
     if (iconsRight[iconIdx].count >= 3) return;
     iconsRight[iconIdx].count++;
-    var score = calcScore(iconIdx);
-    progress.val += score;
+    calcScore();
+    //var score = calcScore(iconIdx);
+    //progress.val += score;
     redrawIconRight(iconIdx);
     redrawProgress();
 }
@@ -332,18 +337,34 @@ function decIcon(iconIdx)
 {
     var score = calcScore(iconIdx);
     iconsRight[iconIdx].count--;
-    progress.val -= score;
+    calcScore();
+    //progress.val -= score;
     redrawIconRight(iconIdx);
     redrawProgress();
 }
 
-function calcScore(iconIdx)
+function calcScore(/*iconIdx*/)
 {
-    for (var i = 0; i < icons[iconIdx].act.length; i++)
+    score = 0;
+    for (var i = 0; i < icons.length; i++)
+    {
+        if (iconsRight[i].count > 0)
+        {
+            for (var j = 0; j < icons[i].act.length; j++)
+            {
+                if (iconsRight[i].count == icons[i].act[j].count)
+                {
+                    score += icons[i].act[j].score;
+                    break;
+                }
+            }
+        }
+    }
+    /*for (var i = 0; i < icons[iconIdx].act.length; i++)
     {
         if (iconsRight[iconIdx].count <= icons[iconIdx].act[i].count) return icons[iconIdx].act[i].score;
     }
-    return icons[iconIdx].act[icons[iconIdx].act.length - 1].score;
+    return icons[iconIdx].act[icons[iconIdx].act.length - 1].score;*/
 }
 
 function redrawIconDesc(iconIdx)
@@ -367,7 +388,8 @@ function redrawIconRight(iconIdx)
 
 function redrawProgress()
 {
-    var perc = progress.val * 2;
+    var perc = (score - minScore) / (maxScore - minScore) * 100;
+
     if (perc > 100) perc = 100;
     else if (perc < 0) perc = 0;
 
@@ -398,31 +420,25 @@ function resize()
 
     blockGame.style.fontSize = blockGame.clientHeight / 30 + "px";
 
-    var posX = 0, posY = 0;
+    var posX = 0;
 
-    var iconSize = block1.clientWidth / 6;
-    var divSize = (block1.clientWidth - iconSize * 5) / 6;
+    var iconSize = block1.clientWidth / (icons.length + 2);
+    var divSize = (block1.clientWidth - iconSize * icons.length) / (icons.length + 1);
     var stepSize = iconSize + divSize;
-    //var startX = 0;
-    //var startY = (block1.clientHeight - iconSize * 3 - progress.element.clientHeight / 2) / 2;
 
-    var height = block1.clientHeight - progress.element.clientHeight * 1.3;
+    /*var height = block1.clientHeight - progress.element.clientHeight * 2;
     if (stepSize * 2 > height)
     {
         iconSize = height / 2.5;
         divSize = (height - iconSize * 2) / 3;
         stepSize = iconSize + divSize;
-        //startX = (block1.clientWidth - iconSize * 6) / 2;
-        //startY = 0;
-    }
+    }*/
 
-    var startX = (block1.clientWidth - iconSize * 6) / 2;
-    var startY = (block1.clientHeight - iconSize * 3) / 2;
+    var posY = block1.clientHeight / 2 - iconSize / 2;
 
     for (var i = 0; i < icons.length; i++)
     {
-        posX = startX + divSize + i % 6 * stepSize;
-        posY = startY + divSize + Math.floor(i / 6) * stepSize;
+        posX = divSize + i * stepSize;
 
         icons[i].thmb.style.width = iconSize + "px";
         icons[i].thmb.style.height = iconSize + "px";
